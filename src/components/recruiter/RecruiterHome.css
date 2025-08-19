@@ -1,0 +1,1132 @@
+.recruiter-gradient-bg {
+  min-height: 100vh;
+  width: 100vw;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+}
+
+.recruiter-navbar {
+  background: #ffffff;
+  color: #1e293b;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 3rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.recruiter-navbar .website-name {
+  color: #0f172a;
+  font-weight: 800;
+  font-size: 1.5rem;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.recruiter-link {
+  text-decoration: none;
+  color: #64748b;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0.6rem 1.3rem;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.recruiter-link:hover {
+  background: #eff6ff;
+  color: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.15);
+}
+
+.recruiter-link.active {
+  background: #3b82f6;
+  color: white;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.recruiter-home-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3vh;
+  animation: fadeInUp 1.2s;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 2rem;
+}
+
+.recruiter-home-content h2 {
+  color: #0f172a;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.recruiter-home-content p {
+  color: #475569;
+  font-size: 1.3rem;
+  max-width: 600px;
+  text-align: center;
+  font-weight: 500;
+  line-height: 1.6;
+}
+
+.logout-btn {
+  margin-left: 1.2rem;
+  padding: 0.7rem 1.8rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 25px;
+  background: #ef4444;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.2);
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+}
+
+.logout-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: left 0.5s;
+}
+
+.logout-btn:hover::before {
+  left: 100%;
+}
+
+.logout-btn:hover {
+  background: #dc2626;
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.3);
+}
+
+.dark-theme .recruiter-gradient-bg {
+  background: #181818;
+}
+
+.dark-theme .recruiter-navbar {
+  background: #181818;
+  color: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid #334155;
+}
+
+.dark-theme .recruiter-navbar .website-name {
+  background: linear-gradient(135deg, #60a5fa, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.dark-theme .recruiter-link {
+  color: #94a3b8;
+}
+
+.dark-theme .recruiter-link:hover {
+  background: #1e40af;
+  color: white;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+}
+
+.dark-theme .recruiter-link.active {
+  background: #60a5fa;
+  color: #0f172a;
+  box-shadow: 0 4px 15px rgba(96, 165, 250, 0.3);
+}
+
+.dark-theme .recruiter-home-content h2 {
+  color: #f1f5f9;
+}
+
+.dark-theme .recruiter-home-content p {
+  color: #cbd5e1;
+}
+
+.dark-theme .logout-btn {
+  background: #dc2626;
+  color: white;
+  box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+}
+
+.dark-theme .logout-btn:hover {
+  background: #b91c1c;
+  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
+}
+
+/* Add Job Modal Styles */
+.add-job-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s;
+}
+
+.add-job-modal-content {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(15, 23, 42, 0.2);
+  padding: 2rem;
+  max-width: 800px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  animation: slideIn 0.3s;
+  border: 1px solid #e2e8f0;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.modal-header h3 {
+  color: #0f172a;
+  font-size: 1.5rem;
+  margin: 0;
+  font-weight: 700;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #64748b;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: background 0.2s, color 0.2s;
+}
+
+.close-btn:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+.add-job-modal form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.add-job-modal .form-section {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  background: #f8fafc;
+}
+
+.add-job-modal .form-section h4 {
+  color: #0f172a;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.add-job-modal .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.add-job-modal label {
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  color: #374151;
+  font-weight: 500;
+  gap: 0.5rem;
+}
+
+.add-job-modal input,
+.add-job-modal select,
+.add-job-modal textarea {
+  padding: 0.8rem 1rem;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  background: #fff;
+  color: #0f172a;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.add-job-modal input:focus,
+.add-job-modal select:focus,
+.add-job-modal textarea:focus {
+  border: 1.5px solid #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.add-job-modal textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.add-job-modal .form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.cancel-btn {
+  padding: 0.8rem 1.5rem;
+  background: #64748b;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.cancel-btn:hover {
+  background: #475569;
+}
+
+/* Dark theme styles for add job modal */
+.dark-theme .add-job-modal-content {
+  background: #181818;
+  color: #fff;
+  border: 1px solid #334155;
+}
+
+.dark-theme .modal-header {
+  border-bottom: 1px solid #334155;
+}
+
+.dark-theme .modal-header h3 {
+  color: #f1f5f9;
+}
+
+.dark-theme .close-btn {
+  color: #94a3b8;
+}
+
+.dark-theme .close-btn:hover {
+  background: #334155;
+  color: #f1f5f9;
+}
+
+.dark-theme .add-job-modal .form-section {
+  background: #334155;
+  border: 1px solid #475569;
+}
+
+.dark-theme .add-job-modal .form-section h4 {
+  color: #f1f5f9;
+}
+
+.dark-theme .add-job-modal label {
+  color: #cbd5e1;
+}
+
+.dark-theme .add-job-modal input,
+.dark-theme .add-job-modal select,
+.dark-theme .add-job-modal textarea {
+  background: #181818;
+  color: #f1f5f9;
+  border: 1.5px solid #475569;
+}
+
+.dark-theme .add-job-modal input:focus,
+.dark-theme .add-job-modal select:focus,
+.dark-theme .add-job-modal textarea:focus {
+  border: 1.5px solid #60a5fa;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+}
+
+.dark-theme .add-job-modal .form-actions {
+  border-top: 1px solid #334155;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { 
+    opacity: 0; 
+    transform: translateY(-20px) scale(0.95);
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.recruiter-applications-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-top: 2rem;
+}
+.recruiter-application-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.recruiter-application-card:hover {
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.1);
+  transform: translateY(-2px);
+}
+
+.application-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.job-title {
+  color: #0f172a;
+  font-size: 1.2rem;
+  margin: 0;
+  font-weight: 700;
+}
+
+.status-badge {
+  color: #fff;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.application-details {
+  margin-bottom: 1rem;
+}
+
+.detail-row {
+  margin-bottom: 0.5rem;
+  color: #475569;
+}
+
+.cover-letter {
+  margin: 1rem 0;
+  padding: 1rem;
+  background: #f8fafc;
+  border-radius: 8px;
+  border-left: 4px solid #3b82f6;
+}
+
+.cover-letter p {
+  margin: 0.5rem 0 0 0;
+  color: #64748b;
+  line-height: 1.5;
+}
+
+.resume-link {
+  margin: 1rem 0;
+}
+
+.resume-link a {
+  color: #3b82f6;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.resume-link a:hover {
+  text-decoration: underline;
+}
+
+.application-actions {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.accept-btn {
+  background: #10b981;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.accept-btn:hover {
+  background: #059669;
+}
+
+.reject-btn {
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.reject-btn:hover {
+  background: #dc2626;
+}
+
+.status-filter {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.status-select {
+  padding: 0.5rem 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #fff;
+  color: #0f172a;
+  font-size: 1rem;
+}
+
+/* Dark theme styles for applications */
+.dark-theme .recruiter-application-card {
+  background: #181818;
+  border: 1px solid #334155;
+  color: #fff;
+}
+
+.dark-theme .recruiter-application-card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.dark-theme .application-header {
+  border-bottom: 1px solid #334155;
+}
+
+.dark-theme .job-title {
+  color: #f1f5f9;
+}
+
+.dark-theme .detail-row {
+  color: #cbd5e1;
+}
+
+.dark-theme .cover-letter {
+  background: #334155;
+  border-left: 4px solid #3b82f6;
+}
+
+.dark-theme .cover-letter p {
+  color: #94a3b8;
+}
+
+.dark-theme .application-actions {
+  border-top: 1px solid #334155;
+}
+
+.dark-theme .status-select {
+  background: #181818;
+  color: #f1f5f9;
+  border: 1px solid #475569;
+}
+
+/* Recruiter Profile Form Styles (for the form that appears after signin) */
+.recruiter-profile-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 1rem;
+  background: #f8fafc;
+}
+
+.recruiter-profile-form-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.recruiter-profile-form {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(15, 23, 42, 0.08);
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  border: 1px solid #e2e8f0;
+}
+
+.recruiter-profile-form h2 {
+  color: #0f172a;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  font-weight: 800;
+}
+
+.profile-subtitle {
+  color: #64748b;
+  text-align: center;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.error-message {
+  background: #fef2f2;
+  color: #dc2626;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+  border: 1px solid #fecaca;
+}
+
+.form-section {
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.5rem;
+  background: #f8fafc;
+}
+
+.form-section h3 {
+  color: #0f172a;
+  font-size: 1.3rem;
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.form-row:last-child {
+  margin-bottom: 0;
+}
+
+.recruiter-profile-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  color: #374151;
+  font-weight: 500;
+  gap: 0.5rem;
+}
+
+.recruiter-profile-form input,
+.recruiter-profile-form textarea {
+  padding: 0.8rem 1rem;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  background: #fff;
+  color: #0f172a;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.recruiter-profile-form input:focus,
+.recruiter-profile-form textarea:focus {
+  border: 1.5px solid #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.recruiter-profile-form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.save-btn {
+  padding: 0.8rem 2rem;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+.save-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #1d4ed8, #1e40af);
+  transform: translateY(-1px);
+}
+
+.save-btn:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Dark theme styles for profile form */
+.dark-theme .recruiter-profile-container {
+  background: #181818;
+}
+
+.dark-theme .recruiter-profile-form {
+  background: #181818;
+  color: #fff;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  border: 1px solid #334155;
+}
+
+.dark-theme .recruiter-profile-form h2 {
+  color: #f1f5f9;
+}
+
+.dark-theme .profile-subtitle {
+  color: #94a3b8;
+}
+
+.dark-theme .form-section {
+  background: #334155;
+  border: 1px solid #475569;
+}
+
+.dark-theme .form-section h3 {
+  color: #f1f5f9;
+}
+
+.dark-theme .recruiter-profile-form label {
+  color: #cbd5e1;
+}
+
+.dark-theme .recruiter-profile-form input,
+.dark-theme .recruiter-profile-form textarea {
+  background: #181818;
+  color: #f1f5f9;
+  border: 1.5px solid #475569;
+}
+
+.dark-theme .recruiter-profile-form input:focus,
+.dark-theme .recruiter-profile-form textarea:focus {
+  border: 1.5px solid #60a5fa;
+  box-shadow: 0 0 0 3px rgba(96, 165, 250, 0.2);
+}
+
+/* Responsive design for profile form */
+@media (max-width: 768px) {
+  .recruiter-profile-container {
+    padding: 1rem 0.5rem;
+  }
+  
+  .recruiter-profile-form {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+  }
+  
+  .save-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .recruiter-profile-form {
+    padding: 1rem;
+  }
+  
+  .form-section {
+    padding: 1rem;
+  }
+  
+  .recruiter-profile-form h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Responsive Applications List */
+@media (max-width: 600px) {
+  .recruiter-applications-list {
+    gap: 1rem;
+  }
+  .recruiter-application-card {
+    padding: 1rem;
+  }
+  .application-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .application-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .accept-btn, .reject-btn {
+    width: 100%;
+    text-align: center;
+  }
+  .status-filter {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .status-select {
+    width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  .recruiter-application-card {
+    padding: 0.8rem;
+  }
+  .job-title {
+    font-size: 1rem;
+  }
+  .detail-row {
+    font-size: 0.9rem;
+  }
+}
+
+/* Delete Confirmation Modal Styles */
+.delete-confirmation-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(15, 23, 42, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+  animation: fadeIn 0.3s ease;
+}
+
+.delete-confirmation-content {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(15, 23, 42, 0.3);
+  padding: 2.5rem;
+  max-width: 450px;
+  width: 90%;
+  text-align: center;
+  animation: slideInScale 0.3s ease;
+  border: 1px solid #e2e8f0;
+  position: relative;
+}
+
+.delete-confirmation-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  box-shadow: 0 8px 25px rgba(239, 68, 68, 0.3);
+}
+
+.delete-confirmation-icon svg {
+  width: 40px;
+  height: 40px;
+  color: white;
+}
+
+.delete-confirmation-title {
+  color: #0f172a;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.delete-confirmation-message {
+  color: #64748b;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.delete-confirmation-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.delete-cancel-btn {
+  padding: 0.8rem 2rem;
+  background: #64748b;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(100, 116, 139, 0.2);
+}
+
+.delete-cancel-btn:hover {
+  background: #475569;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(100, 116, 139, 0.3);
+}
+
+.delete-confirm-btn {
+  padding: 0.8rem 2rem;
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(239, 68, 68, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.delete-confirm-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: left 0.5s;
+}
+
+.delete-confirm-btn:hover::before {
+  left: 100%;
+}
+
+.delete-confirm-btn:hover {
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+}
+
+.delete-confirm-btn:active {
+  transform: translateY(0);
+}
+
+/* Dark theme styles for delete confirmation modal */
+.dark-theme .delete-confirmation-content {
+  background: #181818;
+  color: #fff;
+  border: 1px solid #334155;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.dark-theme .delete-confirmation-title {
+  color: #f1f5f9;
+}
+
+.dark-theme .delete-confirmation-message {
+  color: #94a3b8;
+}
+
+.dark-theme .delete-cancel-btn {
+  background: #475569;
+  box-shadow: 0 2px 8px rgba(71, 85, 105, 0.3);
+}
+
+.dark-theme .delete-cancel-btn:hover {
+  background: #334155;
+  box-shadow: 0 4px 15px rgba(71, 85, 105, 0.4);
+}
+
+/* Animation for delete confirmation modal */
+@keyframes slideInScale {
+  from { 
+    opacity: 0; 
+    transform: translateY(-20px) scale(0.9);
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Force Delete Modal Specific Styles */
+.delete-confirmation-content.force-delete {
+  border: 2px solid #fbbf24;
+  background: linear-gradient(135deg, #fff, #fef3c7);
+  box-shadow: 0 20px 60px rgba(251, 191, 36, 0.3);
+}
+
+.delete-confirmation-icon.force-delete-icon {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  box-shadow: 0 8px 25px rgba(251, 191, 36, 0.4);
+}
+
+.delete-confirmation-icon.force-delete-icon svg {
+  color: #92400e;
+}
+
+.delete-confirmation-title.force-delete-title {
+  color: #92400e;
+  font-size: 1.6rem;
+}
+
+.delete-confirmation-message.force-delete-message {
+  color: #78350f;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.warning-text {
+  color: #dc2626;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.delete-confirm-btn.force-delete-btn {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: #92400e;
+  font-weight: 600;
+  font-size: 1.05rem;
+  padding: 0.875rem 2rem;
+  min-width: 140px;
+  box-shadow: 0 2px 8px rgba(251, 191, 36, 0.3);
+}
+
+.delete-confirm-btn.force-delete-btn::before {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.delete-confirm-btn.force-delete-btn:hover {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #78350f;
+  box-shadow: 0 4px 15px rgba(251, 191, 36, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Dark theme styles for force delete modal */
+.dark-theme .delete-confirmation-content.force-delete {
+  background: linear-gradient(135deg, #181818, #1e293b);
+  border: 2px solid #fbbf24;
+}
+
+.dark-theme .delete-confirmation-title.force-delete-title {
+  color: #fbbf24;
+}
+
+.dark-theme .delete-confirmation-message.force-delete-message {
+  color: #fde68a;
+}
+
+.dark-theme .warning-text {
+  color: #fca5a5;
+}
+
+.dark-theme .delete-confirm-btn.force-delete-btn {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  color: #92400e;
+}
+
+.dark-theme .delete-confirm-btn.force-delete-btn:hover {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #78350f;
+}
+
+/* Responsive design for delete confirmation modal */
+@media (max-width: 480px) {
+  .delete-confirmation-content {
+    padding: 2rem 1.5rem;
+    margin: 1rem;
+  }
+  
+  .delete-confirmation-icon {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 1rem;
+  }
+  
+  .delete-confirmation-icon svg {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .delete-confirmation-title {
+    font-size: 1.3rem;
+  }
+  
+  .delete-confirmation-message {
+    font-size: 1rem;
+  }
+  
+  .delete-confirmation-actions {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .delete-cancel-btn,
+  .delete-confirm-btn {
+    width: 100%;
+    padding: 1rem 2rem;
+  }
+  
+  .delete-confirm-btn.force-delete-btn {
+    min-width: auto;
+  }
+}

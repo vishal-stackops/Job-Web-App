@@ -1,0 +1,251 @@
+.signin-gradient-bg {
+  min-height: 100vh;
+  width: 100vw;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 3rem;
+  background: #ffffff;
+  color: #1e293b;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.navbar-left .website-name {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: fadeInLeft 1s;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.navbar-left .website-name:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+.navbar-right .nav-btn {
+  margin-left: 1.2rem;
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 25px;
+  background: #3b82f6;
+  color: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+  animation: fadeInRight 1.2s;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+}
+
+.navbar-right .nav-btn.signup {
+  background: #f59e42;
+  color: #ffffff;
+}
+
+/* Hover effects */
+.navbar-right .nav-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.3);
+}
+
+.navbar-right .nav-btn.signup:hover {
+  background: #d97706;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(245, 158, 66, 0.3);
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes fadeInRight {
+  from { opacity: 0; transform: translateX(40px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.signin-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  flex: 1;
+}
+
+.signin-form {
+  background: transparent;
+  padding: 2.5rem 2.5rem 2rem 2.5rem;
+  border-radius: 18px;
+  box-shadow: 0 6px 32px rgba(49, 46, 129, 0.10);
+  display: flex;
+  flex-direction: column;
+  min-width: 340px;
+  max-width: 90vw;
+}
+
+.signin-form h2 {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: inherit;
+}
+
+.signin-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.1rem;
+  color: inherit;
+  margin-bottom: 1.1rem;
+  position: relative;
+  width: 100%;
+}
+
+.signin-form input[type="email"] {
+  margin-top: 0.4rem;
+  padding: 0.7rem 1rem;
+  border: 1px solid #c7d2fe;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.2s, background 0.2s, color 0.2s;
+  background: inherit;
+  color: inherit;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.signin-form input[type="password"],
+.signin-form input[type="text"][name="password"] {
+  margin-top: 0.4rem;
+  padding: 0.7rem 2.5rem 0.7rem 1rem;
+  border: 1px solid #c7d2fe;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.2s, background 0.2s, color 0.2s;
+  background: inherit;
+  color: inherit;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.signin-form input:focus {
+  border: 1.5px solid #6366f1;
+}
+
+.signin-form input[type="password"],
+.signin-form input[type="text"][name="password"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  /* Remove explicit line-height and height to restore default size */
+}
+
+/* Hide default password reveal icon in Edge/IE */
+/* .signin-form input[type="password"]::-ms-reveal, */
+.signin-form input[type="password"]::-ms-clear {
+  display: none;
+}
+
+/* Hide default password reveal icon in Chrome */
+.signin-form input[type="password"]::-webkit-credentials-auto-fill-button {
+  display: none !important;
+}
+
+.eye-btn {
+  position: absolute;
+  right: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: #6366f1;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2rem;
+  width: 2rem;
+  pointer-events: auto;
+}
+
+.eye-btn:hover {
+  color: #4338ca;
+}
+
+.dark-theme .eye-btn {
+  color: #a5b4fc;
+}
+
+.dark-theme .eye-btn:hover {
+  color: #fff;
+}
+
+/* Dark theme overrides */
+.dark-theme .signin-gradient-bg {
+  background: #181818;
+}
+
+.dark-theme .navbar {
+  background: #1e293b;
+  color: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid #334155;
+}
+
+.dark-theme .navbar-left .website-name {
+  background: linear-gradient(135deg, #60a5fa, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Theme overrides for nav-btn */
+.light-theme .nav-btn {
+  background: #181818;
+  color: #fff;
+}
+.dark-theme .nav-btn {
+  background: #fff;
+  color: #181818;
+}
+.light-theme .nav-btn.signup {
+  background: #fff;
+  color: #181818;
+  border: 1.5px solid #181818;
+}
+.dark-theme .nav-btn.signup {
+  background: #181818;
+  color: #fff;
+  border: 1.5px solid #fff;
+}
+
+.light-theme .nav-btn:hover,
+.light-theme .nav-btn.signup:hover {
+  background: #333;
+  color: #fff;
+}
+.dark-theme .nav-btn:hover,
+.dark-theme .nav-btn.signup:hover {
+  background: #e5e7eb;
+  color: #181818;
+}
+
+

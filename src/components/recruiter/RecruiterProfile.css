@@ -1,0 +1,424 @@
+.recruiter-profile-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 1rem;
+  background: #ffffff;
+}
+
+.recruiter-profile-form-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.recruiter-profile-form {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(99, 102, 241, 0.15);
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.recruiter-profile-form h2 {
+  color: #312e81;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.profile-subtitle {
+  color: #6b7280;
+  text-align: center;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+
+.error-message {
+  background: #fee2e2;
+  color: #dc2626;
+  padding: 1rem;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.form-section {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.5rem;
+  background: #f9fafb;
+}
+
+.form-section h3 {
+  color: #312e81;
+  font-size: 1.3rem;
+  margin-bottom: 1.2rem;
+  font-weight: 600;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.form-row:last-child {
+  margin-bottom: 0;
+}
+
+.recruiter-profile-form label {
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  color: #374151;
+  font-weight: 500;
+  gap: 0.5rem;
+}
+
+.recruiter-profile-form input,
+.recruiter-profile-form textarea {
+  padding: 0.8rem 1rem;
+  border: 1.5px solid #d1d5db;
+  border-radius: 8px;
+  font-size: 1rem;
+  outline: none;
+  background: #fff;
+  color: #1f2937;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.recruiter-profile-form input:focus,
+.recruiter-profile-form textarea:focus {
+  border: 1.5px solid #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.recruiter-profile-form textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-end;
+  margin-top: 1rem;
+}
+
+.cancel-btn {
+  padding: 0.8rem 1.5rem;
+  background: #6b7280;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.cancel-btn:hover {
+  background: #4b5563;
+  transform: translateY(-1px);
+}
+
+.save-btn {
+  padding: 0.8rem 2rem;
+  background: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+}
+
+.save-btn:hover:not(:disabled) {
+  background: #4338ca;
+  transform: translateY(-1px);
+}
+
+.save-btn:disabled {
+  background: #9ca3af;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Dark theme styles */
+.dark-theme .recruiter-profile-container {
+  background: #181818;
+}
+
+.dark-theme .recruiter-profile-form {
+  background: #181818;
+  border: 1px solid #333333;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.dark-theme .recruiter-profile-form h2 {
+  color: #ffffff;
+}
+
+.dark-theme .profile-subtitle {
+  color: #999999;
+}
+
+.dark-theme .form-section {
+  background: #181818;
+  border: 1px solid #333333;
+}
+
+.dark-theme .form-section h3 {
+  color: #ffffff;
+}
+
+.dark-theme .recruiter-profile-form label {
+  color: #cccccc;
+}
+
+.dark-theme .recruiter-profile-form input,
+.dark-theme .recruiter-profile-form textarea {
+  background: #181818;
+  color: #ffffff;
+  border: 1px solid #333333;
+}
+
+.dark-theme .recruiter-profile-form input:focus,
+.dark-theme .recruiter-profile-form textarea:focus {
+  border: 1px solid #444444;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+}
+
+.dark-theme .form-actions {
+  border-top: 1px solid #333333;
+}
+
+.dark-theme .save-btn {
+  background: #333333;
+  color: #ffffff;
+  border: 1px solid #444444;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.dark-theme .save-btn:hover:not(:disabled) {
+  background: #444444;
+  border: 1px solid #555555;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.dark-theme .cancel-btn {
+  background: #333333;
+  color: #ffffff;
+  border: 1px solid #444444;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.dark-theme .cancel-btn:hover {
+  background: #444444;
+  border: 1px solid #555555;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.dark-theme .error-message {
+  background: #333333;
+  color: #ffffff;
+  border: 1px solid #444444;
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .recruiter-profile-container {
+    padding: 1.5rem 1rem;
+  }
+  .recruiter-profile-form {
+    padding: 2rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .recruiter-profile-container {
+    padding: 1rem 0.8rem;
+  }
+  .recruiter-profile-form {
+    padding: 1.5rem;
+    gap: 1.5rem;
+  }
+  .recruiter-profile-form h2 {
+    font-size: 1.8rem;
+  }
+  .form-section {
+    padding: 1.2rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .recruiter-profile-container {
+    padding: 0.8rem 0.5rem;
+  }
+  .recruiter-profile-form {
+    padding: 1.2rem;
+    gap: 1.2rem;
+  }
+  .recruiter-profile-form h2 {
+    font-size: 1.6rem;
+  }
+  .form-section {
+    padding: 1rem;
+  }
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .recruiter-profile-container {
+    padding: 0.5rem 0.3rem;
+  }
+  .recruiter-profile-form {
+    padding: 1rem;
+    gap: 1rem;
+    width: 100%;
+    max-width: 100%;
+  }
+  .recruiter-profile-form h2 {
+    font-size: 1.4rem;
+  }
+  .profile-subtitle {
+    font-size: 1rem;
+  }
+  .form-section {
+    padding: 0.8rem;
+  }
+  .form-section h3 {
+    font-size: 1.1rem;
+  }
+  .form-actions {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  .save-btn {
+    width: 100%;
+    padding: 0.8rem 1rem;
+  }
+}
+
+@media (max-width: 400px) {
+  .recruiter-profile-container {
+    padding: 0.3rem 0.2rem;
+  }
+  .recruiter-profile-form {
+    padding: 0.8rem;
+    gap: 0.8rem;
+  }
+  .recruiter-profile-form h2 {
+    font-size: 1.2rem;
+  }
+  .profile-subtitle {
+    font-size: 0.9rem;
+  }
+  .form-section {
+    padding: 0.6rem;
+  }
+  .form-section h3 {
+    font-size: 1rem;
+  }
+  .recruiter-profile-form label {
+    font-size: 0.9rem;
+  }
+  .recruiter-profile-form input,
+  .recruiter-profile-form textarea {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+  }
+  .save-btn {
+    padding: 0.7rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Responsive for read-only profile display */
+@media (max-width: 600px) {
+  .recruiter-profile-form.read-only-profile {
+    padding: 1rem;
+  }
+  .profile-row {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .profile-row div {
+    width: 100%;
+  }
+}
+
+/* Profile actions */
+.profile-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.update-profile-btn {
+  padding: 0.8rem 2rem;
+  background: #6366f1;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+}
+
+.update-profile-btn:hover {
+  background: #4338ca;
+  transform: translateY(-1px);
+}
+
+/* Dark theme for recruiter profile page */
+.dark-theme .recruiter-profile-container {
+  background: #1a1a1a !important;
+}
+.dark-theme .recruiter-profile-form.read-only-profile {
+  background: #222;
+  color: #fff;
+  box-shadow: 0 8px 32px rgba(255,255,255,0.08);
+}
+.dark-theme .form-section {
+  background: #181818;
+  border: 1px solid #444;
+}
+.dark-theme .form-section h3 {
+  color: #fff;
+}
+.dark-theme .profile-row div {
+  color: #d1d5db;
+}
+.dark-theme .error-message {
+  background: #fee2e2;
+  color: #dc2626;
+}
+.dark-theme .profile-actions {
+  border-top: 1px solid #444;
+}
+.dark-theme .update-profile-btn {
+  background: #333333;
+  color: #ffffff;
+  border: 1px solid #444444;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+.dark-theme .update-profile-btn:hover {
+  background: #444444;
+  border: 1px solid #555555;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+} 
