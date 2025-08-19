@@ -28,6 +28,3 @@ Fullstack Job Portal — React frontend + Java backend for job search, saved job
 ## Getting Started
 1) Install dependencies: `npm install`
 2) Start dev server: `npm start`
-
-## License
-MIT
