@@ -22,7 +22,6 @@ Fullstack Job Portal — React frontend + Java backend for job search, saved job
 - `src/` — React app sources
 - `public/` — static assets
 - `com/itvedant/Job_Web_Application/` — backend sources
-- `database_fix.sql` — database script
 - `uploads/` — user uploads (gitignored)
 
 ## Getting Started
