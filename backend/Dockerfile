@@ -2,9 +2,9 @@
 FROM eclipse-temurin:21-jdk AS build
 WORKDIR /app
 
-# Copy pom.xml and source
-COPY pom.xml .
-COPY src ./src
+# Copy pom.xml and src from backend folder
+COPY backend/pom.xml .
+COPY backend/src ./src
 
 # Build jar
 RUN mvn clean package -DskipTests
