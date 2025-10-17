@@ -137,6 +137,7 @@ function ProfileSetup() {
 
   return (
     <div className="profile-setup-container">
+
       <div className="profile-setup-card">
         <div className="profile-setup-header">
           <h1>{isUpdate ? 'Update Your Profile' : 'Complete Your Profile'}</h1>
