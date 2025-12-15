@@ -4,7 +4,7 @@ import axios from 'axios';
 import './MyApplications.css';
 import { useProfileCheck } from '../../hooks/useProfileCheck';
 import axios from "../config/axios";
-import API_BASE_URL from "../config/api";
+import API_BASE_URL from "../config/axios";
 
 function MyApplications() {
   const [applications, setApplications] = useState([]);
