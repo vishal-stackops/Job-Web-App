@@ -34,9 +34,9 @@ function SeekerHome() {
         setLoading(true);
         setError(null);
         
-        console.log('Fetching jobs from:', `http://${API_BASE_URL}/api/jobs`);
+        console.log('Fetching jobs from:', `${API_BASE_URL}/api/jobs`);
         
-        const response = await fetch(`http://${API_BASE_URL}/api/jobs`);
+        const response = await fetch(`${API_BASE_URL}/api/jobs`);
         
         console.log('Response status:', response.status);
         console.log('Response headers:', response.headers);
