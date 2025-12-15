@@ -21,7 +21,7 @@ export const useProfileCheck = () => {
         setSeekerId(id);
 
         // Check if profile exists
-        const profileCheck = await fetch(`http://localhost:8080/api/profiles/check/${id}`);
+        const profileCheck = await fetch(`http://${API_BASE_URL}/api/profiles/check/${id}`);
         if (profileCheck.ok) {
           const profileData = await profileCheck.json();
           setHasProfile(profileData.exists);
