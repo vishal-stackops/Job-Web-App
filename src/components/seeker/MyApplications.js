@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import SeekerNavbar from './SeekerNavbar';
-import axios from 'axios';
+// import axios from 'axios';
 import './MyApplications.css';
 import { useProfileCheck } from '../../hooks/useProfileCheck';
 import axios from "../../config/axios";
