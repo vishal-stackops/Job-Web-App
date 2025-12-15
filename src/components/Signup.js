@@ -24,8 +24,8 @@ function Signup() {
       return;
     }
     const apiUrl = form.isRecruiter
-      ? `http://${API_BASE_URL}/api/recruiters/signup`
-      : `http://${API_BASE_URL}/api/seekers/signup`;
+      ? `${API_BASE_URL}/api/recruiters/signup`
+      : `${API_BASE_URL}/api/seekers/signup`;
     const payload = {
       name: form.name,
       email: form.email,
