@@ -25,8 +25,8 @@ function Signin() {
     setError(''); // Clear previous error
     
     const apiUrl = form.isRecruiter
-      ? `http://${API_BASE_URL}/api/recruiters/signin`
-      : `http://${API_BASE_URL}/api/seekers/signin`;
+      ? `${API_BASE_URL}/api/recruiters/signin`
+      : `${API_BASE_URL}/api/seekers/signin`;
     
     const payload = {
       email: form.email,
@@ -73,7 +73,7 @@ function Signin() {
         localStorage.setItem('seekerName', data.name);
         // Check if profile exists, if not redirect to profile setup
         try {
-          const profileCheck = await fetch(`http://${API_BASE_URL}/api/profiles/check/${data.id}`);
+          const profileCheck = await fetch(`${API_BASE_URL}/api/profiles/check/${data.id}`);
           if (profileCheck.ok) {
             const profileData = await profileCheck.json();
             if (profileData.exists) {
