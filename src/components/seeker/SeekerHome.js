@@ -5,8 +5,8 @@ import ThemeToggle from '../ThemeToggle';
 import './SeekerHome.css';
 import JobCard from './JobCard';
 import { useProfileCheck } from '../../hooks/useProfileCheck';
-import axios from "../config/axios";
-import API_BASE_URL from "../config/axios";
+import axios from "../../config/axios";
+import API_BASE_URL from "../../config/axios";
 
 function SeekerHome() {
   const [jobs, setJobs] = useState([]);
