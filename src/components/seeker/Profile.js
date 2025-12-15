@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import SeekerNavbar from './SeekerNavbar';
 import './Profile.css';
-import axios from 'axios';
+// import axios from 'axios';
 import axios from "../../config/axios";
 import API_BASE_URL from "../../config/axios";
 function Profile() {
