@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import RecruiterNavbar from './RecruiterNavbar';
 import ThemeToggle from '../ThemeToggle';
-import axios from 'axios';
+// import axios from 'axios';
 import './RecruiterHome.css';
 import './RecruiterJobCards.css';
 import axios from "../../config/axios";
