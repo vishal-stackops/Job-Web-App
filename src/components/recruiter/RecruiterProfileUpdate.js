@@ -37,7 +37,7 @@ function RecruiterProfileUpdate() {
     setLoading(true);
     setError('');
     try {
-      const res = await axios.get(`http://${API_BASE_URL}/api/recruiters/${recruiterId}/profile`);
+      const res = await axios.get(`${API_BASE_URL}/api/recruiters/${recruiterId}/profile`);
       setProfile(res.data);
     } catch (err) {
       setError('Profile not found.');
@@ -64,7 +64,7 @@ function RecruiterProfileUpdate() {
     
     try {
       console.log('Sending profile update request:', profile);
-      const response = await axios.put(`http://${API_BASE_URL}/api/recruiters/${recruiterId}/profile`, profile, { 
+      const response = await axios.put(`${API_BASE_URL}/api/recruiters/${recruiterId}/profile`, profile, { 
         withCredentials: true 
       });
       console.log('Profile update response:', response);
