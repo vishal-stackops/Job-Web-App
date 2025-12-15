@@ -26,7 +26,7 @@ function RecruiterProfile() {
     setLoading(true);
     setError('');
     try {
-      const res = await axios.get(`http://${API_BASE_URL}/api/recruiters/${recruiterId}/profile`);
+      const res = await axios.get(`${API_BASE_URL}/api/recruiters/${recruiterId}/profile`);
       setProfile(res.data);
     } catch (err) {
       setError('Profile not found.');
