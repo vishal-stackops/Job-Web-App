@@ -35,7 +35,7 @@ function Applications() {
   const loadApplications = async (recruiterId) => {
     try {
       console.log('Fetching applications for recruiter:', recruiterId);
-      const response = await axios.get(`http://${API_BASE_URL}/api/applications/recruiter/${recruiterId}`, { withCredentials: true });
+      const response = await axios.get(`${API_BASE_URL}/api/applications/recruiter/${recruiterId}`, { withCredentials: true });
       console.log('Applications response:', response.data);
       setApplications(response.data);
       
@@ -54,14 +54,14 @@ function Applications() {
         if (app.seeker && app.seeker.id) {
           console.log('Fetching profile for seeker:', app.seeker.id);
           try {
-            const profileResponse = await axios.get(`http://${API_BASE_URL}/api/profiles/seeker/${app.seeker.id}`, { withCredentials: true });
+            const profileResponse = await axios.get(`${API_BASE_URL}/api/profiles/seeker/${app.seeker.id}`, { withCredentials: true });
             console.log('Profile response for seeker', app.seeker.id, ':', profileResponse.data);
             profiles[app.seeker.id] = profileResponse.data;
           } catch (profileErr) {
             console.log('Profile not found for seeker:', app.seeker.id, profileErr.message);
             // Try to fetch basic seeker data as fallback
             try {
-              const seekerResponse = await axios.get(`http://${API_BASE_URL}/api/seekers/${app.seeker.id}`, { withCredentials: true });
+              const seekerResponse = await axios.get(`${API_BASE_URL}/api/seekers/${app.seeker.id}`, { withCredentials: true });
               console.log('Basic seeker data for', app.seeker.id, ':', seekerResponse.data);
               profiles[app.seeker.id] = {
                 ...seekerResponse.data,
@@ -89,7 +89,7 @@ function Applications() {
 
   const handleStatusUpdate = async (applicationId, newStatus) => {
     try {
-      await axios.put(`http://${API_BASE_URL}/api/applications/${applicationId}/status`, 
+      await axios.put(`${API_BASE_URL}/api/applications/${applicationId}/status`, 
         { status: newStatus }, 
         { withCredentials: true }
       );
@@ -114,7 +114,7 @@ function Applications() {
       let fullUrl = resumeUrl;
       if (!resumeUrl.startsWith('http')) {
         // If it's a relative path, make it absolute
-        fullUrl = `http://${API_BASE_URL}${resumeUrl.startsWith('/') ? '' : '/'}${resumeUrl}`;
+        fullUrl = `${API_BASE_URL}${resumeUrl.startsWith('/') ? '' : '/'}${resumeUrl}`;
       }
       
       console.log('Attempting to access resume at:', fullUrl);
