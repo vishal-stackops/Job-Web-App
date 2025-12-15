@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from "../config/axios";
-import API_BASE_URL from "../config/axios";
+// import API_BASE_URL from "../config/axios";
 
 export const useProfileCheck = () => {
   const [isChecking, setIsChecking] = useState(true);
