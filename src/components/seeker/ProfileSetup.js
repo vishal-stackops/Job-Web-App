@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import './ProfileSetup.css';
-import axios from "../config/axios";
-import API_BASE_URL from "../config/axios";
+import axios from "../../config/axios";
+import API_BASE_URL from "../../config/axios";
 
 function ProfileSetup() {
   const navigate = useNavigate();
