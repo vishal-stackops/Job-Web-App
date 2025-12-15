@@ -3,6 +3,8 @@ import SeekerNavbar from './SeekerNavbar';
 import axios from 'axios';
 import './MyApplications.css';
 import { useProfileCheck } from '../../hooks/useProfileCheck';
+import axios from "../config/axios";
+import API_BASE_URL from "../config/api";
 
 function MyApplications() {
   const [applications, setApplications] = useState([]);
@@ -22,7 +24,7 @@ function MyApplications() {
   const loadApplications = async (seekerId) => {
     try {
       console.log('Fetching applications for seeker:', seekerId);
-      const response = await axios.get(`http://localhost:8080/api/applications/seeker/${seekerId}`, { 
+      const response = await axios.get(`http://${API_BASE_URL}/api/applications/seeker/${seekerId}`, { 
         withCredentials: true 
       });
       console.log('Applications response:', response.data);

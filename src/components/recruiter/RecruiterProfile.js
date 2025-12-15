@@ -3,7 +3,8 @@ import RecruiterNavbar from './RecruiterNavbar';
 import './RecruiterProfile.css';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
-
+import axios from "../config/axios";
+import API_BASE_URL from "../config/api";
 function RecruiterProfile() {
   const { recruiterId: paramRecruiterId } = useParams();
   const navigate = useNavigate();
@@ -25,7 +26,7 @@ function RecruiterProfile() {
     setLoading(true);
     setError('');
     try {
-      const res = await axios.get(`http://localhost:8080/api/recruiters/${recruiterId}/profile`);
+      const res = await axios.get(`http://${API_BASE_URL}/api/recruiters/${recruiterId}/profile`);
       setProfile(res.data);
     } catch (err) {
       setError('Profile not found.');

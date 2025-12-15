@@ -5,6 +5,8 @@ import ThemeToggle from '../ThemeToggle';
 import axios from 'axios';
 import './RecruiterHome.css';
 import './RecruiterJobCards.css';
+import axios from "../config/axios";
+import API_BASE_URL from "../config/api";
 
 function RecruiterHome() {
   const navigate = useNavigate();
@@ -43,7 +45,7 @@ function RecruiterHome() {
 
   const checkRecruiterProfile = async (recruiterId) => {
     try {
-      const profileRes = await axios.get(`http://localhost:8080/api/recruiters/${recruiterId}/profile`);
+      const profileRes = await axios.get(`http://${API_BASE_URL}/api/recruiters/${recruiterId}/profile`);
       if (profileRes.data) {
         // Profile exists, load jobs
         loadJobs(recruiterId);
@@ -61,14 +63,14 @@ function RecruiterHome() {
 
   const loadJobs = async (recruiterId) => {
     try {
-      const res = await axios.get(`http://localhost:8080/api/jobs/recruiter/${recruiterId}`, { withCredentials: true });
+      const res = await axios.get(`http://${API_BASE_URL}/api/jobs/recruiter/${recruiterId}`, { withCredentials: true });
       const jobsData = res.data;
       
       // Fetch applications count for each job
       const jobsWithApplications = await Promise.all(
         jobsData.map(async (job) => {
           try {
-            const applicationsRes = await axios.get(`http://localhost:8080/api/applications/job/${job.id}`, { withCredentials: true });
+            const applicationsRes = await axios.get(`http://${API_BASE_URL}/api/applications/job/${job.id}`, { withCredentials: true });
             return {
               ...job,
               applications: applicationsRes.data || []
@@ -101,7 +103,7 @@ function RecruiterHome() {
     
     try {
       // First try to delete normally
-      await axios.delete(`http://localhost:8080/api/jobs/${jobToDelete.id}`, { withCredentials: true });
+      await axios.delete(`http://${API_BASE_URL}/api/jobs/${jobToDelete.id}`, { withCredentials: true });
       setJobs(jobs => jobs.filter(job => job.id !== jobToDelete.id));
       setShowDeleteModal(false);
       setJobToDelete(null);
@@ -133,10 +135,10 @@ function RecruiterHome() {
     
     try {
       // First delete all saved job references
-      await axios.delete(`http://localhost:8080/api/saved-jobs/job/${jobToDelete.id}`, { withCredentials: true });
+      await axios.delete(`http://${API_BASE_URL}/api/saved-jobs/job/${jobToDelete.id}`, { withCredentials: true });
       
       // Then try to delete the job again
-      await axios.delete(`http://localhost:8080/api/jobs/${jobToDelete.id}`, { withCredentials: true });
+      await axios.delete(`http://${API_BASE_URL}/api/jobs/${jobToDelete.id}`, { withCredentials: true });
       setJobs(jobs => jobs.filter(job => job.id !== jobToDelete.id));
       setShowForceDeleteModal(false);
       setJobToDelete(null);
@@ -183,7 +185,7 @@ function RecruiterHome() {
         recruiterId: parseInt(recruiterId)
       };
 
-      await axios.post(`http://localhost:8080/api/recruiters/${recruiterId}/profile`, profileData, { withCredentials: true });
+      await axios.post(`http://${API_BASE_URL}/api/recruiters/${recruiterId}/profile`, profileData, { withCredentials: true });
       
       // Profile created successfully, hide form and load jobs
       setShowProfileForm(false);

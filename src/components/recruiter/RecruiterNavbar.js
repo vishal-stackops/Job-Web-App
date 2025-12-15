@@ -3,6 +3,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import ThemeToggle from '../ThemeToggle';
 import './RecruiterHome.css';
 
+
 function RecruiterNavbar() {
   const navigate = useNavigate();
 

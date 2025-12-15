@@ -3,7 +3,8 @@ import RecruiterNavbar from './RecruiterNavbar';
 import './RecruiterProfileUpdate.css';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
-
+import axios from "../config/axios";
+import API_BASE_URL from "../config/api";
 function RecruiterProfileUpdate() {
   const { recruiterId: paramRecruiterId } = useParams();
   const navigate = useNavigate();
@@ -36,7 +37,7 @@ function RecruiterProfileUpdate() {
     setLoading(true);
     setError('');
     try {
-      const res = await axios.get(`http://localhost:8080/api/recruiters/${recruiterId}/profile`);
+      const res = await axios.get(`http://${API_BASE_URL}/api/recruiters/${recruiterId}/profile`);
       setProfile(res.data);
     } catch (err) {
       setError('Profile not found.');
@@ -63,7 +64,7 @@ function RecruiterProfileUpdate() {
     
     try {
       console.log('Sending profile update request:', profile);
-      const response = await axios.put(`http://localhost:8080/api/recruiters/${recruiterId}/profile`, profile, { 
+      const response = await axios.put(`http://${API_BASE_URL}/api/recruiters/${recruiterId}/profile`, profile, { 
         withCredentials: true 
       });
       console.log('Profile update response:', response);

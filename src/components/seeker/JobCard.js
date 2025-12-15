@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ThemeContext } from '../../App';
 import './JobCard.css';
+import axios from "../config/axios";
+import API_BASE_URL from "../config/api";
 
 function JobCard({ job }) {
   const navigate = useNavigate();
@@ -24,7 +26,7 @@ function JobCard({ job }) {
       if (!seekerId) return;
       
       try {
-        const response = await fetch(`http://localhost:8080/api/saved-jobs/check/${job.id}/${seekerId}`);
+        const response = await fetch(`http://${API_BASE_URL}/api/saved-jobs/check/${job.id}/${seekerId}`);
         if (response.ok) {
           const data = await response.json();
           setIsSaved(data.isSaved);
@@ -52,7 +54,7 @@ function JobCard({ job }) {
     
     setSavingJob(true);
     try {
-      const response = await fetch('http://localhost:8080/api/saved-jobs', {
+      const response = await fetch(`http://${API_BASE_URL}/api/saved-jobs`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -87,7 +89,7 @@ function JobCard({ job }) {
     
     setSavingJob(true);
     try {
-      const response = await fetch(`http://localhost:8080/api/saved-jobs/${job.id}/${seekerId}`, {
+      const response = await fetch(`http://${API_BASE_URL}/api/saved-jobs/${job.id}/${seekerId}`, {
         method: 'DELETE',
       });
       
@@ -140,7 +142,7 @@ function JobCard({ job }) {
       return;
     }
     try {
-      const resp = await fetch(`http://localhost:8080/api/applications/check/${job.id}/${seekerId}`);
+      const resp = await fetch(`http://${API_BASE_URL}/api/applications/check/${job.id}/${seekerId}`);
       
       if (!resp.ok) {
         console.error('API Error Response:', resp.status, resp.statusText);
@@ -247,7 +249,7 @@ function JobCard({ job }) {
       formData.append('seekerId', seekerId);
       formData.append('resume', resumeFile);
       
-      const response = await fetch('http://localhost:8080/api/applications/upload', {
+      const response = await fetch(`http://${API_BASE_URL}/api/applications/upload`, {
         method: 'POST',
         body: formData,
         credentials: 'include',

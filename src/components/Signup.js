@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
 import './Signup.css';
+import axios from "../config/axios";
+import API_BASE_URL from "../config/api";
 
 function Signup() {
   const [form, setForm] = useState({ name: '', email: '', password: '', confirmPassword: '', isRecruiter: false });
@@ -22,8 +24,8 @@ function Signup() {
       return;
     }
     const apiUrl = form.isRecruiter
-      ? 'http://localhost:8080/api/recruiters/signup'
-      : 'http://localhost:8080/api/seekers/signup';
+      ? `http://${API_BASE_URL}/api/recruiters/signup`
+      : `http://${API_BASE_URL}/api/seekers/signup`;
     const payload = {
       name: form.name,
       email: form.email,

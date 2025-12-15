@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import RecruiterNavbar from './RecruiterNavbar';
 import axios from 'axios';
 import './AddJob.css';
+import axios from "../config/axios";
+import API_BASE_URL from "../config/api";
 
 function AddJob() {
   const navigate = useNavigate();
@@ -46,7 +48,7 @@ function AddJob() {
 
       console.log('Sending job data:', jobData); // Debug log
 
-      const response = await axios.post('http://localhost:8080/api/jobs', jobData, { 
+      const response = await axios.post(`http://${API_BASE_URL}/api/jobs`, jobData, { 
         withCredentials: true,
         headers: {
           'Content-Type': 'application/json'

@@ -1,21 +1,26 @@
-# Stage 1: Build jar using Maven + Java 21
-FROM maven:3.9.2-eclipse-temurin-21 AS build
+# ---------- Build Stage ----------
+FROM maven:3.9.9-eclipse-temurin-21 AS build
 WORKDIR /app
 
-# Copy pom.xml and src from backend folder
-COPY backend/pom.xml .
-COPY backend/src ./src
+# Copy Maven config first (for dependency caching)
+COPY pom.xml .
+RUN mvn dependency:go-offline
 
-# Build the jar
+# Copy source code
+COPY src ./src
+
+# Build Spring Boot jar
 RUN mvn clean package -DskipTests
 
-# Stage 2: Run jar using lightweight JDK
-FROM eclipse-temurin:21-jdk-alpine
+# ---------- Runtime Stage ----------
+FROM eclipse-temurin:21-jdk
 WORKDIR /app
 
 # Copy jar from build stage
 COPY --from=build /app/target/*.jar app.jar
 
+# Expose Render port
 EXPOSE 8080
 
-ENTRYPOINT ["java","-jar","app.jar"]
+# Run Spring Boot application
+ENTRYPOINT ["java", "-jar", "app.jar"]

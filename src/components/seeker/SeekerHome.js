@@ -5,6 +5,8 @@ import ThemeToggle from '../ThemeToggle';
 import './SeekerHome.css';
 import JobCard from './JobCard';
 import { useProfileCheck } from '../../hooks/useProfileCheck';
+import axios from "../config/axios";
+import API_BASE_URL from "../config/api";
 
 function SeekerHome() {
   const [jobs, setJobs] = useState([]);
@@ -32,9 +34,9 @@ function SeekerHome() {
         setLoading(true);
         setError(null);
         
-        console.log('Fetching jobs from:', 'http://localhost:8080/api/jobs');
+        console.log('Fetching jobs from:', `http://${API_BASE_URL}/api/jobs`);
         
-        const response = await fetch('http://localhost:8080/api/jobs');
+        const response = await fetch(`http://${API_BASE_URL}/api/jobs`);
         
         console.log('Response status:', response.status);
         console.log('Response headers:', response.headers);
