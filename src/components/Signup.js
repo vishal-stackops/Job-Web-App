@@ -3,7 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import ThemeToggle from './ThemeToggle';
 import './Signup.css';
 import axios from "../config/axios";
-import API_BASE_URL from "../config/api";
+import API_BASE_URL from "../config/axios";
 
 function Signup() {
   const [form, setForm] = useState({ name: '', email: '', password: '', confirmPassword: '', isRecruiter: false });
