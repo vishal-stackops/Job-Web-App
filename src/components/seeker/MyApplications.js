@@ -24,7 +24,7 @@ function MyApplications() {
   const loadApplications = async (seekerId) => {
     try {
       console.log('Fetching applications for seeker:', seekerId);
-      const response = await axios.get(`http://${API_BASE_URL}/api/applications/seeker/${seekerId}`, { 
+      const response = await axios.get(`${API_BASE_URL}/api/applications/seeker/${seekerId}`, { 
         withCredentials: true 
       });
       console.log('Applications response:', response.data);
