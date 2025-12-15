@@ -36,7 +36,7 @@ function ProfileSetup() {
     // Check if profile already exists and fetch data
     const checkExistingProfile = async () => {
       try {
-        const response = await axios.get(`http://${API_BASE_URL}/api/profiles/seeker/${id}`, {
+        const response = await axios.get(`${API_BASE_URL}/api/profiles/seeker/${id}`, {
           withCredentials: true
         });
         
@@ -102,7 +102,7 @@ function ProfileSetup() {
 
       if (isUpdate) {
         // Update existing profile using PUT method
-        await axios.put(`http://${API_BASE_URL}/api/profiles/seeker/${seekerId}`, profileData, {
+        await axios.put(`${API_BASE_URL}/api/profiles/seeker/${seekerId}`, profileData, {
           withCredentials: true
         });
         
@@ -117,7 +117,7 @@ function ProfileSetup() {
           seeker: { id: Number(seekerId) }
         };
         
-        await axios.post(`http://${API_BASE_URL}/api/profiles`, createData, {
+        await axios.post(`${API_BASE_URL}/api/profiles`, createData, {
           withCredentials: true
         });
 
