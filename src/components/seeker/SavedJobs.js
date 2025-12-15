@@ -40,7 +40,7 @@ function SavedJobs() {
       // Validate session by checking if the seekerId is valid
       try {
         // First validate the session
-        const sessionCheck = await fetch(`http://${API_BASE_URL}/api/seekers/${seekerId}`);
+        const sessionCheck = await fetch(`${API_BASE_URL}/api/seekers/${seekerId}`);
         if (!sessionCheck.ok) {
           // Session is invalid, clear localStorage and redirect
           localStorage.clear();
@@ -48,7 +48,7 @@ function SavedJobs() {
           return;
         }
 
-        const response = await fetch(`http://${API_BASE_URL}/api/saved-jobs/${seekerId}`);
+        const response = await fetch(`${API_BASE_URL}/api/saved-jobs/${seekerId}`);
         if (response.ok) {
           const data = await response.json();
           setSavedJobs(data);
@@ -100,7 +100,7 @@ function SavedJobs() {
       return;
     }
     try {
-      const resp = await fetch(`http://${API_BASE_URL}/api/applications/check/${job.jobId}/${seekerId}`);
+      const resp = await fetch(`${API_BASE_URL}/api/applications/check/${job.jobId}/${seekerId}`);
       
       if (!resp.ok) {
         console.error('API Error Response:', resp.status, resp.statusText);
@@ -207,7 +207,7 @@ function SavedJobs() {
       formData.append('seekerId', seekerId);
       formData.append('resume', resumeFile);
       
-      const response = await fetch(`http://${API_BASE_URL}/api/applications/upload`, {
+      const response = await fetch(`${API_BASE_URL}/api/applications/upload`, {
         method: 'POST',
         body: formData,
         credentials: 'include',
