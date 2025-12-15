@@ -48,7 +48,7 @@ function AddJob() {
 
       console.log('Sending job data:', jobData); // Debug log
 
-      const response = await axios.post(`http://${API_BASE_URL}/api/jobs`, jobData, { 
+      const response = await axios.post(`${API_BASE_URL}/api/jobs`, jobData, { 
         withCredentials: true,
         headers: {
           'Content-Type': 'application/json'
