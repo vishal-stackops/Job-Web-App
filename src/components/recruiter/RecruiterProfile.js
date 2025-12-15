@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import RecruiterNavbar from './RecruiterNavbar';
 import './RecruiterProfile.css';
-import axios from 'axios';
+// import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from "../../config/axios";
 import API_BASE_URL from "../../config/axios";
