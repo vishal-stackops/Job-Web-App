@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import RecruiterNavbar from './RecruiterNavbar';
 import axios from 'axios';
 import './Applications.css';
-import axios from "../config/axios";
-import API_BASE_URL from "../config/axios";
+import axios from "../../config/axios";
+import API_BASE_URL from "../../config/axios";
 
 function Applications() {
   const [applications, setApplications] = useState([]);
