@@ -25,7 +25,7 @@ function Profile() {
     const fetchData = async () => {
       try {
         // Fetch profile data
-        const profileResponse = await fetch(`http://${API_BASE_URL}/api/profiles/seeker/${seekerId}`);
+        const profileResponse = await fetch(`${API_BASE_URL}/api/profiles/seeker/${seekerId}`);
         if (!profileResponse.ok) {
           if (profileResponse.status === 404) {
             throw new Error('Profile not found. Please complete your profile setup.');
@@ -48,7 +48,7 @@ function Profile() {
         setUser(profileData);
         
         // Fetch seeker info (name and email)
-        const seekerResponse = await axios.get(`http://${API_BASE_URL}/api/seekers/${seekerId}`, {
+        const seekerResponse = await axios.get(`${API_BASE_URL}/api/seekers/${seekerId}`, {
           withCredentials: true
         });
         
