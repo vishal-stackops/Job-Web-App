@@ -6,7 +6,7 @@ import ThemeToggle from '../ThemeToggle';
 import './RecruiterHome.css';
 import './RecruiterJobCards.css';
 import axios from "../../config/axios";
-import API_BASE_URL from "../../config/axios";
+// import API_BASE_URL from "../../config/axios";
 
 function RecruiterHome() {
   const navigate = useNavigate();
