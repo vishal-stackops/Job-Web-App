@@ -4,8 +4,8 @@ import './SavedJobs.css';
 import { useProfileCheck } from '../../hooks/useProfileCheck';
 import { useNavigate } from 'react-router-dom';
 import { ThemeContext } from '../../App';
-import axios from "../config/axios";
-import API_BASE_URL from "../config/axios";
+import axios from "../../config/axios";
+import API_BASE_URL from "../../config/axios";
 
 function SavedJobs() {
   // Use the profile check hook
