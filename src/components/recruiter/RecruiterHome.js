@@ -4,7 +4,7 @@ import RecruiterNavbar from './RecruiterNavbar';
 import './RecruiterHome.css';
 import './RecruiterJobCards.css';
 import axios from "axios";
-import API_BASE_URL from "../config/api";
+import API_BASE_URL from "../../config/api";
 
 function RecruiterHome() {
   const navigate = useNavigate();
