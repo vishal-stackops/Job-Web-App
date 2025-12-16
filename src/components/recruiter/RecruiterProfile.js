@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import RecruiterNavbar from './RecruiterNavbar';
 import './RecruiterProfile.css';
-// import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from "../../config/axios";
-// import API_BASE_URL from "../../config/axios";
+
 function RecruiterProfile() {
   const { recruiterId: paramRecruiterId } = useParams();
   const navigate = useNavigate();
@@ -26,9 +25,9 @@ function RecruiterProfile() {
     setLoading(true);
     setError('');
     try {
-      const res = await axios.get(`${API_BASE_URL}/api/recruiters/${recruiterId}/profile`);
+      const res = await axios.get(`/api/recruiters/${recruiterId}/profile`, { withCredentials: true });
       setProfile(res.data);
-    } catch (err) {
+    } catch {
       setError('Profile not found.');
     } finally {
       setLoading(false);
@@ -69,13 +68,17 @@ function RecruiterProfile() {
                 <div className="form-section">
                   <h3>Professional Links</h3>
                   <div className="profile-row">
-                    <div><strong>LinkedIn:</strong> {profile.linkedinProfile ? <a href={profile.linkedinProfile} target="_blank" rel="noopener noreferrer">{profile.linkedinProfile}</a> : '-'}</div>
-                    <div><strong>Website:</strong> {profile.website ? <a href={profile.website} target="_blank" rel="noopener noreferrer">{profile.website}</a> : '-'}</div>
+                    <div>
+                      <strong>LinkedIn:</strong> {profile.linkedinProfile ? <a href={profile.linkedinProfile} target="_blank" rel="noopener noreferrer">{profile.linkedinProfile}</a> : '-'}
+                    </div>
+                    <div>
+                      <strong>Website:</strong> {profile.website ? <a href={profile.website} target="_blank" rel="noopener noreferrer">{profile.website}</a> : '-'}
+                    </div>
                   </div>
                 </div>
                 <div className="profile-actions">
-                  <button 
-                    className="update-profile-btn" 
+                  <button
+                    className="update-profile-btn"
                     onClick={() => navigate(`/recruiter/profile/recruiter/${paramRecruiterId || localStorage.getItem('recruiterId')}/update`)}
                   >
                     Update Profile
@@ -90,4 +93,4 @@ function RecruiterProfile() {
   );
 }
 
-export default RecruiterProfile; 
+export default RecruiterProfile;
