@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import RecruiterNavbar from './RecruiterNavbar';
 import './RecruiterProfileUpdate.css';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from "../../config/axios";
+import axios from "axios";
+import API_BASE_URL from "../config/api";
 
 function RecruiterProfileUpdate() {
   const { recruiterId: paramRecruiterId } = useParams();
