@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from "../config/axios";
-// import API_BASE_URL from "../config/axios";
 
 export const useProfileCheck = () => {
   const [isChecking, setIsChecking] = useState(true);
@@ -20,19 +19,13 @@ export const useProfileCheck = () => {
 
         setSeekerId(id);
 
-        // Check if profile exists
-        const profileCheck = await fetch(`http://${API_BASE_URL}/api/profiles/check/${id}`);
-        if (profileCheck.ok) {
-          const profileData = await profileCheck.json();
-          setHasProfile(profileData.exists);
-          
-          if (!profileData.exists) {
-            // Profile doesn't exist, redirect to profile setup
-            navigate('/seeker/profile-setup');
-            return;
-          }
+        // Check if profile exists using axios
+        const response = await axios.get(`/api/profiles/check/${id}`, { withCredentials: true });
+
+        if (response.data && response.data.exists) {
+          setHasProfile(true);
         } else {
-          // If profile check fails, redirect to profile setup
+          setHasProfile(false);
           navigate('/seeker/profile-setup');
           return;
         }
@@ -40,7 +33,6 @@ export const useProfileCheck = () => {
         setIsChecking(false);
       } catch (error) {
         console.error('Profile check error:', error);
-        // If error, redirect to profile setup
         navigate('/seeker/profile-setup');
       }
     };
@@ -49,4 +41,4 @@ export const useProfileCheck = () => {
   }, [navigate]);
 
   return { isChecking, hasProfile, seekerId };
-}; 
+};
