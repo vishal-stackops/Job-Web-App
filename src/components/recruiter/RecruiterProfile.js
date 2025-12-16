@@ -3,7 +3,7 @@ import RecruiterNavbar from './RecruiterNavbar';
 import './RecruiterProfile.css';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from "axios";
-import API_BASE_URL from "../config/api";
+import API_BASE_URL from "../../config/api";
 
 function RecruiterProfile() {
   const { recruiterId: paramRecruiterId } = useParams();
