@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import RecruiterNavbar from './RecruiterNavbar';
 import './RecruiterHome.css';
 import './RecruiterJobCards.css';
-import axios from "../../config/axios";
+import API_BASE_URL from "../../config/axios";
 
 function RecruiterHome() {
   const navigate = useNavigate();
