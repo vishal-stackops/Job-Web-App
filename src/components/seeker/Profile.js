@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation, useParams } from 'react-router-dom';
 import SeekerNavbar from './SeekerNavbar';
 import './Profile.css';
-// import axios from 'axios';
 import axios from "../../config/axios";
-// import API_BASE_URL from "../../config/axios";
+
+
 function Profile() {
   const navigate = useNavigate();
   const location = useLocation();
@@ -20,47 +20,38 @@ function Profile() {
       setLoading(false);
       return;
     }
-    
-    // Fetch both profile data and seeker info
+
     const fetchData = async () => {
       try {
-        // Fetch profile data
-        const profileResponse = await fetch(`${API_BASE_URL}/api/profiles/seeker/${seekerId}`);
-        if (!profileResponse.ok) {
-          if (profileResponse.status === 404) {
-            throw new Error('Profile not found. Please complete your profile setup.');
-          }
-          throw new Error('Failed to fetch profile data');
-        }
-        
-        const profileText = await profileResponse.text();
-        console.log('Raw profile response:', profileText);
-        
-        let profileData;
-        try {
-          profileData = JSON.parse(profileText);
-        } catch (parseError) {
-          console.error('JSON Parse Error:', parseError);
-          console.error('Response that failed to parse:', profileText);
-          throw new Error('Invalid profile data received from server');
-        }
-        
-        setUser(profileData);
-        
-        // Fetch seeker info (name and email)
-        const seekerResponse = await axios.get(`${API_BASE_URL}/api/seekers/${seekerId}`, {
-          withCredentials: true
-        });
-        
+        // Fetch profile data (converted from fetch → axios)
+        const profileResponse = await axios.get(
+          `${API_BASE_URL}/api/profiles/seeker/${seekerId}`
+        );
+
+        console.log('Raw profile response:', profileResponse.data);
+        setUser(profileResponse.data);
+
+        // Fetch seeker info (already axios)
+        const seekerResponse = await axios.get(
+          `${API_BASE_URL}/api/seekers/${seekerId}`,
+          { withCredentials: true }
+        );
+
         setSeekerInfo(seekerResponse.data);
         setLoading(false);
       } catch (err) {
         console.error('Data fetch error:', err);
-        setError(err.message);
+
+        if (err.response?.status === 404) {
+          setError('Profile not found. Please complete your profile setup.');
+        } else {
+          setError(err.message);
+        }
+
         setLoading(false);
       }
     };
-    
+
     fetchData();
   }, [seekerId]);
 
@@ -68,8 +59,27 @@ function Profile() {
     navigate('/seeker/profile-setup');
   };
 
-  if (loading) return (<><SeekerNavbar /><div className="profile-card-center"><div className="profile-card"><p>Loading profile...</p></div></div></>);
-  if (error) return (<><SeekerNavbar /><div className="profile-card-center"><div className="profile-card"><p style={{color:'red'}}>{error}</p></div></div></>);
+  if (loading) return (
+    <>
+      <SeekerNavbar />
+      <div className="profile-card-center">
+        <div className="profile-card">
+          <p>Loading profile...</p>
+        </div>
+      </div>
+    </>
+  );
+
+  if (error) return (
+    <>
+      <SeekerNavbar />
+      <div className="profile-card-center">
+        <div className="profile-card">
+          <p style={{ color: 'red' }}>{error}</p>
+        </div>
+      </div>
+    </>
+  );
 
   if (!user) return (
     <>
@@ -77,7 +87,7 @@ function Profile() {
       <div className="profile-card-center">
         <div className="profile-card">
           <p>Profile not found.</p>
-          <button 
+          <button
             onClick={() => navigate('/seeker/profile-setup')}
             style={{
               background: '#6366f1',
@@ -101,12 +111,18 @@ function Profile() {
       <SeekerNavbar />
       <div className="profile-card-center">
         <div className="profile-card">
-          <button className="profile-back-btn" onClick={() => navigate('/seeker')}>Back</button>
+          <button className="profile-back-btn" onClick={() => navigate('/seeker')}>
+            Back
+          </button>
+
           <div className="profile-card-left">
-            <img src={user.profilePicture || "https://ui-avatars.com/api/?name=U&background=6366f1&color=fff&size=128"} alt="Profile" className="profile-pic" />
+            <img
+              src={user.profilePicture || "https://ui-avatars.com/api/?name=U&background=6366f1&color=fff&size=128"}
+              alt="Profile"
+              className="profile-pic"
+            />
             <h2 className="profile-name">{user.profileHeadline || 'User Profile'}</h2>
-            
-            {/* Display Name and Email */}
+
             {seekerInfo && (
               <div className="seeker-basic-info">
                 <div className="info-item">
@@ -118,11 +134,11 @@ function Profile() {
               </div>
             )}
 
-            {/* Update Profile Button */}
             <button className="update-profile-btn" onClick={handleUpdateProfile}>
               Update Profile
             </button>
           </div>
+
           <div className="profile-card-right">
             <div className="profile-info-list">
               <div><strong>Location:</strong> {user.location || 'Not specified'}</div>
@@ -132,13 +148,17 @@ function Profile() {
               {user.phoneNumber && <div><strong>Phone:</strong> {user.phoneNumber}</div>}
               {user.skills && <div><strong>Skills:</strong> {user.skills}</div>}
               {user.education && <div><strong>Education:</strong> {user.education}</div>}
-              <div><strong>Member Since:</strong> {user.createdAt ? new Date(user.createdAt).toLocaleDateString() : 'N/A'}</div>
+              <div>
+                <strong>Member Since:</strong>{' '}
+                {user.createdAt ? new Date(user.createdAt).toLocaleDateString() : 'N/A'}
+              </div>
             </div>
           </div>
+
         </div>
       </div>
     </>
   );
 }
 
-export default Profile; 
+export default Profile;
