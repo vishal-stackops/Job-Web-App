@@ -3,7 +3,7 @@ import SeekerNavbar from './SeekerNavbar';
 import './MyApplications.css';
 import { useProfileCheck } from '../../hooks/useProfileCheck';
 import axios from "axios";
-import API_BASE_URL from "../config/api";
+import API_BASE_URL from "../../config/api";
 
 function MyApplications() {
   const [applications, setApplications] = useState([]);
