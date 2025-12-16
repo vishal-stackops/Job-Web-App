@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import RecruiterNavbar from './RecruiterNavbar';
 import './RecruiterProfileUpdate.css';
-// import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from "../../config/axios";
-// import API_BASE_URL from "../../config/axios";
+
 function RecruiterProfileUpdate() {
   const { recruiterId: paramRecruiterId } = useParams();
   const navigate = useNavigate();
@@ -37,9 +36,9 @@ function RecruiterProfileUpdate() {
     setLoading(true);
     setError('');
     try {
-      const res = await axios.get(`${API_BASE_URL}/api/recruiters/${recruiterId}/profile`);
+      const res = await axios.get(`/api/recruiters/${recruiterId}/profile`, { withCredentials: true });
       setProfile(res.data);
-    } catch (err) {
+    } catch {
       setError('Profile not found.');
     } finally {
       setLoading(false);
@@ -61,10 +60,10 @@ function RecruiterProfileUpdate() {
     setSuccess('');
 
     const recruiterId = paramRecruiterId || localStorage.getItem('recruiterId');
-    
+
     try {
       console.log('Sending profile update request:', profile);
-      const response = await axios.put(`${API_BASE_URL}/api/recruiters/${recruiterId}/profile`, profile, { 
+      const response = await axios.put(`/api/recruiters/${recruiterId}/profile`, profile, { 
         withCredentials: true 
       });
       console.log('Profile update response:', response);
@@ -74,7 +73,6 @@ function RecruiterProfileUpdate() {
       }, 3000);
     } catch (err) {
       console.error('Profile update error:', err);
-      console.error('Error response:', err.response);
       setError(err.response?.data?.message || 'Failed to update profile. Please try again.');
     } finally {
       setSaving(false);
@@ -230,4 +228,4 @@ function RecruiterProfileUpdate() {
   );
 }
 
-export default RecruiterProfileUpdate; 
+export default RecruiterProfileUpdate;
