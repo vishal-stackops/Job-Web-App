@@ -13,7 +13,13 @@ public class GlobalCorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                    .allowedOrigins("http://localhost:3000", "http://192.168.56.1:3000")
+
+                    // ✅ PRODUCTION (Vercel Frontend)
+                    .allowedOrigins("https://talenthubportal.vercel.app")
+
+                    // ❌ LOCAL DEVELOPMENT (commented for production)
+                    // .allowedOrigins("http://localhost:3000", "http://192.168.56.1:3000")
+
                     .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                     .allowedHeaders("*")
                     .allowCredentials(true);
@@ -21,4 +27,3 @@ public class GlobalCorsConfig {
         };
     }
 }
-
