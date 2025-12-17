@@ -5,6 +5,7 @@
   align-items: flex-start;
   padding: 2rem 1rem;
   background: #ffffff;
+  overflow-y: auto;
 }
 
 .recruiter-profile-form-container {
