@@ -69,6 +69,8 @@ function RecruiterHome() {
       //   })
       // );
 
+      console.log("jobsData:", jobsData); // check if it's an array
+
       const jobsWithApplications = await Promise.all(
       (Array.isArray(jobsData) ? jobsData : []).map(async (job) => {
         try {
