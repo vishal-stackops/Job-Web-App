@@ -323,5 +323,5 @@ function RecruiterHome() {
     )}
   </>
 );
-
+}
 export default RecruiterHome;
