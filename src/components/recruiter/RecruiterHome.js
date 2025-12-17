@@ -178,7 +178,7 @@ function RecruiterHome() {
     <RecruiterNavbar />
 
     {/* Profile Form */}
-    {showProfileForm ? (
+    {showProfileForm && (
       <div className="recruiter-profile-container">
         <div className="recruiter-profile-form-container">
           <form className="recruiter-profile-form" onSubmit={handleProfileSubmit}>
