@@ -2,9 +2,10 @@
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  /* align-items: flex-start; */
   /* align-items: center; */
-  padding: 2rem 1rem;
+  /* padding: 2rem 1rem; */
+  padding: 4rem 1rem; /* increase top padding */
   background: #ffffff;
   overflow-y: auto;
 }
@@ -16,7 +17,7 @@
 }
 
 .recruiter-profile-form {
-  margin-top: 50px; /* adjust as needed */
+  /* margin-top: 50px; /* adjust as needed */ 
   background: #fff;
   border-radius: 20px;
   box-shadow: 0 8px 32px rgba(99, 102, 241, 0.15);
