@@ -9,14 +9,24 @@
   background: #ffffff;
   overflow-y: auto; */
 
-  display: flex;
-  justify-content: center;       /* horizontal centering */
-  align-items: flex-start;       /* keep flex-start for scrollable top */
+  /* display: flex;
+  justify-content: center;       /* horizontal centering 
+  align-items: flex-start;       /*keep flex-start for scrollable top 
   min-height: 100vh;
-  padding: 4rem 1rem;            /* increase top padding to fully show form */
+  padding: 4rem 1rem;            /* increase top padding to fully show form 
   background: #ffffff;
-  overflow-y: auto;              /* allows scrolling if form is tall */
+  overflow-y: auto;              /* allows scrolling if form is tall 
   box-sizing: border-box;        /* important to include padding in height */
+
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;       /* stack content vertically */
+  justify-content: flex-start;  /* start from top */
+  align-items: center;          /* center horizontally */
+  padding: 2rem 1rem;
+  background: #ffffff;
+  overflow-y: auto;
+  box-sizing: border-box;
 }
 
 .recruiter-profile-form-container {
