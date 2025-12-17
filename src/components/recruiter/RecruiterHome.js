@@ -178,35 +178,118 @@ function RecruiterHome() {
       <RecruiterNavbar />
 
       {/* Profile Form */}
-      {showProfileForm ? (
-        <div className="recruiter-profile-container">
-          <div className="recruiter-profile-form-container">
-            <form className="recruiter-profile-form" onSubmit={handleProfileSubmit}>
-              <h2>Complete Your Profile</h2>
-              {profileError && <div className="error-message">{profileError}</div>}
+  {showProfileForm && (
+    <div className="recruiter-profile-container">
+      <div className="recruiter-profile-form-container">
+        <form className="recruiter-profile-form" onSubmit={handleProfileSubmit}>
+          <h2>Complete Your Profile</h2>
+          {profileError && <div className="error-message">{profileError}</div>}
 
-              <div className="form-section">
-                <h3>Personal Information</h3>
-                <div className="form-row">
-                  <label>
-                    Full Name *
-                    <input type="text" name="name" value={profileForm.name} onChange={handleProfileChange} required />
-                  </label>
-                  <label>
-                    Email *
-                    <input type="email" name="email" value={profileForm.email} onChange={handleProfileChange} required />
-                  </label>
-                </div>
-              </div>
-
-              <div className="form-actions">
-                <button type="submit" disabled={profileLoading}>
-                  {profileLoading ? 'Saving...' : 'Complete Profile'}
-                </button>
-              </div>
-            </form>
+          {/* Personal Information */}
+          <div className="form-section">
+            <h3>Personal Information</h3>
+            <div className="form-row">
+              <label>
+                Full Name *
+                <input
+                  type="text"
+                  name="name"
+                  value={profileForm.name}
+                  onChange={handleProfileChange}
+                  required
+                />
+              </label>
+              <label>
+                Email *
+                <input
+                  type="email"
+                  name="email"
+                  value={profileForm.email}
+                  onChange={handleProfileChange}
+                  required
+                />
+              </label>
+            </div>
+            <div className="form-row">
+              <label>
+                Phone Number
+                <input
+                  type="text"
+                  name="phone"
+                  value={profileForm.phone}
+                  onChange={handleProfileChange}
+                />
+              </label>
+              <label>
+                Position
+                <input
+                  type="text"
+                  name="position"
+                  value={profileForm.position}
+                  onChange={handleProfileChange}
+                />
+              </label>
+            </div>
           </div>
-        </div>
+
+          {/* Company Information */}
+          <div className="form-section">
+            <h3>Company Information</h3>
+            <div className="form-row">
+              <label>
+                Company Name
+                <input
+                  type="text"
+                  name="companyName"
+                  value={profileForm.companyName}
+                  onChange={handleProfileChange}
+                />
+              </label>
+              <label>
+                Company Description
+                <textarea
+                  name="companyDescription"
+                  value={profileForm.companyDescription}
+                  onChange={handleProfileChange}
+                />
+              </label>
+            </div>
+          </div>
+
+          {/* Professional Links */}
+          <div className="form-section">
+            <h3>Professional Links</h3>
+            <div className="form-row">
+              <label>
+                LinkedIn
+                <input
+                  type="url"
+                  name="linkedin"
+                  value={profileForm.linkedin}
+                  onChange={handleProfileChange}
+                />
+              </label>
+              <label>
+                Website
+                <input
+                  type="url"
+                  name="website"
+                  value={profileForm.website}
+                  onChange={handleProfileChange}
+                />
+              </label>
+            </div>
+          </div>
+
+          {/* Form Actions */}
+          <div className="form-actions">
+            <button type="submit" disabled={profileLoading}>
+              {profileLoading ? 'Saving...' : 'Complete Profile'}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
       ) : (
         <div className="recruiter-home-content">
           {loading && <p>Loading jobs...</p>}
