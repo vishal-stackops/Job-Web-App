@@ -58,16 +58,27 @@ function RecruiterHome() {
       const res = await axios.get(`/api/jobs/recruiter/${recruiterId}`, { withCredentials: true });
       const jobsData = res.data;
 
+      // const jobsWithApplications = await Promise.all(
+      //   jobsData.map(async (job) => {
+      //     try {
+      //       const applicationsRes = await axios.get(`/api/applications/job/${job.id}`, { withCredentials: true });
+      //       return { ...job, applications: applicationsRes.data || [] };
+      //     } catch {
+      //       return { ...job, applications: [] };
+      //     }
+      //   })
+      // );
+
       const jobsWithApplications = await Promise.all(
-        jobsData.map(async (job) => {
-          try {
+      (Array.isArray(jobsData) ? jobsData : []).map(async (job) => {
+        try {
             const applicationsRes = await axios.get(`/api/applications/job/${job.id}`, { withCredentials: true });
             return { ...job, applications: applicationsRes.data || [] };
-          } catch {
+        } catch {
             return { ...job, applications: [] };
-          }
-        })
-      );
+        }
+      })
+    );
 
       setJobs(jobsWithApplications);
       setLoading(false);
