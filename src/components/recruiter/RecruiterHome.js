@@ -173,6 +173,7 @@ function RecruiterHome() {
     navigate('/signin');
   };
 
+
   return (
   <>
     <RecruiterNavbar />
@@ -290,7 +291,9 @@ function RecruiterHome() {
           </form>
         </div>
       </div>
-    )} : (
+    )}
+
+    {!showProfileForm && (
       <div className="recruiter-home-content">
         {loading && <p>Loading jobs...</p>}
         {error && <p style={{ color: 'red' }}>{error}</p>}
@@ -320,5 +323,5 @@ function RecruiterHome() {
     )}
   </>
 );
-}
+
 export default RecruiterHome;
