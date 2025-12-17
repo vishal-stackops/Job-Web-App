@@ -174,154 +174,129 @@ function RecruiterHome() {
   };
 
 
-  return (
-  <>
-    <RecruiterNavbar />
-
-    {/* Profile Form */}
-    {showProfileForm && (
-      <div className="recruiter-profile-container">
-        <div className="recruiter-profile-form-container">
-          <form className="recruiter-profile-form" onSubmit={handleProfileSubmit}>
-            <h2>Complete Your Profile</h2>
-            {profileError && <div className="error-message">{profileError}</div>}
-
-            {/* Personal Information */}
-            <div className="form-section">
-              <h3>Personal Information</h3>
-              <div className="form-row">
-                <label>
-                  Full Name *
-                  <input
-                    type="text"
-                    name="name"
-                    value={profileForm.name}
-                    onChange={handleProfileChange}
-                    required
-                  />
-                </label>
-                <label>
-                  Email *
-                  <input
-                    type="email"
-                    name="email"
-                    value={profileForm.email}
-                    onChange={handleProfileChange}
-                    required
-                  />
-                </label>
+ return (
+    <>
+      <RecruiterNavbar />
+      {showProfileForm ? (
+        <div className="recruiter-profile-container">
+          <div className="recruiter-profile-form-container">
+            <form className="recruiter-profile-form" onSubmit={handleProfileSubmit}>
+              <h2>Complete Your Profile</h2>
+              {profileError && <div className="error-message">{profileError}</div>}
+              {/* Personal Info */}
+              <div className="form-section">
+                <h3>Personal Information</h3>
+                <div className="form-row">
+                  <label>
+                    Full Name *
+                    <input type="text" name="name" value={profileForm.name} onChange={handleProfileChange} required />
+                  </label>
+                  <label>
+                    Email *
+                    <input type="email" name="email" value={profileForm.email} onChange={handleProfileChange} required />
+                  </label>
+                </div>
+                <div className="form-row">
+                  <label>
+                    Phone Number
+                    <input type="tel" name="phoneNumber" value={profileForm.phoneNumber} onChange={handleProfileChange} />
+                  </label>
+                  <label>
+                    Position *
+                    <input type="text" name="position" value={profileForm.position} onChange={handleProfileChange} required />
+                  </label>
+                </div>
               </div>
-              <div className="form-row">
+              {/* Company Info */}
+              <div className="form-section">
+                <h3>Company Information</h3>
                 <label>
-                  Phone Number
-                  <input
-                    type="text"
-                    name="phone"
-                    value={profileForm.phone}
-                    onChange={handleProfileChange}
-                  />
-                </label>
-                <label>
-                  Position
-                  <input
-                    type="text"
-                    name="position"
-                    value={profileForm.position}
-                    onChange={handleProfileChange}
-                  />
-                </label>
-              </div>
-            </div>
-
-            {/* Company Information */}
-            <div className="form-section">
-              <h3>Company Information</h3>
-              <div className="form-row">
-                <label>
-                  Company Name
-                  <input
-                    type="text"
-                    name="companyName"
-                    value={profileForm.companyName}
-                    onChange={handleProfileChange}
-                  />
+                  Company Name *
+                  <input type="text" name="companyName" value={profileForm.companyName} onChange={handleProfileChange} required />
                 </label>
                 <label>
                   Company Description
-                  <textarea
-                    name="companyDescription"
-                    value={profileForm.companyDescription}
-                    onChange={handleProfileChange}
-                  />
+                  <textarea name="companyDescription" value={profileForm.companyDescription} onChange={handleProfileChange} rows="3" />
                 </label>
               </div>
-            </div>
-
-            {/* Professional Links */}
-            <div className="form-section">
-              <h3>Professional Links</h3>
-              <div className="form-row">
-                <label>
-                  LinkedIn
-                  <input
-                    type="url"
-                    name="linkedin"
-                    value={profileForm.linkedin}
-                    onChange={handleProfileChange}
-                  />
-                </label>
-                <label>
-                  Website
-                  <input
-                    type="url"
-                    name="website"
-                    value={profileForm.website}
-                    onChange={handleProfileChange}
-                  />
-                </label>
+              {/* Professional Links */}
+              <div className="form-section">
+                <h3>Professional Links</h3>
+                <div className="form-row">
+                  <label>
+                    LinkedIn Profile
+                    <input type="url" name="linkedinProfile" value={profileForm.linkedinProfile} onChange={handleProfileChange} />
+                  </label>
+                  <label>
+                    Company Website
+                    <input type="url" name="website" value={profileForm.website} onChange={handleProfileChange} />
+                  </label>
+                </div>
               </div>
-            </div>
-
-            {/* Form Actions */}
-            <div className="form-actions">
-              <button type="submit" disabled={profileLoading}>
-                {profileLoading ? 'Saving...' : 'Complete Profile'}
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-    )}
-
-    {!showProfileForm && (
-      <div className="recruiter-home-content">
-        {loading && <p>Loading jobs...</p>}
-        {error && <p style={{ color: 'red' }}>{error}</p>}
-
-        {!loading && !error && jobs.length > 0 && (
-          <div className="recruiter-jobs-list">
-            {jobs.map((job) => (
-              <div className="recruiter-job-card" key={job.id}>
-                <h3>{job.title}</h3>
-                <button onClick={() => handleDeleteClick(job)}>Delete</button>
+              <div className="form-actions">
+                <button type="submit" disabled={profileLoading}>{profileLoading ? 'Saving...' : 'Complete Profile'}</button>
               </div>
-            ))}
+            </form>
           </div>
-        )}
-      </div>
-    )}
-
-    {/* Delete Modal */}
-    {showForceDeleteModal && jobToDelete && (
-      <div className="delete-confirmation-modal">
-        <div className="delete-confirmation-content">
-          <h3>Job Has Saved References</h3>
-          <button onClick={handleForceDeleteCancel}>Cancel</button>
-          <button onClick={handleForceDeleteConfirm}>Delete Anyway</button>
         </div>
-      </div>
-    )}
-  </>
-);
+      ) : (
+        <div className="recruiter-home-content">
+          {loading && <p>Loading jobs...</p>}
+          {error && <p style={{ color: 'red' }}>{error}</p>}
+          {!loading && !error && jobs.length === 0 && <p>No jobs found.</p>}
+          {!loading && !error && jobs.length > 0 && (
+            <div className="recruiter-jobs-list">
+              {jobs.map(job => (
+                <div className="recruiter-job-card" key={job.id}>
+                  <h3>{job.title}</h3>
+                  <div className="recruiter-job-meta">
+                    <span>{job.company}</span>
+                    <span>{job.location}</span>
+                  </div>
+                  <div className="recruiter-job-details">
+                    <span>{job.salaryRange}</span>
+                    <span>{job.jobType}</span>
+                    <span>{job.experienceLevel}</span>
+                  </div>
+                  <div>{job.postedDate ? new Date(job.postedDate).toLocaleDateString() : 'No date'}</div>
+                  <div>
+                    {job.applications ? job.applications.length : 0} {job.applications && job.applications.length === 1 ? 'Applicant' : 'Applicants'}
+                  </div>
+                  <button onClick={() => handleDeleteClick(job)}>Delete</button>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Delete Modals */}
+      {showDeleteModal && jobToDelete && (
+        <div className="delete-confirmation-modal">
+          <div className="delete-confirmation-content">
+            <h3>Delete Job Posting</h3>
+            <p>Are you sure you want to delete "{jobToDelete.title}"?</p>
+            <div>
+              <button onClick={() => setShowDeleteModal(false)}>Cancel</button>
+              <button onClick={handleDeleteConfirm}>Delete Job</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {showForceDeleteModal && jobToDelete && (
+        <div className="delete-confirmation-modal">
+          <div className="delete-confirmation-content">
+            <h3>Job Has Saved References</h3>
+            <p>Deleting "{jobToDelete.title}" will remove all saved references.</p>
+            <div>
+              <button onClick={handleForceDeleteCancel}>Cancel</button>
+              <button onClick={handleForceDeleteConfirm}>Delete Anyway</button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
 }
 export default RecruiterHome;
