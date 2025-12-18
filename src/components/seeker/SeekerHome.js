@@ -76,10 +76,11 @@ function SeekerHome() {
       }
     };
 
-    if (!isChecking) {
-      fetchJobs();
-    }
-  }, [isChecking]);
+    fetchJobs();
+    // if (!isChecking) {
+    //   fetchJobs();
+    // }
+  }, []);
 
   const handleSearch = (searchQuery) => {
     if (!searchQuery.trim()) {
