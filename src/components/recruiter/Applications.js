@@ -33,7 +33,7 @@ function Applications() {
 
   const loadApplications = async (recruiterId) => {
     try {
-      const response = await axios.get(`/api/applications/recruiter/${recruiterId}`, { withCredentials: true });
+      const response = await axios.get(`${API_BASE_URL}/api/applications/recruiter/${recruiterId}`, { withCredentials: true });
       setApplications(response.data);
 
       // Calculate stats
@@ -49,11 +49,11 @@ function Applications() {
         response.data.map(async (app) => {
           if (app.seeker && app.seeker.id) {
             try {
-              const profileResponse = await axios.get(`/api/profiles/seeker/${app.seeker.id}`, { withCredentials: true });
+              const profileResponse = await axios.get(`${API_BASE_URL}/api/profiles/seeker/${app.seeker.id}`, { withCredentials: true });
               profiles[app.seeker.id] = profileResponse.data;
             } catch {
               try {
-                const seekerResponse = await axios.get(`/api/seekers/${app.seeker.id}`, { withCredentials: true });
+                const seekerResponse = await axios.get(`${API_BASE_URL}/api/seekers/${app.seeker.id}`, { withCredentials: true });
                 profiles[app.seeker.id] = {
                   ...seekerResponse.data,
                   phoneNumber: 'N/A',
@@ -79,7 +79,7 @@ function Applications() {
 
   const handleStatusUpdate = async (applicationId, newStatus) => {
     try {
-      await axios.put(`/api/applications/${applicationId}/status`, 
+      await axios.put(`${API_BASE_URL}/api/applications/${applicationId}/status`, 
         { status: newStatus }, 
         { withCredentials: true }
       );
