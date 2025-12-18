@@ -279,7 +279,67 @@ function JobCard({ job }) {
       {isSaved ? 'Saved' : 'Save'}
     </button>
   </div>
-</div>
+</div> 
+
+      {showModal && (
+  <div className="apply-modal-overlay" onClick={closeModal}>
+    <div
+      className="apply-modal"
+      onClick={(e) => e.stopPropagation()}
+    >
+
+      { <h2>{job.title}</h2>
+
+        <p><strong>Company:</strong> {job.company}</p>
+        <p><strong>Location:</strong> {job.location}</p>
+
+        <div className="job-description">
+          {job.description}
+        </div>
+
+      <p><strong>Salary:</strong> {job.salary}</p>
+      <p><strong>Job Type:</strong> {job.jobType}</p>
+      <p><strong>Experience Level:</strong> {job.experienceLevel}</p>
+    }
+
+    </div>
+  </div>
+)}
+
+{showApplyForm && (
+  <form onSubmit={handleSubmitApplication}>
+    <input
+      id="resume-file-input"
+      type="file"
+      accept=".pdf,.doc,.docx"
+      onChange={handleFileChange}
+    />
+
+    <button type="submit" disabled={applyLoading}>
+      {applyLoading ? 'Submitting...' : 'Submit Application'}
+    </button>
+  </form>
+)}
+
+
+{alreadyApplied && (
+  <div className="info-msg">
+    You already applied for this job.
+  </div>
+)}
+
+{applySuccess && (
+  <div className="success-msg">
+    {applySuccess}
+  </div>
+)}
+
+{applyError && (
+  <div className="error-msg">
+    {applyError}
+  </div>
+)}
+
 
     </>
   );
