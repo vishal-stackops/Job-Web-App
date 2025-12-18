@@ -70,10 +70,10 @@ function RecruiterProfile() {
                   <h3>Professional Links</h3>
                   <div className="profile-row">
                     <div>
-                      <strong>LinkedIn:</strong> {profile.linkedinProfile}
+                      <strong>LinkedIn:</strong> {profile.linkedinProfile ? <a href={profile.linkedinProfile} target="_blank" rel="noopener noreferrer">{profile.linkedinProfile}</a> : '-'}
                     </div>
                     <div>
-                      <strong>Website:</strong> {profile.website}
+                      <strong>Website:</strong> {profile.website ? <a href={profile.website} target="_blank" rel="noopener noreferrer">{profile.website}</a> : '-'}
                     </div>
                   </div>
                 </div>
