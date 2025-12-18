@@ -274,7 +274,7 @@ function RecruiterHome() {
       {showDeleteModal && jobToDelete && (
   <div className="delete-confirmation-modal">
     <div className="delete-confirmation-content">
-      <h3 className="delete-confirmation-title">
+      <h3 className="delete-confirmation-title delete-confirmation-icon">
         Delete Job Posting
       </h3>
 
@@ -291,7 +291,7 @@ function RecruiterHome() {
         </button>
 
         <button
-          className="delete-confirm-btn"
+          className="delete-confirm-btn "
           onClick={handleDeleteConfirm}
         >
           Delete Job
@@ -302,17 +302,17 @@ function RecruiterHome() {
 )}
 
 {showForceDeleteModal && jobToDelete && (
-  <div className="recruiter-delete-modal-overlay">
-    <div className="recruiter-delete-modal">
+  <div className="delete-confirmation-modal">
+    <div className="force-delete-title">
       <h3 className="recruiter-delete-title">
         Job Has Saved References
       </h3>
 
-      <p className="recruiter-delete-text">
+      <p className="warning-text">
         Deleting "{jobToDelete.title}" will remove all saved references.
       </p>
 
-      <div className="recruiter-delete-actions">
+      <div className="delete-confirmation-actions">
         <button
           className="recruiter-delete-cancel-btn"
           onClick={handleForceDeleteCancel}
@@ -321,7 +321,7 @@ function RecruiterHome() {
         </button>
 
         <button
-          className="recruiter-delete-confirm-btn"
+          className="force-delete force-delete-icon"
           onClick={handleForceDeleteConfirm}
         >
           Delete Anyway
