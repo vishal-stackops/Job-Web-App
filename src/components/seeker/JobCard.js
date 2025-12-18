@@ -271,7 +271,7 @@ function JobCard({ job }) {
       <div className="job-card-actions">
         <button
           className="apply-btn"
-          onClick={handleApplyClick}
+          onClick={handleApply}
         >
           Apply
         </button>
