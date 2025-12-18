@@ -51,23 +51,26 @@ function Signin() {
         localStorage.setItem('seekerId', data.id);
         localStorage.setItem('seekerName', data.name);
 
-        // Minimal safe change: profile check
-        try {
-          const profileCheck = await axios.get(
-            `${API_BASE_URL}/api/profiles/check/${data.id}`,
-            { withCredentials: true }
-          );
+        // Always go to dashboard
+        navigate('/seeker');
 
-          if (profileCheck.data.exists) {
-            navigate('/seeker'); // existing user → dashboard
-          } else {
-            navigate('/seeker/profile-setup'); // new user → setup form
-          }
-        } catch (err) {
-          console.error('Profile check error:', err);
-          navigate('/seeker/profile-setup'); // fallback → setup form
-        }
-      }
+      //   // Minimal safe change: profile check
+      //   try {
+      //     const profileCheck = await axios.get(
+      //       `${API_BASE_URL}/api/profiles/check/${data.id}`,
+      //       { withCredentials: true }
+      //     );
+
+      //     if (profileCheck.data.exists) {
+      //       navigate('/seeker'); // existing user → dashboard
+      //     } else {
+      //       navigate('/seeker/profile-setup'); // new user → setup form
+      //     }
+      //   } catch (err) {
+      //     console.error('Profile check error:', err);
+      //     navigate('/seeker/profile-setup'); // fallback → setup form
+      //   }
+      // }
     } catch (err) {
       console.error('Signin error:', err);
       setError(
