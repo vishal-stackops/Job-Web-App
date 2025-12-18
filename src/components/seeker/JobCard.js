@@ -255,92 +255,123 @@ function JobCard({ job }) {
   };
 
   return (
-    <>
-      <div className="job-card">
-  <h3>{job.title}</h3>
+  <>
+    {/* JOB CARD */}
+    <div className="job-card">
+      <h3>{job.title}</h3>
 
-  <p>
-    <strong>Company:</strong> {job.company}
-  </p>
+      <p>
+        <strong>Company:</strong> {job.company}
+      </p>
 
-  <p>
-    <strong>Location:</strong> {job.location}
-  </p>
+      <p>
+        <strong>Location:</strong> {job.location}
+      </p>
 
-  <div className="job-card-actions">
-    <button className="apply-btn" onClick={handleApplyClick} >
-      Apply
-    </button>
+      <div className="job-card-actions">
+        <button
+          className="apply-btn"
+          onClick={handleApplyClick}
+        >
+          Apply
+        </button>
 
-    <button className={`save-btn ${isSaved ? 'saved' : ''}`}
-      onClick={isSaved ? handleUnsaveJob : handleSaveJob}
-      disabled={savingJob}
-      >
-      {isSaved ? 'Saved' : 'Save'}
-    </button>
-  </div>
-</div> 
-
-  {showModal && (
-  <div className="apply-modal-overlay" onClick={closeModal}>
-    <div
-      className="apply-modal"
-      onClick={(e) => e.stopPropagation()}
-    >
-
-      { <h2>{job.title}</h2>
-
-        <p><strong>Company:</strong> {job.company}</p>
-        <p><strong>Location:</strong> {job.location}</p>
-
-        <div className="job-description">
-          {job.description}
-        </div>
-
-      <p><strong>Salary:</strong> {job.salary}</p>
-      <p><strong>Job Type:</strong> {job.jobType}</p>
-      <p><strong>Experience Level:</strong> {job.experienceLevel}</p>
-    }
-
+        <button
+          className={`save-btn ${isSaved ? 'saved' : ''}`}
+          onClick={isSaved ? handleUnsaveJob : handleSaveJob}
+          disabled={savingJob}
+        >
+          {isSaved ? 'Saved' : 'Save'}
+        </button>
       </div>
     </div>
-  )}
 
-  {showApplyForm && (
-    <form onSubmit={handleSubmitApplication}>
-      <input
-          id="resume-file-input"
-          type="file"
-          accept=".pdf,.doc,.docx"
-          onChange={handleFileChange}
-        />
+    {/* APPLY MODAL */}
+    {showModal && (
+      <div
+        className="apply-modal-overlay"
+        onClick={closeModal}
+      >
+        <div
+          className="apply-modal"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <h2>{job.title}</h2>
 
-        <button type="submit" disabled={applyLoading}>
-          {applyLoading ? 'Submitting...' : 'Submit Application'}
-        </button>
-      </form>
-    )}
+          <p>
+            <strong>Company:</strong> {job.company}
+          </p>
 
+          <p>
+            <strong>Location:</strong> {job.location}
+          </p>
 
-    {alreadyApplied && (
-      <div className="info-msg">
-        You already applied for this job.
+          <div className="job-description">
+            {job.description}
+          </div>
+
+          <p>
+            <strong>Salary:</strong> {job.salary}
+          </p>
+
+          <p>
+            <strong>Job Type:</strong> {job.jobType}
+          </p>
+
+          <p>
+            <strong>Experience Level:</strong> {job.experienceLevel}
+          </p>
+
+          {/* APPLY FORM */}
+          {showApplyForm && (
+            <form
+              className="apply-form"
+              onSubmit={handleSubmitApplication}
+            >
+              <input
+                id="resume-file-input"
+                type="file"
+                accept=".pdf,.doc,.docx"
+                onChange={handleFileChange}
+              />
+
+              <button
+                type="submit"
+                disabled={applyLoading}
+              >
+                {applyLoading
+                  ? 'Submitting...'
+                  : 'Submit Application'}
+              </button>
+            </form>
+          )}
+
+          {/* ALREADY APPLIED */}
+          {alreadyApplied && (
+            <div className="info-msg">
+              You already applied for this job.
+            </div>
+          )}
+
+          {/* SUCCESS MESSAGE */}
+          {applySuccess && (
+            <div className="success-msg">
+              {applySuccess}
+            </div>
+          )}
+
+          {/* ERROR MESSAGE */}
+          {applyError && (
+            <div className="error-msg">
+              {applyError}
+            </div>
+          )}
+        </div>
       </div>
     )}
+  </>
+);
 
-      {applySuccess && (
-        <div className="success-msg">
-          {applySuccess}
-        </div>
-      )}
-
-      {applyError && (
-        <div className="error-msg">
-          {applyError}
-        </div>
-      )}
-    </>
-  );
 }
 
 export default JobCard;
