@@ -52,24 +52,24 @@ function Signin() {
         localStorage.setItem('seekerId', data.id);
         localStorage.setItem('seekerName', data.name);
 
-        // fetch → axios (profile check)
-        // After login, always go to dashboard
-        navigate('/seeker') ;
 
-        // try {
-        //   const profileCheck = await axios.get(
-        //     `${API_BASE_URL}/api/profiles/check/${data.id}`,
-        //     { withCredentials: true }
-        //   );
-        //   if (profileCheck.data.exists) {
-        //     navigate('/seeker');
-        //   } else {
-        //     navigate('/seeker/profile-setup');
-        //   }
-        // } catch (err) {
-        //   console.error('Profile check error:', err);
-        //   navigate('/seeker/profile-setup');
-        // }
+        // After login, always go to dashboard
+        // navigate('/seeker') ;
+        //fetch → axios (profile check)
+        try {
+          const profileCheck = await axios.get(
+            `${API_BASE_URL}/api/profiles/check/${data.id}`,
+            { withCredentials: true }
+          );
+          if (profileCheck.data.exists) {
+            navigate('/seeker');
+          } else {
+            navigate('/seeker/profile-setup');
+          }
+        } catch (err) {
+          console.error('Profile check error:', err);
+          navigate('/seeker/profile-setup');
+        }
       }
     } catch (err) {
       console.error('Signin error:', err);
