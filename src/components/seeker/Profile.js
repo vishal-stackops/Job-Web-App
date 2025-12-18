@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import SeekerNavbar from './SeekerNavbar';
 import './Profile.css';
 import axios from "axios";
 import API_BASE_URL from "../../config/api";
 
-
 function Profile() {
   const navigate = useNavigate();
-  const location = useLocation();
   const { seekerId } = useParams();
   const [user, setUser] = useState(null);
   const [seekerInfo, setSeekerInfo] = useState(null);
@@ -16,49 +14,35 @@ function Profile() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (!seekerId) {
-      setError('No seeker ID found in URL. Please sign in again.');
-      setLoading(false);
+    const id = localStorage.getItem('seekerId');
+    if (!id) {
+      navigate('/signin');
       return;
     }
 
     const fetchData = async () => {
       try {
-        // Fetch profile data (converted from fetch → axios)
         const profileResponse = await axios.get(
-          `${API_BASE_URL}/api/profiles/seeker/${seekerId}`
+          `${API_BASE_URL}/api/profiles/seeker/${id}`
         );
-
-        console.log('Raw profile response:', profileResponse.data);
         setUser(profileResponse.data);
 
-        // Fetch seeker info (already axios)
         const seekerResponse = await axios.get(
-          `${API_BASE_URL}/api/seekers/${seekerId}`,
+          `${API_BASE_URL}/api/seekers/${id}`,
           { withCredentials: true }
         );
-
         setSeekerInfo(seekerResponse.data);
+
         setLoading(false);
       } catch (err) {
         console.error('Data fetch error:', err);
-
-        if (err.response?.status === 404) {
-          setError('Profile not found. Please complete your profile setup.');
-        } else {
-          setError(err.message);
-        }
-
+        setError('Profile not found.');
         setLoading(false);
       }
     };
 
     fetchData();
-  }, [seekerId]);
-
-  const handleUpdateProfile = () => {
-    navigate('/seeker/profile-setup');
-  };
+  }, [navigate, seekerId]);
 
   if (loading) return (
     <>
@@ -71,91 +55,69 @@ function Profile() {
     </>
   );
 
-  if (error) return (
-    <>
-      <SeekerNavbar />
-      <div className="profile-card-center">
-        <div className="profile-card">
-          <p style={{ color: 'red' }}>{error}</p>
-        </div>
-      </div>
-    </>
-  );
-
-  if (!user) return (
-    <>
-      <SeekerNavbar />
-      <div className="profile-card-center">
-        <div className="profile-card">
-          <p>Profile not found.</p>
-          <button
-            onClick={() => navigate('/seeker/profile-setup')}
-            style={{
-              background: '#6366f1',
-              color: '#fff',
-              border: 'none',
-              padding: '0.75rem 1.5rem',
-              borderRadius: '8px',
-              cursor: 'pointer',
-              marginTop: '1rem'
-            }}
-          >
-            Complete Profile Setup
-          </button>
-        </div>
-      </div>
-    </>
-  );
-
   return (
     <>
       <SeekerNavbar />
       <div className="profile-card-center">
         <div className="profile-card">
-          <button className="profile-back-btn" onClick={() => navigate('/seeker')}>
-            Back
-          </button>
+          {error && (
+            <div style={{ color: 'red', marginBottom: '1rem' }}>{error}</div>
+          )}
 
-          <div className="profile-card-left">
-            <img
-              src={user.profilePicture || "https://ui-avatars.com/api/?name=U&background=6366f1&color=fff&size=128"}
-              alt="Profile"
-              className="profile-pic"
-            />
-            <h2 className="profile-name">{user.profileHeadline || 'User Profile'}</h2>
+          {user ? (
+            <>
+              <div className="profile-card-left">
+                <img
+                  src={user.profilePicture || "https://ui-avatars.com/api/?name=U&background=6366f1&color=fff&size=128"}
+                  alt="Profile"
+                  className="profile-pic"
+                />
+                <h2 className="profile-name">{user.profileHeadline || 'User Profile'}</h2>
 
-            {seekerInfo && (
-              <div className="seeker-basic-info">
-                <div className="info-item">
-                  <strong>Name:</strong> {seekerInfo.name || 'Not specified'}
-                </div>
-                <div className="info-item">
-                  <strong>Email:</strong> {seekerInfo.email || 'Not specified'}
+                {seekerInfo && (
+                  <div className="seeker-basic-info">
+                    <div className="info-item">
+                      <strong>Name:</strong> {seekerInfo.name || 'Not specified'}
+                    </div>
+                    <div className="info-item">
+                      <strong>Email:</strong> {seekerInfo.email || 'Not specified'}
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <div className="profile-card-right">
+                <div className="profile-info-list">
+                  <div><strong>Location:</strong> {user.location || 'Not specified'}</div>
+                  <div><strong>Employment:</strong> {user.employment || 'Not specified'}</div>
+                  <div><strong>Experience Level:</strong> {user.experienceLevel || 'Not specified'}</div>
+                  <div><strong>Availability:</strong> {user.availability || 'Not specified'}</div>
+                  {user.phoneNumber && <div><strong>Phone:</strong> {user.phoneNumber}</div>}
+                  {user.skills && <div><strong>Skills:</strong> {user.skills}</div>}
+                  {user.education && <div><strong>Education:</strong> {user.education}</div>}
+                  <div>
+                    <strong>Member Since:</strong>{' '}
+                    {user.createdAt ? new Date(user.createdAt).toLocaleDateString() : 'N/A'}
+                  </div>
                 </div>
               </div>
-            )}
-
-            <button className="update-profile-btn" onClick={handleUpdateProfile}>
-              Update Profile
+            </>
+          ) : (
+            <button
+              onClick={() => navigate('/seeker/profile-setup')}
+              style={{
+                background: '#6366f1',
+                color: '#fff',
+                border: 'none',
+                padding: '0.75rem 1.5rem',
+                borderRadius: '8px',
+                cursor: 'pointer',
+                marginTop: '1rem'
+              }}
+            >
+              Complete Profile
             </button>
-          </div>
-
-          <div className="profile-card-right">
-            <div className="profile-info-list">
-              <div><strong>Location:</strong> {user.location || 'Not specified'}</div>
-              <div><strong>Employment:</strong> {user.employment || 'Not specified'}</div>
-              <div><strong>Experience Level:</strong> {user.experienceLevel || 'Not specified'}</div>
-              <div><strong>Availability:</strong> {user.availability || 'Not specified'}</div>
-              {user.phoneNumber && <div><strong>Phone:</strong> {user.phoneNumber}</div>}
-              {user.skills && <div><strong>Skills:</strong> {user.skills}</div>}
-              {user.education && <div><strong>Education:</strong> {user.education}</div>}
-              <div>
-                <strong>Member Since:</strong>{' '}
-                {user.createdAt ? new Date(user.createdAt).toLocaleDateString() : 'N/A'}
-              </div>
-            </div>
-          </div>
-
+          )}
         </div>
       </div>
     </>
