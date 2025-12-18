@@ -272,8 +272,8 @@ function RecruiterHome() {
 
       {/* Delete Modals */}
       {showDeleteModal && jobToDelete && (
-  <div className="recruiter-delete-modal-overla">
-    <div className="recruiter-delete-modal">
+  <div className="delete-confirmation-modal">
+    <div className="delete-confirmation-content">
       <h3 className="recruiter-delete-title">
         Delete Job Posting
       </h3>
