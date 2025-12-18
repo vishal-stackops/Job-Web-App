@@ -70,9 +70,9 @@ function SeekerNavbar({ onSearch }) {
       )}
       <div className="navbar-right">
         <NavLink
-          // to={profileUrl}
-          to="/seeker/profile-setup"
-          state={{ fromProfile: true }}
+          to={profileUrl}
+          // to="/seeker/profile-setup"
+          // state={{ fromProfile: true }}
           className={({ isActive }) => 'seeker-link profile-btn' + (isActive ? ' active' : '')}
         >
           Profile
