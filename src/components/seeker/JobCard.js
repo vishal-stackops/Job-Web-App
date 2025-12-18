@@ -309,16 +309,17 @@ function JobCard({ job }) {
         className="apply-modal-overlay"
         onClick={closeModal}
       >
-          <button
-            className="modal-close-btn"
-            onClick={closeModal}
-          >
-            ✕
-          </button>
         <div
           className="apply-modal"
           onClick={(e) => e.stopPropagation()}
         >
+          <button
+            className="modal-close-btn"
+            onClick={closeModal}
+            aria-label="Close modal"
+            >
+              ✕
+            </button>
           <h2 className="modal-job-title">
             {job.title}
           </h2>
