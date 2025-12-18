@@ -272,9 +272,11 @@ function RecruiterHome() {
 
       {/* Delete Modals */}
       {showDeleteModal && jobToDelete && (
-  <div className="recruiter-delete-modal-overlay">
+  <div className="recruiter-delete-modal-overla">
     <div className="recruiter-delete-modal">
-      <h3 className="recruiter-delete-title">Delete Job Posting</h3>
+      <h3 className="recruiter-delete-title">
+        Delete Job Posting
+      </h3>
 
       <p className="recruiter-delete-text">
         Are you sure you want to delete "{jobToDelete.title}"?
@@ -302,7 +304,9 @@ function RecruiterHome() {
 {showForceDeleteModal && jobToDelete && (
   <div className="recruiter-delete-modal-overlay">
     <div className="recruiter-delete-modal">
-      <h3 className="recruiter-delete-title">Job Has Saved References</h3>
+      <h3 className="recruiter-delete-title">
+        Job Has Saved References
+      </h3>
 
       <p className="recruiter-delete-text">
         Deleting "{jobToDelete.title}" will remove all saved references.
@@ -326,6 +330,7 @@ function RecruiterHome() {
     </div>
   </div>
 )}
+
     </>
   );
 }
