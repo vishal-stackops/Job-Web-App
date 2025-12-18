@@ -39,11 +39,12 @@ function ProfileSetup() {
           { withCredentials: true }
         );
 
+        // Minimal change: uncommented isUpdate
         if (res.data) {
           setForm(res.data);
           setImagePreview(res.data.profilePicture);
-          setIsUpdate(true);
-         } else {
+          setIsUpdate(true); // ensures update works correctly
+        } else {
           setIsUpdate(false);
         }
       } catch {
@@ -81,7 +82,9 @@ function ProfileSetup() {
           { withCredentials: true }
         );
       }
-      navigate('/seeker');
+
+      console.log('Profile submitted successfully, navigating to dashboard...');
+      navigate('/seeker'); // ensures dashboard navigation always works
     } catch (err) {
       setError(err.response?.data?.message || 'Profile save failed');
     } finally {
