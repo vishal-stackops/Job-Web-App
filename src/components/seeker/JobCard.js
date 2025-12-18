@@ -302,43 +302,43 @@ function JobCard({ job }) {
       <p><strong>Experience Level:</strong> {job.experienceLevel}</p>
     }
 
+      </div>
     </div>
-  </div>
-)}
+  )}
 
-{showApplyForm && (
-  <form onSubmit={handleSubmitApplication}>
-    <input
-      id="resume-file-input"
-      type="file"
-      accept=".pdf,.doc,.docx"
-      onChange={handleFileChange}
-    />
+  {showApplyForm && (
+    <form onSubmit={handleSubmitApplication}>
+      <input
+          id="resume-file-input"
+          type="file"
+          accept=".pdf,.doc,.docx"
+          onChange={handleFileChange}
+        />
 
-    <button type="submit" disabled={applyLoading}>
-      {applyLoading ? 'Submitting...' : 'Submit Application'}
-    </button>
-  </form>
-)}
+        <button type="submit" disabled={applyLoading}>
+          {applyLoading ? 'Submitting...' : 'Submit Application'}
+        </button>
+      </form>
+    )}
 
 
-{alreadyApplied && (
-  <div className="info-msg">
-    You already applied for this job.
-  </div>
-)}
+    {alreadyApplied && (
+      <div className="info-msg">
+        You already applied for this job.
+      </div>
+    )}
 
-{applySuccess && (
-  <div className="success-msg">
-    {applySuccess}
-  </div>
-)}
+      {applySuccess && (
+        <div className="success-msg">
+          {applySuccess}
+        </div>
+      )}
 
-{applyError && (
-  <div className="error-msg">
-    {applyError}
-  </div>
-)}
+      {applyError && (
+        <div className="error-msg">
+          {applyError}
+        </div>
+      )}
 
 
     </>
