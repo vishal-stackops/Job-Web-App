@@ -53,7 +53,7 @@ function RecruiterProfile() {
                     <div><strong>Email:</strong> {profile.email}</div>
                   </div>
                   <div className="profile-row">
-                    <div><strong>Phone Number:</strong> {profile.phoneNumber || '-'}</div>
+                    <div><strong>Phone Number:</strong> {profile.phoneNumber}</div>
                     <div><strong>Position:</strong> {profile.position}</div>
                   </div>
                 </div>
@@ -70,10 +70,10 @@ function RecruiterProfile() {
                   <h3>Professional Links</h3>
                   <div className="profile-row">
                     <div>
-                      <strong>LinkedIn:</strong> {profile.linkedinProfile ? <a href={profile.linkedinProfile} target="_blank" rel="noopener noreferrer">{profile.linkedinProfile}</a> : '-'}
+                      <strong>LinkedIn:</strong> {profile.linkedinProfile}
                     </div>
                     <div>
-                      <strong>Website:</strong> {profile.website ? <a href={profile.website} target="_blank" rel="noopener noreferrer">{profile.website}</a> : '-'}
+                      <strong>Website:</strong> {profile.website}
                     </div>
                   </div>
                 </div>
