@@ -66,6 +66,7 @@ function ProfileSetup() {
   if (fetching) return <div>Loading...</div>;
 
   return (
+    <SeekerNavbar/>
     <div className="profile-setup-container">
       <div className="profile-setup-card">
         <div className="profile-setup-header">
