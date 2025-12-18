@@ -260,7 +260,7 @@ function JobCard({ job }) {
   <h3>{job.title}</h3>
 
   <p>
-    <strong>Company:</strong> {job.companyName}
+    <strong>Company:</strong> {job.company}
   </p>
 
   <p>
