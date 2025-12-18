@@ -61,9 +61,9 @@ function Signin() {
 
           if (profileCheck.data.exists) {
             navigate('/seeker');
-          } else {
-            navigate('/seeker/profile-setup');
-          }
+          }// else {
+          //   navigate('/seeker/profile-setup');
+          // }
         } catch (err) {
           console.error('Profile check error:', err);
           navigate('/seeker/profile-setup');
