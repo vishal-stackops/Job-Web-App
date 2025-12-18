@@ -43,7 +43,7 @@ function ProfileSetup() {
         //   setForm(res.data);
         //   setImagePreview(res.data.profilePicture);
         //   // setIsUpdate(true);
-        }
+        //}
       } catch {
         setIsUpdate(false);
       } finally {
