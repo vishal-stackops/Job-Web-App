@@ -254,6 +254,23 @@ function JobCard({ job }) {
     setResumeFile(null);
   };
 
+    useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    };
+
+    if (showModal) {
+      window.addEventListener('keydown', handleEsc);
+    }
+
+    return () => {
+      window.removeEventListener('keydown', handleEsc);
+    };
+  }, [showModal]);
+
+
   return (
   <>
     {/* JOB CARD */}
@@ -292,6 +309,12 @@ function JobCard({ job }) {
         className="apply-modal-overlay"
         onClick={closeModal}
       >
+          <button
+            className="modal-close-btn"
+            onClick={closeModal}
+          >
+            ✕
+          </button>
         <div
           className="apply-modal"
           onClick={(e) => e.stopPropagation()}
