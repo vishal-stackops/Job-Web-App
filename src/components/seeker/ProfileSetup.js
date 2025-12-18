@@ -39,12 +39,11 @@ function ProfileSetup() {
           { withCredentials: true }
         );
 
-        // Minimal change: uncommented isUpdate
         if (res.data) {
-          setForm(res.data);
-          setImagePreview(res.data.profilePicture);
-          setIsUpdate(true); // ensures update works correctly
+          // ✅ If profile exists, redirect to dashboard immediately
+          navigate('/seeker');
         } else {
+          // Show form if no profile exists
           setIsUpdate(false);
         }
       } catch {
@@ -69,22 +68,14 @@ function ProfileSetup() {
     setError('');
 
     try {
-      if (isUpdate) {
-        await axios.put(
-          `${API_BASE_URL}/api/profiles/seeker/${seekerId}`,
-          form,
-          { withCredentials: true }
-        );
-      } else {
-        await axios.post(
-          `${API_BASE_URL}/api/profiles`,
-          { ...form, seeker: { id: Number(seekerId) } },
-          { withCredentials: true }
-        );
-      }
+      await axios.post(
+        `${API_BASE_URL}/api/profiles`,
+        { ...form, seeker: { id: Number(seekerId) } },
+        { withCredentials: true }
+      );
 
-      console.log('Profile submitted successfully, navigating to dashboard...');
-      navigate('/seeker'); // ensures dashboard navigation always works
+      // After creating profile, redirect to dashboard
+      navigate('/seeker');
     } catch (err) {
       setError(err.response?.data?.message || 'Profile save failed');
     } finally {
@@ -98,7 +89,7 @@ function ProfileSetup() {
     <div className="profile-setup-container">
       <div className="profile-setup-card">
         <div className="profile-setup-header">
-          <h1>{isUpdate ? 'Update Your Profile' : 'Complete Your Profile'}</h1>
+          <h1>Complete Your Profile</h1>
           <p>Tell us about yourself</p>
         </div>
 
@@ -147,7 +138,7 @@ function ProfileSetup() {
 
           <div className="form-actions">
             <button className="submit-btn" disabled={loading}>
-              {loading ? 'Saving...' : isUpdate ? 'Update Profile' : 'Create Profile'}
+              {loading ? 'Saving...' : 'Complete Profile'}
             </button>
           </div>
 
