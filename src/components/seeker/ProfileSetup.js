@@ -25,24 +25,34 @@ function ProfileSetup() {
   const [error, setError] = useState('');
   const [seekerId, setSeekerId] = useState(null);
 
+  // useEffect(() => {
+  //   const id = localStorage.getItem('seekerId');
+
+  //   // 🔒 Not logged in
+  //   if (!id) {
+  //     navigate('/signin');
+  //     return;
+  //   }
+
+  //   // ❌ NOT coming from Profile click
+  //   if (!location.state?.fromProfile) {
+  //     navigate('/seeker'); // dashboard
+  //     return;
+  //   }
+
+  //   setSeekerId(id);
+  //   setFetching(false);
+  // }, [navigate, location]);
   useEffect(() => {
-    const id = localStorage.getItem('seekerId');
+  const id = localStorage.getItem('seekerId');
+  if (!id) {
+    navigate('/signin');
+    return;
+  }
+  setSeekerId(id);
+  setFetching(false); // show form ONLY when user comes here
+}, [navigate]);
 
-    // 🔒 Not logged in
-    if (!id) {
-      navigate('/signin');
-      return;
-    }
-
-    // ❌ NOT coming from Profile click
-    if (!location.state?.fromProfile) {
-      navigate('/seeker'); // dashboard
-      return;
-    }
-
-    setSeekerId(id);
-    setFetching(false);
-  }, [navigate, location]);
 
   const handleFormChange = (e) => {
     const { name, value } = e.target;
