@@ -96,23 +96,23 @@ function SeekerHome() {
     setFilteredJobs(filtered);
   };
 
-  if (isChecking) {
-    return (
-      <div className="seeker-gradient-bg">
-        <SeekerNavbar onSearch={handleSearch} />
-        <main className="seeker-home-content">
-          <div style={{
-            textAlign: 'center',
-            padding: '2rem',
-            fontSize: '1.2rem',
-            color: '#6366f1'
-          }}>
-            Checking profile...
-          </div>
-        </main>
-      </div>
-    );
-  }
+  // if (isChecking) {
+  //   return (
+  //     <div className="seeker-gradient-bg">
+  //       <SeekerNavbar onSearch={handleSearch} />
+  //       <main className="seeker-home-content">
+  //         <div style={{
+  //           textAlign: 'center',
+  //           padding: '2rem',
+  //           fontSize: '1.2rem',
+  //           color: '#6366f1'
+  //         }}>
+  //           Checking profile...
+  //         </div>
+  //       </main>
+  //     </div>
+  //   );
+  // }
 
   return (
     <div className="seeker-gradient-bg">
