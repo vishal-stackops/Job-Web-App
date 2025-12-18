@@ -268,11 +268,14 @@ function JobCard({ job }) {
   </p>
 
   <div className="job-card-actions">
-    <button className="apply-btn">
+    <button className="apply-btn" onClick={handleApply} >
       Apply
     </button>
 
-    <button className={`save-btn ${isSaved ? 'saved' : ''}`}>
+    <button className={`save-btn ${isSaved ? 'saved' : ''}`}
+      onClick={isSaved ? handleUnsaveJob : handleSaveJob}
+      disabled={savingJob}
+      >
       {isSaved ? 'Saved' : 'Save'}
     </button>
   </div>
