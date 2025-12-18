@@ -66,7 +66,7 @@ function ProfileSetup() {
 
   if (fetching) return <div>Loading...</div>;
 
-  return (
+  return <>
     <SeekerNavbar/>
     <div className="profile-setup-container">
       <div className="profile-setup-card">
@@ -151,7 +151,7 @@ function ProfileSetup() {
         </form>
       </div>
     </div>
-  );
+  </>
 }
 
 export default ProfileSetup;
