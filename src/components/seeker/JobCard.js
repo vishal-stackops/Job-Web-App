@@ -296,7 +296,9 @@ function JobCard({ job }) {
           className="apply-modal"
           onClick={(e) => e.stopPropagation()}
         >
-          <h2>{job.title}</h2>
+          <h2 className="modal-job-title">
+            {job.title}
+          </h2>
 
           <p>
             <strong>Company:</strong> {job.company}
@@ -306,7 +308,7 @@ function JobCard({ job }) {
             <strong>Location:</strong> {job.location}
           </p>
 
-          <div className="job-description">
+          <div className="job-desc">
             {job.description}
           </div>
 
@@ -328,15 +330,35 @@ function JobCard({ job }) {
               className="apply-form"
               onSubmit={handleSubmitApplication}
             >
+              <label className="resume-label">
+                Upload Resume
+              </label>
+
+              <div
+                className="resume-dropzone"
+                onDragOver={handleDragOver}
+                onDragLeave={handleDragLeave}
+                onDrop={handleDrop}
+                onClick={() =>
+                  document
+                    .getElementById('resume-file-input')
+                    .click()
+                }
+              >
+                Click or drag & drop resume
+              </div>
+
               <input
                 id="resume-file-input"
                 type="file"
                 accept=".pdf,.doc,.docx"
                 onChange={handleFileChange}
+                hidden
               />
 
               <button
                 type="submit"
+                className="apply-btn"
                 disabled={applyLoading}
               >
                 {applyLoading
@@ -348,21 +370,21 @@ function JobCard({ job }) {
 
           {/* ALREADY APPLIED */}
           {alreadyApplied && (
-            <div className="info-msg">
+            <div className="apply-info-msg">
               You already applied for this job.
             </div>
           )}
 
-          {/* SUCCESS MESSAGE */}
+          {/* SUCCESS */}
           {applySuccess && (
-            <div className="success-msg">
+            <div className="apply-success-msg">
               {applySuccess}
             </div>
           )}
 
-          {/* ERROR MESSAGE */}
+          {/* ERROR */}
           {applyError && (
-            <div className="error-msg">
+            <div className="apply-error-msg">
               {applyError}
             </div>
           )}
@@ -371,6 +393,7 @@ function JobCard({ job }) {
     )}
   </>
 );
+
 
 }
 
