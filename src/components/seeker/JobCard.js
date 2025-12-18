@@ -281,7 +281,7 @@ function JobCard({ job }) {
   </div>
 </div> 
 
-      {showModal && (
+  {showModal && (
   <div className="apply-modal-overlay" onClick={closeModal}>
     <div
       className="apply-modal"
@@ -339,8 +339,6 @@ function JobCard({ job }) {
           {applyError}
         </div>
       )}
-
-
     </>
   );
 }
