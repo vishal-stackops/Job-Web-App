@@ -59,9 +59,10 @@ function Signin() {
             { withCredentials: true }
           );
 
-          if (profileCheck.data.exists) {
-            navigate('/seeker');
-          }// else {
+          navigate('/seeker');
+          // if (profileCheck.data.exists) {
+          //   navigate('/seeker');
+          // }// else {
           //   navigate('/seeker/profile-setup');
           // }
         } catch (err) {
