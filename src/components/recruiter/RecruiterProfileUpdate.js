@@ -64,7 +64,7 @@ function RecruiterProfileUpdate() {
 
     try {
       console.log('Sending profile update request:', profile);
-      const response = await axios.put(`/api/recruiters/${recruiterId}/profile`, profile, { 
+      const response = await axios.put(`${API_BASE_URL}/api/recruiters/${recruiterId}/profile`, profile, { 
         withCredentials: true 
       });
       console.log('Profile update response:', response);
