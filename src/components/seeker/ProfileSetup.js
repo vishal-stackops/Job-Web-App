@@ -42,7 +42,7 @@ function ProfileSetup() {
         if (res.data) {
           setForm(res.data);
           setImagePreview(res.data.profilePicture);
-          setIsUpdate(true);
+          // setIsUpdate(true);
         }
       } catch {
         setIsUpdate(false);
