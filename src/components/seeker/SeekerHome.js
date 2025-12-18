@@ -18,7 +18,7 @@ function SeekerHome() {
     location.state && location.state.success ? location.state.success : ''
   );
 
-  const { isChecking } = useProfileCheck();
+  //const { isChecking } = useProfileCheck();
 
   useEffect(() => {
     if (location.state && location.state.success) {
