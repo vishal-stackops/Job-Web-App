@@ -254,15 +254,15 @@ function RecruiterHome() {
                     <span className="recruiter-job-location">{job.location}</span>
                   </div>
                   <div className="recruiter-job-details">
-                    <span>{job.salaryRange}</span>
-                    <span>{job.jobType}</span>
-                    <span>{job.experienceLevel}</span>
+                    <span className="recruiter-job-salary">{job.salaryRange}</span>
+                    <span className="recruiter-job-type">{job.jobType}</span>
+                    <span className="recruiter-job-level">{job.experienceLevel}</span>
                   </div>
-                  <div>{job.postedDate ? new Date(job.postedDate).toLocaleDateString() : 'No date'}</div>
-                  <div>
+                  <div className="recruiter-job-date">{job.postedDate ? new Date(job.postedDate).toLocaleDateString() : 'No date'}</div>
+                  <div className="recruiter-job-apps">
                     {job.applications ? job.applications.length : 0} {job.applications && job.applications.length === 1 ? 'Applicant' : 'Applicants'}
                   </div>
-                  <button onClick={() => handleDeleteClick(job)}>Delete</button>
+                  <button className="recruiter-job-delete-btn" onClick={() => handleDeleteClick(job)}>Delete</button>
                 </div>
               ))}
             </div>
