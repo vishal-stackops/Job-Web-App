@@ -274,24 +274,24 @@ function RecruiterHome() {
       {showDeleteModal && jobToDelete && (
   <div className="delete-confirmation-modal">
     <div className="delete-confirmation-content">
-      <h3 className="recruiter-delete-title">
+      <h3 className="delete-confirmation-title">
         Delete Job Posting
       </h3>
 
-      <p className="recruiter-delete-text">
+      <p className="delete-confirmation-message">
         Are you sure you want to delete "{jobToDelete.title}"?
       </p>
 
-      <div className="recruiter-delete-actions">
+      <div className="delete-confirmation-actions">
         <button
-          className="recruiter-delete-cancel-btn"
+          className="delete-cancel-btn"
           onClick={() => setShowDeleteModal(false)}
         >
           Cancel
         </button>
 
         <button
-          className="recruiter-delete-confirm-btn"
+          className="delete-confirm-btn"
           onClick={handleDeleteConfirm}
         >
           Delete Job
