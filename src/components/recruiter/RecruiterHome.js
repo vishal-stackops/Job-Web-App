@@ -248,10 +248,10 @@ function RecruiterHome() {
             <div className="recruiter-jobs-list">
               {jobs.map(job => (
                 <div className="recruiter-job-card" key={job.id}>
-                  <h3>{job.title}</h3>
+                  <h3 className="recruiter-job-title">{job.title}</h3>
                   <div className="recruiter-job-meta">
-                    <span>{job.company}</span>
-                    <span>{job.location}</span>
+                    <span className="recruiter-job-company">{job.company}</span>
+                    <span className="recruiter-job-location">{job.location}</span>
                   </div>
                   <div className="recruiter-job-details">
                     <span>{job.salaryRange}</span>
