@@ -27,7 +27,7 @@ function JobCard({ job }) {
 
       try {
         const response = await axios.get(
-          `http://${API_BASE_URL}/api/saved-jobs/check/${job.id}/${seekerId}`
+          `${API_BASE_URL}/api/saved-jobs/check/${job.id}/${seekerId}`
         );
         setIsSaved(response.data.isSaved);
       } catch (error) {
@@ -53,7 +53,7 @@ function JobCard({ job }) {
 
     setSavingJob(true);
     try {
-      await axios.post(`http://${API_BASE_URL}/api/saved-jobs`, {
+      await axios.post(`${API_BASE_URL}/api/saved-jobs`, {
         jobId: job.id,
         seekerId: seekerId
       });
@@ -78,7 +78,7 @@ function JobCard({ job }) {
     setSavingJob(true);
     try {
       await axios.delete(
-        `http://${API_BASE_URL}/api/saved-jobs/${job.id}/${seekerId}`
+        `${API_BASE_URL}/api/saved-jobs/${job.id}/${seekerId}`
       );
       setIsSaved(false);
     } catch (error) {
@@ -124,7 +124,7 @@ function JobCard({ job }) {
 
     try {
       const resp = await axios.get(
-        `http://${API_BASE_URL}/api/applications/check/${job.id}/${seekerId}`
+        `${API_BASE_URL}/api/applications/check/${job.id}/${seekerId}`
       );
 
       if (resp.data.hasApplied) {
@@ -221,7 +221,7 @@ function JobCard({ job }) {
       formData.append('resume', resumeFile);
 
       await axios.post(
-        `http://${API_BASE_URL}/api/applications/upload`,
+        `${API_BASE_URL}/api/applications/upload`,
         formData,
         { withCredentials: true }
       );
