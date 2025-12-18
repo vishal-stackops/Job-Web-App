@@ -273,8 +273,27 @@ function RecruiterHome() {
       {/* Delete Modals */}
       {showDeleteModal && jobToDelete && (
   <div className="delete-confirmation-modal">
-    <div className="delete-confirmation-content delete-confirmation-icon">
-      <h3 className="delete-confirmation-title ">
+    <div className="delete-confirmation-content">
+      
+      <div className="delete-confirmation-icon">
+        { <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  strokeWidth="2"
+  strokeLinecap="round"
+  strokeLinejoin="round"
+>
+  <path d="M3 6h18" />
+  <path d="M8 6v14" />
+  <path d="M16 6v14" />
+  <path d="M5 6l1-3h12l1 3" />
+</svg>
+}
+      </div>
+
+      <h3 className="delete-confirmation-title">
         Delete Job Posting
       </h3>
 
@@ -291,7 +310,7 @@ function RecruiterHome() {
         </button>
 
         <button
-          className="delete-confirm-btn "
+          className="delete-confirm-btn"
           onClick={handleDeleteConfirm}
         >
           Delete Job
@@ -301,27 +320,50 @@ function RecruiterHome() {
   </div>
 )}
 
+
 {showForceDeleteModal && jobToDelete && (
   <div className="delete-confirmation-modal">
-    <div className="force-delete-title">
-      <h3 className="recruiter-delete-title">
+    <div className="delete-confirmation-content force-delete">
+      
+      <div className="delete-confirmation-icon force-delete-icon">
+        { <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  strokeWidth="2"
+  strokeLinecap="round"
+  strokeLinejoin="round"
+>
+  <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+  <line x1="12" y1="9" x2="12" y2="13" />
+  <line x1="12" y1="17" x2="12.01" y2="17" />
+</svg>
+}
+      </div>
+
+      <h3 className="delete-confirmation-title force-delete-title">
         Job Has Saved References
       </h3>
 
-      <p className="warning-text">
+      <p className="delete-confirmation-message force-delete-message">
         Deleting "{jobToDelete.title}" will remove all saved references.
+        <br />
+        <span className="warning-text">
+          This action cannot be undone.
+        </span>
       </p>
 
       <div className="delete-confirmation-actions">
         <button
-          className="recruiter-delete-cancel-btn"
+          className="delete-cancel-btn"
           onClick={handleForceDeleteCancel}
         >
           Cancel
         </button>
 
         <button
-          className="force-delete force-delete-icon"
+          className="delete-confirm-btn force-delete-btn"
           onClick={handleForceDeleteConfirm}
         >
           Delete Anyway
@@ -330,6 +372,7 @@ function RecruiterHome() {
     </div>
   </div>
 )}
+
 
     </>
   );
