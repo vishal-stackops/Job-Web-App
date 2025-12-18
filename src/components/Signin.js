@@ -70,7 +70,7 @@ function Signin() {
       //     console.error('Profile check error:', err);
       //     navigate('/seeker/profile-setup'); // fallback → setup form
       //   }
-      // }
+      }
     } catch (err) {
       console.error('Signin error:', err);
       setError(
