@@ -256,7 +256,28 @@ function JobCard({ job }) {
 
   return (
     <>
-      {/* JSX UNCHANGED */}
+      <div className="job-card">
+  <h3>{job.title}</h3>
+
+  <p>
+    <strong>Company:</strong> {job.companyName}
+  </p>
+
+  <p>
+    <strong>Location:</strong> {job.location}
+  </p>
+
+  <div className="job-card-actions">
+    <button className="apply-btn">
+      Apply
+    </button>
+
+    <button className={`save-btn ${isSaved ? 'saved' : ''}`}>
+      {isSaved ? 'Saved' : 'Save'}
+    </button>
+  </div>
+</div>
+
     </>
   );
 }
