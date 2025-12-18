@@ -272,30 +272,60 @@ function RecruiterHome() {
 
       {/* Delete Modals */}
       {showDeleteModal && jobToDelete && (
-        <div className="delete-confirmation-modal">
-          <div className="delete-confirmation-content">
-            <h3>Delete Job Posting</h3>
-            <p>Are you sure you want to delete "{jobToDelete.title}"?</p>
-            <div>
-              <button onClick={() => setShowDeleteModal(false)}>Cancel</button>
-              <button onClick={handleDeleteConfirm}>Delete Job</button>
-            </div>
-          </div>
-        </div>
-      )}
+  <div className="recruiter-delete-modal-overlay">
+    <div className="recruiter-delete-modal">
+      <h3 className="recruiter-delete-title">Delete Job Posting</h3>
 
-      {showForceDeleteModal && jobToDelete && (
-        <div className="delete-confirmation-modal">
-          <div className="delete-confirmation-content">
-            <h3>Job Has Saved References</h3>
-            <p>Deleting "{jobToDelete.title}" will remove all saved references.</p>
-            <div>
-              <button onClick={handleForceDeleteCancel}>Cancel</button>
-              <button onClick={handleForceDeleteConfirm}>Delete Anyway</button>
-            </div>
-          </div>
-        </div>
-      )}
+      <p className="recruiter-delete-text">
+        Are you sure you want to delete "{jobToDelete.title}"?
+      </p>
+
+      <div className="recruiter-delete-actions">
+        <button
+          className="recruiter-delete-cancel-btn"
+          onClick={() => setShowDeleteModal(false)}
+        >
+          Cancel
+        </button>
+
+        <button
+          className="recruiter-delete-confirm-btn"
+          onClick={handleDeleteConfirm}
+        >
+          Delete Job
+        </button>
+      </div>
+    </div>
+  </div>
+)}
+
+{showForceDeleteModal && jobToDelete && (
+  <div className="recruiter-delete-modal-overlay">
+    <div className="recruiter-delete-modal">
+      <h3 className="recruiter-delete-title">Job Has Saved References</h3>
+
+      <p className="recruiter-delete-text">
+        Deleting "{jobToDelete.title}" will remove all saved references.
+      </p>
+
+      <div className="recruiter-delete-actions">
+        <button
+          className="recruiter-delete-cancel-btn"
+          onClick={handleForceDeleteCancel}
+        >
+          Cancel
+        </button>
+
+        <button
+          className="recruiter-delete-confirm-btn"
+          onClick={handleForceDeleteConfirm}
+        >
+          Delete Anyway
+        </button>
+      </div>
+    </div>
+  </div>
+)}
     </>
   );
 }
