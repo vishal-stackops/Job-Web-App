@@ -39,11 +39,13 @@ function ProfileSetup() {
           { withCredentials: true }
         );
 
-        // if (res.data) {
-        //   setForm(res.data);
-        //   setImagePreview(res.data.profilePicture);
-        //   // setIsUpdate(true);
-        //}
+        if (res.data) {
+          setForm(res.data);
+          setImagePreview(res.data.profilePicture);
+          setIsUpdate(true);
+         } else {
+          setIsUpdate(false);
+        }
       } catch {
         setIsUpdate(false);
       } finally {
