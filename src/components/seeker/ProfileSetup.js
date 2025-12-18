@@ -17,13 +17,14 @@ function ProfileSetup() {
     availability: '',
     phoneNumber: ''
   });
+
   const [loading, setLoading] = useState(false);
   const [fetching, setFetching] = useState(true);
   const [error, setError] = useState('');
   const [seekerId, setSeekerId] = useState(null);
   const [imagePreview, setImagePreview] = useState(form.profilePicture);
-  const [isUpdate, setIsUpdate] = useState(false);
 
+  // ✅ ONLY AUTH CHECK — NO PROFILE CHECK HERE
   useEffect(() => {
     const id = localStorage.getItem('seekerId');
     if (!id) {
@@ -31,29 +32,7 @@ function ProfileSetup() {
       return;
     }
     setSeekerId(id);
-
-    const checkExistingProfile = async () => {
-      try {
-        const res = await axios.get(
-          `${API_BASE_URL}/api/profiles/seeker/${id}`,
-          { withCredentials: true }
-        );
-
-        if (res.data) {
-          // ✅ If profile exists, redirect to dashboard immediately
-          navigate('/seeker');
-        } else {
-          // Show form if no profile exists
-          setIsUpdate(false);
-        }
-      } catch {
-        setIsUpdate(false);
-      } finally {
-        setFetching(false);
-      }
-    };
-
-    checkExistingProfile();
+    setFetching(false);
   }, [navigate]);
 
   const handleFormChange = (e) => {
@@ -74,8 +53,9 @@ function ProfileSetup() {
         { withCredentials: true }
       );
 
-      // After creating profile, redirect to dashboard
-      navigate('/seeker');
+      // ✅ AFTER FIRST TIME PROFILE CREATION → PROFILE PAGE
+      navigate('/seeker/profile');
+
     } catch (err) {
       setError(err.response?.data?.message || 'Profile save failed');
     } finally {
@@ -102,32 +82,56 @@ function ProfileSetup() {
 
             <div className="form-group">
               <label>Profile Headline</label>
-              <input name="profileHeadline" value={form.profileHeadline} onChange={handleFormChange} />
+              <input
+                name="profileHeadline"
+                value={form.profileHeadline}
+                onChange={handleFormChange}
+              />
             </div>
 
             <div className="form-group">
               <label>Location</label>
-              <input name="location" value={form.location} onChange={handleFormChange} />
+              <input
+                name="location"
+                value={form.location}
+                onChange={handleFormChange}
+              />
             </div>
 
             <div className="form-group">
               <label>Phone Number</label>
-              <input name="phoneNumber" value={form.phoneNumber} onChange={handleFormChange} />
+              <input
+                name="phoneNumber"
+                value={form.phoneNumber}
+                onChange={handleFormChange}
+              />
             </div>
 
             <div className="form-group">
               <label>Skills</label>
-              <input name="skills" value={form.skills} onChange={handleFormChange} />
+              <input
+                name="skills"
+                value={form.skills}
+                onChange={handleFormChange}
+              />
             </div>
 
             <div className="form-group">
               <label>Education</label>
-              <input name="education" value={form.education} onChange={handleFormChange} />
+              <input
+                name="education"
+                value={form.education}
+                onChange={handleFormChange}
+              />
             </div>
 
             <div className="form-group">
               <label>Experience Level</label>
-              <select name="experienceLevel" value={form.experienceLevel} onChange={handleFormChange}>
+              <select
+                name="experienceLevel"
+                value={form.experienceLevel}
+                onChange={handleFormChange}
+              >
                 <option value="">Select</option>
                 <option value="ENTRY">Entry</option>
                 <option value="MID">Mid</option>
