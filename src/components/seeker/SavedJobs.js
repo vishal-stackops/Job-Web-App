@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useContext } from 'react';
 import SeekerNavbar from './SeekerNavbar';
 import './SavedJobs.css';
-import { useProfileCheck } from '../../hooks/useProfileCheck';
+//import { useProfileCheck } from '../../hooks/useProfileCheck';
 import { useNavigate } from 'react-router-dom';
 import { ThemeContext } from '../../App';
 import axios from "axios";
 import API_BASE_URL from "../../config/api";
 
 function SavedJobs() {
-  const { isChecking } = useProfileCheck();
+  //const { isChecking } = useProfileCheck();
   const navigate = useNavigate();
   const { theme } = useContext(ThemeContext);
   const [savedJobs, setSavedJobs] = useState([]);
@@ -194,18 +194,18 @@ function SavedJobs() {
     setResumeFile(null);
   };
 
-  if (isChecking) {
-    return (
-      <>
-        <SeekerNavbar />
-        <div className="seeker-home-content">
-          <div style={{ textAlign: 'center', padding: '2rem', color: '#6366f1' }}>
-            Checking profile...
-          </div>
-        </div>
-      </>
-    );
-  }
+  // if (isChecking) {
+  //   return (
+  //     <>
+  //       <SeekerNavbar />
+  //       <div className="seeker-home-content">
+  //         <div style={{ textAlign: 'center', padding: '2rem', color: '#6366f1' }}>
+  //           Checking profile...
+  //         </div>
+  //       </div>
+  //     </>
+  //   );
+  // }
 
   return (
     <>
