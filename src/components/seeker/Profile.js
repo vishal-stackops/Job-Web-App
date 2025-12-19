@@ -73,9 +73,16 @@ function Profile() {
               </div>
             )}
 
-            <button className="update-profile-btn" onClick={() => navigate('/seeker/profile-setup')}>
+{/*// <button className="update-profile-btn" onClick={() => navigate('/seeker/profile-setup')}>
+            //   Update Profile
+            // </button>*/}
+            <button
+                className="update-profile-btn"
+                onClick={() => navigate('/seeker/profile-setup', { state: { mode: 'update' } })}
+            >
               Update Profile
             </button>
+
           </div>
 
           <div className="profile-card-right">
