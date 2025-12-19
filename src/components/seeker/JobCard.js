@@ -206,6 +206,8 @@ function JobCard({ job }) {
     e.preventDefault();
     setApplyError('');
     setApplySuccess('');
+    setAlreadyApplied(true); // disables the Apply button
+
 
 
     const seekerId = localStorage.getItem('seekerId');
@@ -239,6 +241,7 @@ function JobCard({ job }) {
 
       const fileInput = document.querySelector('input[type="file"]');
       if (fileInput) fileInput.value = '';
+      setAlreadyApplied(true); // add this line
     } catch (err) {
       console.error('Upload error:', err);
       setApplyError(
@@ -293,10 +296,14 @@ function JobCard({ job }) {
 
       <div className="job-card-actions">
         <button
-           className="apply-btn"
-           onClick={handleApply}
-         >
-          Apply
+          className={`apply-btn ${alreadyApplied ? 'applied' : ''}`}
+          disabled={alreadyApplied}
+          onClick={(e) => {
+            if (alreadyApplied) return;
+                handleApply(e, job);
+          }}
+          >
+          {alreadyApplied ? 'Applied ✓' : 'Apply Now'}  
         </button>
 
         <button
