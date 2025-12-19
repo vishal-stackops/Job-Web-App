@@ -224,3 +224,58 @@
   80% { transform: scale(0.95); }
   100% { transform: scale(1); }
 }
+
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem 1.2rem;
+  }
+
+  .navbar-left .website-name {
+    font-size: 1.6rem;
+  }
+
+  .navbar-right {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .navbar-right .nav-btn {
+    width: 100%;
+    margin: 0.4rem 0;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .welcome-section {
+    margin-top: 4vh;
+    padding: 0 1rem;
+  }
+
+  .welcome-section h1 {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .welcome-section p {
+    font-size: 1.05rem;
+    max-width: 100%;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .welcome-section h1 {
+    font-size: 1.7rem;
+  }
+
+  .get-started-btn {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.8rem;
+  }
+}
