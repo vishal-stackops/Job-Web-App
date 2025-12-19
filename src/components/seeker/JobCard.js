@@ -6,7 +6,7 @@ import axios from "axios";
 import API_BASE_URL from "../../config/api";
 
 
-function JobCard({ job }) {
+function JobCard({ job,onApplied }) {
   const navigate = useNavigate();
   const { theme } = useContext(ThemeContext);
   const [showModal, setShowModal] = useState(false);
