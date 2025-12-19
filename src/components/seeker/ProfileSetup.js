@@ -103,38 +103,54 @@ function ProfileSetup( ) {
     setForm(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError('');
 
-    try {
+  const handleFileChange = (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
 
-      if (mode === 'update') {
-      // Update profile
-      await axios.put(
-        `${API_BASE_URL}/api/profiles/${seekerId}`,
-        form,
-        { withCredentials: true }
-      );
-    } else {
-      // Create profile
-      await axios.post(
-        `${API_BASE_URL}/api/profiles`,
-        { ...form, seeker: { id: Number(seekerId) } },
-        { withCredentials: true }
-      );
-    }
-
-      // ✅ After first completion → profile page
-      navigate('/seeker/profile');
-
-    } catch (err) {
-      setError(err.response?.data?.message || 'Profile save failed');
-    } finally {
-      setLoading(false);
-    }
+  // Preview
+  const reader = new FileReader();
+  reader.onload = () => {
+    setForm(prev => ({ ...prev, profilePicture: reader.result, profileFile: file }));
   };
+  reader.readAsDataURL(file);
+};
+
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  setLoading(true);
+  setError('');
+
+  try {
+    const formData = new FormData();
+    formData.append('profileHeadline', form.profileHeadline);
+    formData.append('location', form.location);
+    formData.append('employment', form.employment);
+    formData.append('skills', form.skills);
+    formData.append('education', form.education);
+    formData.append('experienceLevel', form.experienceLevel);
+    formData.append('availability', form.availability);
+    formData.append('phoneNumber', form.phoneNumber);
+
+    if (form.profileFile) {
+      formData.append('profilePicture', form.profileFile); // file upload
+    }
+
+    await axios.put(
+      `${API_BASE_URL}/api/profiles/${seekerId}`,
+      formData,
+      { withCredentials: true, headers: { 'Content-Type': 'multipart/form-data' } }
+    );
+
+    navigate('/seeker/profile'); // redirect to profile page
+
+  } catch (err) {
+    setError(err.response?.data?.message || 'Profile save failed');
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   if (fetching) return null;
 
@@ -152,31 +168,25 @@ function ProfileSetup( ) {
         <form onSubmit={handleSubmit} className="profile-setup-form">
 
           <div className="form-group">
-            <label>Profile Picture</label>
-            <input
-              type="file"
-              accept="image/*"
-              onChange={(e) => {
-              const file = e.target.files[0];
-              if (file) {
-                // Preview the image immediately
-                const reader = new FileReader();
-                reader.onload = () => {
-                setForm(prev => ({ ...prev, profilePicture: reader.result }));
-                };
-                reader.readAsDataURL(file);
-              }
-            }}
-          />
-            {form.profilePicture && (
-        <img
-          src={form.profilePicture}
-          alt="Profile Preview"
-          className="profile-preview"
-          style={{ width: '100px', height: '100px', borderRadius: '50%', marginTop: '0.5rem' }}
-        />
-        )}
-        </div>
+  <label>Profile Picture</label>
+  <input
+    type="file"
+    accept="image/*"
+    onChange={(e) => {
+      const file = e.target.files[0];
+      if (file) setForm(prev => ({ ...prev, profileFile: file }));
+    }}
+  />
+  {form.profilePicture && (
+    <img
+      src={form.profilePicture}
+      alt="Profile Preview"
+      className="profile-preview"
+      style={{ width: '100px', height: '100px', borderRadius: '50%', marginTop: '0.5rem' }}
+    />
+  )}
+</div>
+
 
           <div className="form-group">
             <label>Profile Headline</label>
