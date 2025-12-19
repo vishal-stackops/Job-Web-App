@@ -327,6 +327,7 @@ function JobCard({ job }) {
         <button className="apply-btn" onClick={handleApply}>
           Apply Now
         </button>
+        )}
 
         <button
           className={`save-btn ${isSaved ? 'saved' : ''}`}
