@@ -87,17 +87,6 @@ function ProfileSetup( ) {
 }, [navigate, mode]);
 
 
-  
-  useEffect(() => {
-  const id = localStorage.getItem('seekerId');
-  if (!id) {
-    navigate('/signin');
-    return;
-  }
-  setSeekerId(id);
-  setFetching(false); // show form ONLY when user comes here
-}, [navigate]);
-
 
   const handleFormChange = (e) => {
     const { name, value } = e.target;
@@ -105,52 +94,36 @@ function ProfileSetup( ) {
   };
 
 
-  const handleFileChange = (e) => {
-  const file = e.target.files[0];
-  if (!file) return;
-
-  // Preview
-  const reader = new FileReader();
-  reader.onload = () => {
-    setForm(prev => ({ ...prev, profilePicture: reader.result, profileFile: file }));
-  };
-  reader.readAsDataURL(file);
-};
-
   const handleSubmit = async (e) => {
   e.preventDefault();
   setLoading(true);
   setError('');
 
   try {
-    const formData = new FormData();
-    formData.append('profileHeadline', form.profileHeadline);
-    formData.append('location', form.location);
-    formData.append('employment', form.employment);
-    formData.append('skills', form.skills);
-    formData.append('education', form.education);
-    formData.append('experienceLevel', form.experienceLevel);
-    formData.append('availability', form.availability);
-    formData.append('phoneNumber', form.phoneNumber);
-
-    if (form.profileFile) {
-      formData.append('profilePicture', form.profileFile); // file upload
-    }
-
     await axios.put(
       `${API_BASE_URL}/api/profiles/${seekerId}`,
-      formData,
-      { withCredentials: true, headers: { 'Content-Type': 'multipart/form-data' } }
+      {
+        profilePicture: form.profilePicture, // ✅ URL
+        profileHeadline: form.profileHeadline,
+        location: form.location,
+        employment: form.employment,
+        skills: form.skills,
+        education: form.education,
+        experienceLevel: form.experienceLevel,
+        availability: form.availability,
+        phoneNumber: form.phoneNumber
+      },
+      { withCredentials: true }
     );
 
-    navigate('/seeker/profile'); // redirect to profile page
-
+    navigate('/seeker/profile'); // redirect after update
   } catch (err) {
     setError(err.response?.data?.message || 'Profile save failed');
   } finally {
     setLoading(false);
   }
 };
+
 
 
   if (fetching) return null;
@@ -171,24 +144,14 @@ function ProfileSetup( ) {
         <form onSubmit={handleSubmit} className="profile-setup-form">
 
           <div className="form-group">
-            <label>Profile Picture</label>
-            <input
-              accept="image/*"
-              type="file"
-                onChange={(e) => {
-                const file = e.target.files[0];
-                if (file) setForm(prev => ({ ...prev, profileFile: file }));
-                  }}
-              />
-            {form.profilePicture && (
-              <img
-                src={form.profilePicture}
-                alt="Profile Preview"
-                className="profile-preview"
-                style={{ width: '100px', height: '100px', borderRadius: '50%', marginTop: '0.5rem' }}
-              />
-          )}
-        </div>
+            <label>Profile Picture URL</label>
+              <input
+                name="profilePicture"
+                value={form.profilePicture}
+                onChange={handleFormChange}
+                placeholder="https://example.com/image.jpg"
+              />    
+          </div>
 
 
           <div className="form-group">
@@ -245,8 +208,9 @@ function ProfileSetup( ) {
           </div>
 
           <button className="submit-btn" disabled={loading}>
-            {loading ? 'Saving...' : 'Complete Profile'}
+              {loading ? 'Saving...' : mode === 'update' ? 'Update Profile' : 'Complete Profile'}
           </button>
+
 
         </form>
       </div>
