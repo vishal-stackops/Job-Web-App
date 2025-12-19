@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ThemeContext } from '../../App';
 import './JobCard.css';
-import { useProfileCheck } from '../../hooks/useProfileCheck';
+//import { useProfileCheck } from '../../hooks/useProfileCheck';
 import axios from "axios";
 import API_BASE_URL from "../../config/api";
 
@@ -20,7 +20,7 @@ function JobCard({ job }) {
   const [checkingApplied, setCheckingApplied] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
   const [savingJob, setSavingJob] = useState(false);
-  const { seekerId } = useProfileCheck();
+  // const { seekerId } = useProfileCheck();
 
 
 
