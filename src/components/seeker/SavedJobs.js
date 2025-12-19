@@ -270,7 +270,8 @@ function SavedJobs() {
     style={{
       position: 'fixed',
       inset: 0,
-      background: 'rgba(0,0,0,0.5)',
+      background: 'rgba(0, 0, 0, 0.55)',
+      backdropFilter: 'blur(2px)',
       zIndex: 1000
     }}
     onClick={closeModal}
@@ -278,21 +279,29 @@ function SavedJobs() {
     <div
       className="saved-job-card"
       style={{
-        maxWidth: '500px',
+        maxWidth: '520px',
         height: 'auto',
         cursor: 'default'
       }}
       onClick={(e) => e.stopPropagation()}
     >
       <div className="job-info">
+        {/* TITLE */}
         <h3>Apply for {selectedJob.jobTitle}</h3>
 
+        {/* META INFO */}
         <div className="job-details">
-          <span className="company">{selectedJob.companyName}</span>
-          <span className="separator">•</span>
           <span className="location">{selectedJob.location}</span>
+          <span className="separator">•</span>
+          <span className="job-type">{selectedJob.jobType}</span>
         </div>
 
+        {/* JOB DESCRIPTION */}
+        <p className="job-desc" style={{ marginTop: '0.5rem' }}>
+          {selectedJob.description}
+        </p>
+
+        {/* CHECK STATUS */}
         {checkingApplied && (
           <p className="job-desc">Checking application status...</p>
         )}
@@ -306,6 +315,7 @@ function SavedJobs() {
           </p>
         )}
 
+        {/* APPLY FORM */}
         {showApplyForm && (
           <form onSubmit={handleSubmitApplication}>
             <input
@@ -318,7 +328,7 @@ function SavedJobs() {
             {applyError && (
               <p
                 className="job-desc"
-                style={{ color: '#dc2626', marginTop: '0.5rem' }}
+                style={{ color: '#dc2626', marginTop: '0.4rem' }}
               >
                 {applyError}
               </p>
@@ -327,25 +337,32 @@ function SavedJobs() {
             {applySuccess && (
               <p
                 className="job-desc"
-                style={{ color: '#16a34a', marginTop: '0.5rem' }}
+                style={{ color: '#16a34a', marginTop: '0.4rem' }}
               >
                 {applySuccess}
               </p>
             )}
 
-            <div className="saved-job-actions" style={{ marginTop: '1rem' }}>
+            <div
+              className="saved-job-actions"
+              style={{ marginTop: '1rem' }}
+            >
               <button
                 type="submit"
                 className="apply-btn"
                 disabled={applyLoading}
               >
-                {applyLoading ? 'Applying...' : 'Submit Application'}
+                {applyLoading ? 'Submitting...' : 'Submit Application'}
               </button>
             </div>
           </form>
         )}
 
-        <div className="saved-job-actions" style={{ marginTop: '0.8rem' }}>
+        {/* CLOSE */}
+        <div
+          className="saved-job-actions"
+          style={{ marginTop: '0.8rem' }}
+        >
           <button
             type="button"
             className="apply-btn"
