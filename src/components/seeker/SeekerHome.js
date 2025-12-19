@@ -172,7 +172,7 @@ function SeekerHome() {
           {!loading && !error && filteredJobs.length > 0 && (
             <div className="jobs-list">
               {filteredJobs.map((job) => (
-                <JobCard job={job} key={job.id} />
+                <JobCard job={job} key={job.id} onApplied={handleJobApplied} />
               ))}
             </div>
           )}
