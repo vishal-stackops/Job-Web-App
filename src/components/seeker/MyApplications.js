@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SeekerNavbar from './SeekerNavbar';
 import './MyApplications.css';
-import { useProfileCheck } from '../../hooks/useProfileCheck';
+//import { useProfileCheck } from '../../hooks/useProfileCheck';
 import axios from "axios";
 import API_BASE_URL from "../../config/api";
 
@@ -11,13 +11,21 @@ function MyApplications() {
   const [error, setError] = useState(null);
   const [selectedStatus, setSelectedStatus] = useState('ALL');
 
-  const { isChecking, seekerId } = useProfileCheck();
+  //const { isChecking, seekerId } = useProfileCheck();
 
+
+  // useEffect(() => {
+  //   if (!isChecking && seekerId) {
+  //     loadApplications(seekerId);
+  //   }
+  // }, [isChecking, seekerId]);
+  const seekerId = localStorage.getItem('seekerId');
   useEffect(() => {
-    if (!isChecking && seekerId) {
-      loadApplications(seekerId);
-    }
-  }, [isChecking, seekerId]);
+  if (seekerId) {
+    loadApplications(seekerId);
+  }
+  }, [seekerId]);
+
 
   const loadApplications = async (seekerId) => {
     try {
