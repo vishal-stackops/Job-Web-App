@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import SeekerNavbar from './SeekerNavbar';
 import './SavedJobs.css';
+import './JobCard.css'
 //import { useProfileCheck } from '../../hooks/useProfileCheck';
 import { useNavigate } from 'react-router-dom';
 import { ThemeContext } from '../../App';
