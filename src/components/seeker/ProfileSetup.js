@@ -4,7 +4,7 @@ import './ProfileSetup.css';
 import axios from "axios";
 import API_BASE_URL from "../../config/api";
 
-function ProfileSetup() {
+function ProfileSetup( mode = 'create' }) {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -43,6 +43,48 @@ function ProfileSetup() {
   //   setSeekerId(id);
   //   setFetching(false);
   // }, [navigate, location]);
+
+  useEffect(() => {
+  const id = localStorage.getItem('seekerId');
+  if (!id) {
+    navigate('/signin');
+    return;
+  }
+  setSeekerId(id);
+
+  if (mode === 'update') {
+    const fetchProfile = async () => {
+      try {
+        const profileRes = await axios.get(
+          `${API_BASE_URL}/api/profiles/seeker/${id}`,
+          { withCredentials: true }
+        );
+
+        if (profileRes.data) {
+          setForm({
+            profilePicture: profileRes.data.profilePicture || form.profilePicture,
+            profileHeadline: profileRes.data.profileHeadline || '',
+            location: profileRes.data.location || '',
+            employment: profileRes.data.employment || '',
+            skills: profileRes.data.skills || '',
+            education: profileRes.data.education || '',
+            experienceLevel: profileRes.data.experienceLevel || '',
+            availability: profileRes.data.availability || '',
+            phoneNumber: profileRes.data.phoneNumber || ''
+          });
+        }
+      } catch (err) {
+        console.error('Error fetching profile:', err);
+      }
+    };
+    fetchProfile();
+  }
+
+  setFetching(false);
+}, [navigate, mode]);
+
+
+  
   useEffect(() => {
   const id = localStorage.getItem('seekerId');
   if (!id) {
@@ -65,11 +107,22 @@ function ProfileSetup() {
     setError('');
 
     try {
+
+      if (mode === 'update') {
+      // Update profile
+      await axios.put(
+        `${API_BASE_URL}/api/profiles/${seekerId}`,
+        form,
+        { withCredentials: true }
+      );
+    } else {
+      // Create profile
       await axios.post(
         `${API_BASE_URL}/api/profiles`,
         { ...form, seeker: { id: Number(seekerId) } },
         { withCredentials: true }
       );
+    }
 
       // ✅ After first completion → profile page
       navigate('/seeker/profile');
