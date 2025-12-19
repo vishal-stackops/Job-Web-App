@@ -19,6 +19,8 @@ function JobCard({ job }) {
   const [checkingApplied, setCheckingApplied] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
   const [savingJob, setSavingJob] = useState(false);
+  const [alreadyApplied, setAlreadyApplied] = useState(false);
+
 
   useEffect(() => {
     const checkIfSaved = async () => {
@@ -42,6 +44,32 @@ function JobCard({ job }) {
 
     checkIfSaved();
   }, [job.id]);
+
+  useEffect(() => {
+  const checkApplied = async () => {
+    if (!seekerId || !job?.id) return;
+
+    try {
+      const res = await axios.get(
+        `${API_BASE_URL}/api/applications/check`,
+        {
+          params: {
+            seekerId,
+            jobId: job.id
+          },
+          withCredentials: true
+        }
+      );
+
+      setAlreadyApplied(res.data === true);
+    } catch (err) {
+      console.error('Check applied error', err);
+    }
+  };
+
+  checkApplied();
+}, [seekerId, job?.id]);
+
 
   const handleSaveJob = async (e) => {
     e.stopPropagation();
@@ -286,11 +314,19 @@ function JobCard({ job }) {
       </p>
 
       <div className="job-card-actions">
-        <button
-          className="apply-btn"
-          onClick={handleApply}
-        >
-          Apply
+        // <button
+        //   className="apply-btn"
+        //   onClick={handleApply}
+        // >
+        //   Apply
+        // </button>
+        {alreadyApplied ? (
+        <button className="apply-btn applied" disabled>
+            Applied ✓
+        </button>
+        ) : (
+        <button className="apply-btn" onClick={handleApply}>
+          Apply Now
         </button>
 
         <button
