@@ -155,6 +155,7 @@ function ProfileSetup( ) {
   if (fetching) return null;
 
   return (
+    <SeekerNavbar />
     <div className="profile-setup-container">
       <div className="profile-setup-card">
         <div className="profile-setup-header">
