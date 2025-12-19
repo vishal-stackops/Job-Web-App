@@ -100,11 +100,14 @@ function SeekerHome() {
 
 
 
-// move job from dashboard to My Applications
 const handleJobApplied = (appliedJob) => {
-  setJobs(prev => prev.filter(job => job.id !== appliedJob.id));
+  // Remove job from dashboard
+  setJobs(prevJobs => prevJobs.filter(job => job.id !== appliedJob.id));
+
+  // Add job to My Applications
   setMyApplications(prev => [...prev, appliedJob]);
 };
+
 
   // if (isChecking) {
   //   return (
