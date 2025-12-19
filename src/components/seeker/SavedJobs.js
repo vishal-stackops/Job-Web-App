@@ -209,9 +209,122 @@ function SavedJobs() {
 
   return (
     <>
-      <SeekerNavbar />
-      {/* JSX BELOW IS 100% UNCHANGED */}
-    </>
+  <SeekerNavbar />
+
+  <div className={`saved-jobs-section ${theme === 'dark' ? 'dark-theme' : ''}`}>
+    {loading ? (
+      <p style={{ marginTop: '2rem' }}>Loading saved jobs...</p>
+    ) : error ? (
+      <p style={{ marginTop: '2rem', color: 'red' }}>{error}</p>
+    ) : savedJobs.length === 0 ? (
+      <p style={{ marginTop: '2rem' }}>No saved jobs found.</p>
+    ) : (
+      <div className="saved-jobs-list">
+        {savedJobs.map((savedJob) => (
+          <div
+            key={savedJob.id}
+            className="saved-job-card"
+            onClick={() => handleCardClick(savedJob.jobId)}
+          >
+            <div className="job-info">
+              <h3>{savedJob.jobTitle}</h3>
+
+              <div className="job-details">
+                <span className="company">{savedJob.companyName}</span>
+                <span className="separator">•</span>
+                <span className="location">{savedJob.location}</span>
+                <span className="separator">•</span>
+                <span className="salary">{savedJob.salaryRange}</span>
+                <span className="separator">•</span>
+                <span className="job-type">{savedJob.jobType}</span>
+              </div>
+
+              <p className="job-desc">
+                {savedJob.description || 'No job description available.'}
+              </p>
+
+              <div className="saved-date">
+                <small>Saved on: {savedJob.savedDate}</small>
+              </div>
+            </div>
+
+            <div className="saved-job-actions">
+              <button
+                className="apply-btn"
+                onClick={(e) => handleApplyJob(e, savedJob)}
+              >
+                Apply Now
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    )}
+  </div>
+
+  {/* APPLY MODAL */}
+  {showModal && selectedJob && (
+    <div className="apply-modal-overlay" onClick={closeModal}>
+      <div className="apply-modal" onClick={(e) => e.stopPropagation()}>
+        <h3>Apply for {selectedJob.jobTitle}</h3>
+
+        {checkingApplied && <p>Checking application status...</p>}
+
+        {alreadyApplied && (
+          <p style={{ color: '#16a34a', marginTop: '1rem' }}>
+            You have already applied for this job.
+          </p>
+        )}
+
+        {showApplyForm && (
+          <form onSubmit={handleSubmitApplication}>
+            <input
+              type="file"
+              accept=".pdf,.doc,.docx"
+              onChange={handleFileChange}
+            />
+
+            {applyError && (
+              <p style={{ color: 'red', marginTop: '0.5rem' }}>
+                {applyError}
+              </p>
+            )}
+
+            {applySuccess && (
+              <p style={{ color: 'green', marginTop: '0.5rem' }}>
+                {applySuccess}
+              </p>
+            )}
+
+            <button
+              type="submit"
+              className="apply-btn"
+              disabled={applyLoading}
+              style={{ marginTop: '1rem' }}
+            >
+              {applyLoading ? 'Applying...' : 'Submit Application'}
+            </button>
+          </form>
+        )}
+
+        <button
+          onClick={closeModal}
+          style={{
+            marginTop: '1rem',
+            background: '#e5e7eb',
+            border: 'none',
+            padding: '0.5rem 1rem',
+            borderRadius: '6px',
+            cursor: 'pointer'
+          }}
+        >
+          Close
+        </button>
+      </div>
+    </div>
+  )}
+</>
+
   );
 }
 
