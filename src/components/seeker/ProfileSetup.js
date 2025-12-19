@@ -140,8 +140,9 @@ function ProfileSetup( ) {
     <div className="profile-setup-container">
       <div className="profile-setup-card">
         <div className="profile-setup-header">
-          <h1>Complete Your Profile</h1>
-          <p>Tell us about yourself</p>
+          <h1>{mode === 'update' ? 'Update Your Profile' : 'Complete Your Profile'}</h1>
+          <p>{mode === 'update' ? 'Edit your information' : 'Tell us about yourself'}</p>
+
         </div>
 
         {error && <div className="error-message">{error}</div>}
