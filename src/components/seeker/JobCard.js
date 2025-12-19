@@ -111,13 +111,6 @@ function JobCard({ job }) {
     // Job details page removed
   };
 
-
-  // function to move a job from dashboard to My Applications
-const handleJobApplied = (appliedJob) => {
-  setJobs(prevJobs => prevJobs.filter(job => job.id !== appliedJob.id)); // remove from dashboard
-  setMyApplications(prev => [...prev, appliedJob]); // add to My Applications
-};
-
   const handleApplyClick = async (e) => {
     e.stopPropagation();
     setApplyError('');
