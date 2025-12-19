@@ -313,19 +313,19 @@ function JobCard({ job }) {
       </p>
 
       <div className="job-card-actions">
-        // <button
+        {/*/ <button
         //   className="apply-btn"
         //   onClick={handleApply}
         // >
         //   Apply
-        // </button>
-        // NEW BEHAVIOUR OF APPLY BTN
+        // </button>*/}
+        {/* NEW BEHAVIOUR OF APPLY BTN*/}
         <button
             className={`apply-btn ${alreadyApplied ? 'applied' : ''}`}
             disabled={alreadyApplied}
             onClick={(e) => {
               if (alreadyApplied) return;
-                handleApplyClick(e, job);
+                handleApply(e, job);
               }}
           >
             {alreadyApplied ? 'Applied ✓' : 'Apply Now'}
