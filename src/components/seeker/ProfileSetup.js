@@ -6,8 +6,8 @@ import API_BASE_URL from "../../config/api";
 
 function ProfileSetup( mode = 'create' }) {
   const navigate = useNavigate();
-  const location = useLocation();
-
+  const mode = location.state?.mode || 'create';
+  
   const [form, setForm] = useState({
     profilePicture: 'https://ui-avatars.com/api/?name=U&background=6366f1&color=fff&size=128',
     profileHeadline: '',
