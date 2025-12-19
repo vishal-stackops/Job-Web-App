@@ -209,8 +209,8 @@ function JobCard({ job }) {
 
   const handleSubmitApplication = async (e) => {
     e.preventDefault();
-    setApplyError('');
-    setApplySuccess('');
+    // setApplyError('');
+    // setApplySuccess('');
     setAppliedJobs(prev => [...prev, job.id]); // Add job ID to applied list
     setAlreadyApplied(true) ; // Mark button as applied
 
