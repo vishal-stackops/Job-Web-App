@@ -5,8 +5,9 @@ import axios from "axios";
 import API_BASE_URL from "../../config/api";
 
 function ProfileSetup( ) {
+  const navigate = useNavigate();
   const currentLocation = useLocation();
-const mode = currentLocation.state?.mode || 'create';
+  const mode = currentLocation.state?.mode || 'create';
 
   
   const [form, setForm] = useState({
