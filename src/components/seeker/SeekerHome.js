@@ -17,6 +17,8 @@ function SeekerHome() {
   const [success, setSuccess] = useState(
     location.state && location.state.success ? location.state.success : ''
   );
+  const [jobs, setJobs] = useState([]); // dashboard jobs
+  const [myApplications, setMyApplications] = useState([]); // applied jobs
 
   //const { isChecking } = useProfileCheck();
 
@@ -95,6 +97,15 @@ function SeekerHome() {
 
     setFilteredJobs(filtered);
   };
+
+
+
+
+// move job from dashboard to My Applications
+const handleJobApplied = (appliedJob) => {
+  setJobs(prev => prev.filter(job => job.id !== appliedJob.id));
+  setMyApplications(prev => [...prev, appliedJob]);
+};
 
   // if (isChecking) {
   //   return (
