@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import './ProfileSetup.css';
 import axios from "axios";
 import API_BASE_URL from "../../config/api";
+import SeekerNavbar from './SeekerNavbar';
 
 function ProfileSetup( ) {
   const navigate = useNavigate();
