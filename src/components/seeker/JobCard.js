@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ThemeContext } from '../../App';
 import './JobCard.css';
-//import { useProfileCheck } from '../../hooks/useProfileCheck';
 import axios from "axios";
 import API_BASE_URL from "../../config/api";
 
@@ -20,7 +19,9 @@ function JobCard({ job }) {
   const [checkingApplied, setCheckingApplied] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
   const [savingJob, setSavingJob] = useState(false);
-  // const { seekerId } = useProfileCheck();
+  const [appliedJobs, setAppliedJobs] = useState([]); // Add this
+
+
 
 
 
@@ -46,32 +47,6 @@ function JobCard({ job }) {
 
     checkIfSaved();
   }, [job.id]);
-
-  useEffect(() => {
-  const checkApplied = async () => {
-    if (!seekerId || !job?.id) return;
-
-    try {
-      const res = await axios.get(
-        `${API_BASE_URL}/api/applications/check`,
-        {
-          params: {
-            seekerId,
-            jobId: job.id
-          },
-          withCredentials: true
-        }
-      );
-
-      setAlreadyApplied(res.data === true);
-    } catch (err) {
-      console.error('Check applied error', err);
-    }
-  };
-
-  checkApplied();
-}, [seekerId, job?.id]);
-
 
   const handleSaveJob = async (e) => {
     e.stopPropagation();
@@ -146,22 +121,27 @@ function JobCard({ job }) {
     setAlreadyApplied(false);
 
     const seekerId = localStorage.getItem('seekerId');
-    if (!seekerId) {
-      setApplyError('You must be logged in as a job seeker to apply.');
-      setCheckingApplied(false);
-      return;
-    }
+    // if (!seekerId) {
+    //   setApplyError('You must be logged in as a job seeker to apply.');
+    //   setCheckingApplied(false);
+    //   return;
+    // }
 
     try {
       const resp = await axios.get(
         `${API_BASE_URL}/api/applications/check/${job.id}/${seekerId}`
       );
 
-      if (resp.data.hasApplied) {
-        setAlreadyApplied(true);
+      // if (resp.data.hasApplied) {
+      //   setAlreadyApplied(true);
+      // } else {
+      //   setShowApplyForm(true);
+      // }
+      if (appliedJobs.includes(job.id)) {
+          setAlreadyApplied(true);
       } else {
-        setShowApplyForm(true);
-      }
+          setShowApplyForm(true);
+      }  
     } catch (err) {
       console.error('Error checking application status:', err);
       setShowApplyForm(true);
@@ -231,6 +211,9 @@ function JobCard({ job }) {
     e.preventDefault();
     setApplyError('');
     setApplySuccess('');
+    setAppliedJobs(prev => [...prev, job.id]); // Add job ID to applied list
+    setAlreadyApplied(true) ; // Mark button as applied
+
 
     const seekerId = localStorage.getItem('seekerId');
     if (!seekerId) {
