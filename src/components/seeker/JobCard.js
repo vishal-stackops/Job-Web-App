@@ -19,7 +19,6 @@ function JobCard({ job }) {
   const [checkingApplied, setCheckingApplied] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
   const [savingJob, setSavingJob] = useState(false);
-  const [appliedJobs, setAppliedJobs] = useState([]); // Add this
 
 
 
@@ -121,27 +120,23 @@ function JobCard({ job }) {
     setAlreadyApplied(false);
 
     const seekerId = localStorage.getItem('seekerId');
-    // if (!seekerId) {
-    //   setApplyError('You must be logged in as a job seeker to apply.');
-    //   setCheckingApplied(false);
-    //   return;
-    // }
+    if (!seekerId) {
+      setApplyError('You must be logged in as a job seeker to apply.');
+      setCheckingApplied(false);
+      return;
+    }
 
     try {
       const resp = await axios.get(
         `${API_BASE_URL}/api/applications/check/${job.id}/${seekerId}`
       );
 
-      // if (resp.data.hasApplied) {
-      //   setAlreadyApplied(true);
-      // } else {
-      //   setShowApplyForm(true);
-      // }
-      if (appliedJobs.includes(job.id)) {
-          setAlreadyApplied(true);
+      if (resp.data.hasApplied) {
+        setAlreadyApplied(true);
       } else {
-          setShowApplyForm(true);
-      }  
+        setShowApplyForm(true);
+      }
+       
     } catch (err) {
       console.error('Error checking application status:', err);
       setShowApplyForm(true);
@@ -209,10 +204,8 @@ function JobCard({ job }) {
 
   const handleSubmitApplication = async (e) => {
     e.preventDefault();
-    // setApplyError('');
-    // setApplySuccess('');
-    setAppliedJobs(prev => [...prev, job.id]); // Add job ID to applied list
-    setAlreadyApplied(true) ; // Mark button as applied
+    setApplyError('');
+    setApplySuccess('');
 
 
     const seekerId = localStorage.getItem('seekerId');
@@ -299,22 +292,11 @@ function JobCard({ job }) {
       </p>
 
       <div className="job-card-actions">
-        {/*/ <button
-        //   className="apply-btn"
-        //   onClick={handleApply}
-        // >
-        //   Apply
-        // </button>*/}
-        {/* NEW BEHAVIOUR OF APPLY BTN*/}
         <button
-            className={`apply-btn ${alreadyApplied ? 'applied' : ''}`}
-            disabled={alreadyApplied}
-            onClick={(e) => {
-              if (alreadyApplied) return;
-                handleApply(e, job);
-              }}
-          >
-            {alreadyApplied ? 'Applied ✓' : 'Apply Now'}
+           className="apply-btn"
+           onClick={handleApply}
+         >
+          Apply
         </button>
 
         <button
