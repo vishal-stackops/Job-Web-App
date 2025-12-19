@@ -238,3 +238,65 @@
   background: #e5e7eb;
   color: #181818;
 }
+
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 1rem;
+    gap: 0.8rem;
+  }
+
+  .navbar-left .website-name {
+    font-size: 1.5rem;
+  }
+
+  .navbar-right {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .navbar-right .nav-btn {
+    width: 100%;
+    margin: 0.4rem 0;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .signup-container {
+    min-height: auto;
+    padding: 1.5rem 1rem;
+    align-items: flex-start;
+  }
+}
+
+
+@media (max-width: 768px) {
+  .signup-form {
+    width: 100%;
+    min-width: unset;
+    padding: 1.8rem 1.4rem;
+    border-radius: 16px;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .signup-form label {
+    font-size: 1rem;
+  }
+
+  .signup-form input {
+    font-size: 0.95rem;
+  }
+
+  .checkbox-label {
+    font-size: 0.95rem;
+  }
+
+  .signup-form button {
+    width: 100%;
+  }
+}
