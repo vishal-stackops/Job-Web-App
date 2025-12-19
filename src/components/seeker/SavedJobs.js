@@ -262,16 +262,45 @@ function SavedJobs() {
     )}
   </div>
 
-  {/* APPLY MODAL */}
-  {showModal && selectedJob && (
-    <div className="apply-modal-overlay" onClick={closeModal}>
-      <div className="apply-modal" onClick={(e) => e.stopPropagation()}>
+  {/* APPLY JOB MODAL */}
+{showModal && selectedJob && (
+  <div
+    className="saved-jobs-section"
+    style={{
+      position: 'fixed',
+      inset: 0,
+      background: 'rgba(0,0,0,0.5)',
+      zIndex: 1000
+    }}
+    onClick={closeModal}
+  >
+    <div
+      className="saved-job-card"
+      style={{
+        maxWidth: '500px',
+        height: 'auto',
+        cursor: 'default'
+      }}
+      onClick={(e) => e.stopPropagation()}
+    >
+      <div className="job-info">
         <h3>Apply for {selectedJob.jobTitle}</h3>
 
-        {checkingApplied && <p>Checking application status...</p>}
+        <div className="job-details">
+          <span className="company">{selectedJob.companyName}</span>
+          <span className="separator">•</span>
+          <span className="location">{selectedJob.location}</span>
+        </div>
+
+        {checkingApplied && (
+          <p className="job-desc">Checking application status...</p>
+        )}
 
         {alreadyApplied && (
-          <p style={{ color: '#16a34a', marginTop: '1rem' }}>
+          <p
+            className="job-desc"
+            style={{ color: '#16a34a', fontWeight: 500 }}
+          >
             You have already applied for this job.
           </p>
         )}
@@ -282,47 +311,54 @@ function SavedJobs() {
               type="file"
               accept=".pdf,.doc,.docx"
               onChange={handleFileChange}
+              style={{ marginTop: '1rem' }}
             />
 
             {applyError && (
-              <p style={{ color: 'red', marginTop: '0.5rem' }}>
+              <p
+                className="job-desc"
+                style={{ color: '#dc2626', marginTop: '0.5rem' }}
+              >
                 {applyError}
               </p>
             )}
 
             {applySuccess && (
-              <p style={{ color: 'green', marginTop: '0.5rem' }}>
+              <p
+                className="job-desc"
+                style={{ color: '#16a34a', marginTop: '0.5rem' }}
+              >
                 {applySuccess}
               </p>
             )}
 
-            <button
-              type="submit"
-              className="apply-btn"
-              disabled={applyLoading}
-              style={{ marginTop: '1rem' }}
-            >
-              {applyLoading ? 'Applying...' : 'Submit Application'}
-            </button>
+            <div className="saved-job-actions" style={{ marginTop: '1rem' }}>
+              <button
+                type="submit"
+                className="apply-btn"
+                disabled={applyLoading}
+              >
+                {applyLoading ? 'Applying...' : 'Submit Application'}
+              </button>
+            </div>
           </form>
         )}
 
-        <button
-          onClick={closeModal}
-          style={{
-            marginTop: '1rem',
-            background: '#e5e7eb',
-            border: 'none',
-            padding: '0.5rem 1rem',
-            borderRadius: '6px',
-            cursor: 'pointer'
-          }}
-        >
-          Close
-        </button>
+        <div className="saved-job-actions" style={{ marginTop: '0.8rem' }}>
+          <button
+            type="button"
+            className="apply-btn"
+            style={{ background: '#6b7280' }}
+            onClick={closeModal}
+          >
+            Close
+          </button>
+        </div>
       </div>
     </div>
-  )}
+  </div>
+)}
+
 </>
 
   );
