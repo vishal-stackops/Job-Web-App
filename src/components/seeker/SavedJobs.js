@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import SeekerNavbar from './SeekerNavbar';
 import './SavedJobs.css';
-import './JobCard.css'
 //import { useProfileCheck } from '../../hooks/useProfileCheck';
 import { useNavigate } from 'react-router-dom';
 import { ThemeContext } from '../../App';
@@ -264,84 +263,103 @@ function SavedJobs() {
   </div>
 
 
-{/* APPLY JOB MODAL */}
+  {/* APPLY JOB MODAL */}
 {showModal && selectedJob && (
-  <div className="apply-job-modal-overlay" onClick={closeModal}>
+  <div
+    className="saved-jobs-section"
+    style={{
+      position: 'fixed',
+      inset: 0,
+      background: 'rgba(0,0,0,0.5)',
+      zIndex: 1000
+    }}
+    onClick={closeModal}
+  >
     <div
-      className="apply-job-modal"
+      className="saved-job-card"
+      style={{
+        maxWidth: '500px',
+        height: 'auto',
+        cursor: 'default'
+      }}
       onClick={(e) => e.stopPropagation()}
     >
-      {/* Header */}
-      <div className="apply-job-modal-header">
+      <div className="job-info">
         <h3>Apply for {selectedJob.jobTitle}</h3>
-        <button
-          className="close-modal-btn"
-          onClick={closeModal}
-        >
-          ✕
-        </button>
-      </div>
 
-      {/* Job Info */}
-      <div className="apply-job-info">
-        <p><strong>Company:</strong> {selectedJob.companyName}</p>
-        <p><strong>Location:</strong> {selectedJob.location}</p>
-      </div>
+        <div className="job-details">
+          <span className="company">{selectedJob.companyName}</span>
+          <span className="separator">•</span>
+          <span className="location">{selectedJob.location}</span>
+        </div>
 
-      {/* Checking Applied */}
-      {checkingApplied && (
-        <p className="apply-status-info">
-          Checking application status...
-        </p>
-      )}
+        {checkingApplied && (
+          <p className="job-desc">Checking application status...</p>
+        )}
 
-      {/* Already Applied */}
-      {alreadyApplied && (
-        <p className="already-applied-msg">
-          You have already applied for this job.
-        </p>
-      )}
-
-      {/* Apply Form */}
-      {showApplyForm && (
-        <form
-          className="apply-job-form"
-          onSubmit={handleSubmitApplication}
-        >
-          <label className="resume-label">
-            Upload Resume
-          </label>
-
-          <input
-            type="file"
-            accept=".pdf,.doc,.docx"
-            onChange={handleFileChange}
-          />
-
-          {applyError && (
-            <p className="apply-error-msg">
-              {applyError}
-            </p>
-          )}
-
-          {applySuccess && (
-            <p className="apply-success-msg">
-              {applySuccess}
-            </p>
-          )}
-
-          <button
-            type="submit"
-            className="apply-submit-btn"
-            disabled={applyLoading}
+        {alreadyApplied && (
+          <p
+            className="job-desc"
+            style={{ color: '#16a34a', fontWeight: 500 }}
           >
-            {applyLoading ? 'Submitting...' : 'Submit Application'}
+            You have already applied for this job.
+          </p>
+        )}
+
+        {showApplyForm && (
+          <form onSubmit={handleSubmitApplication}>
+            <input
+              type="file"
+              accept=".pdf,.doc,.docx"
+              onChange={handleFileChange}
+              style={{ marginTop: '1rem' }}
+            />
+
+            {applyError && (
+              <p
+                className="job-desc"
+                style={{ color: '#dc2626', marginTop: '0.5rem' }}
+              >
+                {applyError}
+              </p>
+            )}
+
+            {applySuccess && (
+              <p
+                className="job-desc"
+                style={{ color: '#16a34a', marginTop: '0.5rem' }}
+              >
+                {applySuccess}
+              </p>
+            )}
+
+            <div className="saved-job-actions" style={{ marginTop: '1rem' }}>
+              <button
+                type="submit"
+                className="apply-btn"
+                disabled={applyLoading}
+              >
+                {applyLoading ? 'Applying...' : 'Submit Application'}
+              </button>
+            </div>
+          </form>
+        )}
+
+        <div className="saved-job-actions" style={{ marginTop: '0.8rem' }}>
+          <button
+            type="button"
+            className="apply-btn"
+            style={{ background: '#6b7280' }}
+            onClick={closeModal}
+          >
+            Close
           </button>
-        </form>
-      )}
+        </div>
+      </div>
     </div>
   </div>
 )}
+
 
 
 </>
