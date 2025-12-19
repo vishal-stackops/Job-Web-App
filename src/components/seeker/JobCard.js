@@ -19,7 +19,6 @@ function JobCard({ job }) {
   const [checkingApplied, setCheckingApplied] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
   const [savingJob, setSavingJob] = useState(false);
-  const [alreadyApplied, setAlreadyApplied] = useState(false);
 
 
   useEffect(() => {
