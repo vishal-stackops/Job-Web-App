@@ -11,7 +11,7 @@ function ProfileSetup( ) {
 
   
   const [form, setForm] = useState({
-    profilePicture: 'https://ui-avatars.com/api/?name=U&background=6366f1&color=fff&size=128',
+    profilePicture: '',
     profileHeadline: '',
     location: '',
     employment: '',
@@ -64,7 +64,7 @@ function ProfileSetup( ) {
 
         if (profileRes.data) {
           setForm({
-            profilePicture: profileRes.data.profilePicture || form.profilePicture,
+            profilePicture: profileRes.data.profilePicture || '',
             profileHeadline: profileRes.data.profileHeadline || '',
             location: profileRes.data.location || '',
             employment: profileRes.data.employment || '',
@@ -150,6 +150,33 @@ function ProfileSetup( ) {
         {error && <div className="error-message">{error}</div>}
 
         <form onSubmit={handleSubmit} className="profile-setup-form">
+
+          <div className="form-group">
+            <label>Profile Picture</label>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={(e) => {
+              const file = e.target.files[0];
+              if (file) {
+                // Preview the image immediately
+                const reader = new FileReader();
+                reader.onload = () => {
+                setForm(prev => ({ ...prev, profilePicture: reader.result }));
+                };
+                reader.readAsDataURL(file);
+              }
+            }}
+          />
+            {form.profilePicture && (
+        <img
+          src={form.profilePicture}
+          alt="Profile Preview"
+          className="profile-preview"
+          style={{ width: '100px', height: '100px', borderRadius: '50%', marginTop: '0.5rem' }}
+        />
+        )}
+        </div>
 
           <div className="form-group">
             <label>Profile Headline</label>
