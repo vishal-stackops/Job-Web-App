@@ -17,7 +17,6 @@ function SeekerHome() {
   const [success, setSuccess] = useState(
     location.state && location.state.success ? location.state.success : ''
   );
-  const [jobs, setJobs] = useState([]); // dashboard jobs
   const [myApplications, setMyApplications] = useState([]); // applied jobs
 
   //const { isChecking } = useProfileCheck();
