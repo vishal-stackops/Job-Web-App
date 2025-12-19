@@ -206,7 +206,6 @@ function JobCard({ job }) {
     e.preventDefault();
     setApplyError('');
     setApplySuccess('');
-    setAlreadyApplied(true); // disables the Apply button
 
 
 
@@ -241,7 +240,6 @@ function JobCard({ job }) {
 
       const fileInput = document.querySelector('input[type="file"]');
       if (fileInput) fileInput.value = '';
-      setAlreadyApplied(true); // add this line
     } catch (err) {
       console.error('Upload error:', err);
       setApplyError(
@@ -296,14 +294,10 @@ function JobCard({ job }) {
 
       <div className="job-card-actions">
         <button
-          className={`apply-btn ${alreadyApplied ? 'applied' : ''}`}
-          disabled={alreadyApplied}
-          onClick={(e) => {
-            if (alreadyApplied) return;
-                handleApply(e, job);
-          }}
+            className="apply-btn"
+          onClick={(e) => handleApply(e, job)}
           >
-          {alreadyApplied ? 'Applied ✓' : 'Apply Now'}  
+          Apply Now
         </button>
 
         <button
