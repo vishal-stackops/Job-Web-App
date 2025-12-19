@@ -12,18 +12,24 @@ function Search() {
     return (
       <div className="search-gradient-bg">
         <SeekerNavbar />
-        <div className="search-page-center">
-          <div className="search-content">
-            <div style={{
-              textAlign: 'center',
-              padding: '2rem',
-              fontSize: '1.2rem',
-              color: '#6366f1'
-            }}>
-              Checking profile...
-            </div>
-          </div>
-        </div>
+        <div className="search-bar-wrapper">
+  <span className="search-left-icon">
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+      <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.116-.099zM6.5 11a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9z"/>
+    </svg>
+  </span>
+
+  <input
+    className="search-bar"
+    type="text"
+    placeholder="Search jobs, companies, skills..."
+  />
+
+  <button className="search-icon-btn" title="Search">
+    Search
+  </button>
+</div>
+
       </div>
     );
   }
