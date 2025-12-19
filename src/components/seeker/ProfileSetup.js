@@ -214,6 +214,24 @@ function ProfileSetup( ) {
           </div>
 
           <div className="form-group">
+            <label>Availability</label>
+            <input
+              name="availability"
+              value={form.availability}
+              onChange={handleFormChange}
+            />
+          </div>
+
+          <div className="form-group">
+            <label>Employment</label>
+            <input
+              name="employment"
+              value={form.employment}
+              onChange={handleFormChange}
+            />
+          </div>
+
+          <div className="form-group">
             <label>Experience Level</label>
             <select name="experienceLevel" value={form.experienceLevel} onChange={handleFormChange}>
               <option value="">Select</option>
