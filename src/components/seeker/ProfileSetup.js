@@ -156,6 +156,7 @@ function ProfileSetup( ) {
   if (fetching) return null;
 
   return (
+    <>
     <SeekerNavbar />
     <div className="profile-setup-container">
       <div className="profile-setup-card">
@@ -170,24 +171,24 @@ function ProfileSetup( ) {
         <form onSubmit={handleSubmit} className="profile-setup-form">
 
           <div className="form-group">
-  <label>Profile Picture</label>
-  <input
-    type="file"
-    accept="image/*"
-    onChange={(e) => {
-      const file = e.target.files[0];
-      if (file) setForm(prev => ({ ...prev, profileFile: file }));
-    }}
-  />
-  {form.profilePicture && (
-    <img
-      src={form.profilePicture}
-      alt="Profile Preview"
-      className="profile-preview"
-      style={{ width: '100px', height: '100px', borderRadius: '50%', marginTop: '0.5rem' }}
-    />
-  )}
-</div>
+            <label>Profile Picture</label>
+            <input
+              accept="image/*"
+              type="file"
+                onChange={(e) => {
+                const file = e.target.files[0];
+                if (file) setForm(prev => ({ ...prev, profileFile: file }));
+                  }}
+              />
+            {form.profilePicture && (
+              <img
+                src={form.profilePicture}
+                alt="Profile Preview"
+                className="profile-preview"
+                style={{ width: '100px', height: '100px', borderRadius: '50%', marginTop: '0.5rem' }}
+              />
+          )}
+        </div>
 
 
           <div className="form-group">
@@ -250,6 +251,7 @@ function ProfileSetup( ) {
         </form>
       </div>
     </div>
+  </>
   );
 }
 
