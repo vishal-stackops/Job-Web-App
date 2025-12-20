@@ -1195,7 +1195,7 @@
 }
 
 /* Make buttons narrower on mobile */
-@media (max-width: 600px) {
+/* @media (max-width: 600px) {
   .recruiter-link,
   .logout-btn {
     font-size: 0.85rem;        /* smaller text */
@@ -1208,7 +1208,7 @@
     gap: 0.3rem;               /* reduce spacing between buttons */
     justify-content: center;    /* center them */
   }
-}
+} */
 
 /* =========================
    RECRUITER NAVBAR RESPONSIVE
