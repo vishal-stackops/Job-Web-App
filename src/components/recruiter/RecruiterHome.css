@@ -11,10 +11,12 @@
   color: #1e293b;
   box-shadow: 0 4px 20px rgba(15, 23, 42, 0.08);
   display: flex;
+  flex-wrap: wrap; /* allows items to wrap on small screens */
   justify-content: space-between;
   align-items: center;
   padding: 1.2rem 3rem;
   border-bottom: 1px solid #e2e8f0;
+  gap: 0.5rem; /* space between items on wrap */
 }
 
 .recruiter-navbar .website-name {
@@ -24,6 +26,7 @@
   background: linear-gradient(135deg, #3b82f6, #1d4ed8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  flex: 1 1 auto; /* allows logo to shrink on small screens */
   background-clip: text;
 }
 
@@ -51,6 +54,27 @@
   color: white;
   box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
 }
+
+.nav-links-container {
+  display: flex;
+  flex-wrap: wrap; /* wrap links on small screens */
+  gap: 0.5rem;
+  justify-content: flex-end;
+  flex: 1 1 auto;
+  min-width: 150px;
+}
+
+.recruiter-link {
+  text-decoration: none;
+  color: #64748b;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 25px;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
 
 .recruiter-home-content {
   display: flex;
@@ -94,6 +118,7 @@
   font-weight: 600;
   position: relative;
   overflow: hidden;
+  flex-shrink: 0; /* do not shrink */
 }
 
 .logout-btn::before {
@@ -1128,5 +1153,31 @@
   
   .delete-confirm-btn.force-delete-btn {
     min-width: auto;
+  }
+}
+
+/* Make navbar items stack nicely on really small screens */
+@media (max-width: 500px) {
+  .recruiter-navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1rem;
+  }
+
+  .nav-links-container {
+    justify-content: flex-start;
+    width: 100%;
+  }
+
+  .recruiter-link, .logout-btn {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 0.3rem;
+  }
+
+  .recruiter-navbar .website-name {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 0.5rem;
   }
 }
