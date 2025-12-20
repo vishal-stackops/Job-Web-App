@@ -609,6 +609,66 @@
   }
 }
 
+/* =========================
+   MOBILE BUTTON FIXES
+   ========================= */
+
+/* Navbar buttons uniform */
+@media (max-width: 768px) {
+  .seeker-link,
+  .profile-btn,
+  .logout-btn {
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .profile-btn {
+    margin-top: 0.3rem;
+  }
+
+  .logout-btn {
+    margin-top: 0.3rem;
+  }
+}
+
+/* =========================
+   JOB CARD BUTTON FIX
+   ========================= */
+
+.job-card {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Button container inside job card */
+.job-card-actions,
+.job-card-buttons,
+.job-actions {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+/* Mobile: stack buttons */
+@media (max-width: 480px) {
+  .job-card-actions,
+  .job-card-buttons,
+  .job-actions {
+    flex-direction: column;
+  }
+
+  .job-card button {
+    width: 100%;
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+}
+
+
 
 
 
