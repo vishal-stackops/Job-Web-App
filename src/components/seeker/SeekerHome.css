@@ -668,6 +668,52 @@
   }
 }
 
+/* =========================
+   MOBILE THEME & LOGOUT FIX
+   ========================= */
+
+@media (max-width: 768px) {
+  /* Common button layout */
+  .seeker-link,
+  .profile-btn,
+  .theme-toggle-btn,
+  .logout-btn {
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    font-size: 0.95rem;
+  }
+
+  /* Dark mode toggle */
+  .theme-toggle-btn {
+    background: #111827;
+    color: white;
+    padding: 0.6rem 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+
+  /* Logout button */
+  .logout-btn {
+    background: #ef4444;
+    padding: 0.6rem 1rem;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 400px) {
+  .seeker-link,
+  .profile-btn,
+  .theme-toggle-btn,
+  .logout-btn {
+    font-size: 0.9rem;
+    padding: 0.55rem 0.9rem;
+  }
+}
+
 
 
 
