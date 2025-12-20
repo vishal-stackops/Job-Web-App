@@ -1193,3 +1193,17 @@
     margin-bottom: 0.3rem;
   }
 }
+
+/* Make buttons smaller on mobile */
+@media (max-width: 600px) {
+  .recruiter-link,
+  .logout-btn {
+    font-size: 0.85rem;    /* smaller text */
+    padding: 0.4rem 0.8rem; /* smaller padding */
+    min-width: auto;       /* allow shrinking */
+  }
+  
+  .nav-links-container {
+    gap: 0.3rem;           /* reduce spacing between buttons */
+  }
+}
