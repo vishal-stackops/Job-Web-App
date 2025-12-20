@@ -613,7 +613,7 @@
   }
 }
 
-/* Small phones (iPhone SE) */
+/* /* Small phones (iPhone SE) 
 @media (max-width: 400px) {
   .website-name {
     font-size: 1.4rem;
@@ -627,7 +627,7 @@
   .search-bar-wrapper {
     max-width: 100%;
   }
-}
+} */
 
 /* =========================
    MOBILE BUTTON FIXES
