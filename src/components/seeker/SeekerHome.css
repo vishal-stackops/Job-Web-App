@@ -518,7 +518,9 @@
   }
 
   .seeker-home-content {
-    padding: 0 0.6rem ;
+    padding-right: 1rem;   /* 👈 right space */
+    padding-left: 0.6rem;  /* optional balance */
+    box-sizing: border-box;
   }
 
   .seeker-home-content h2 {
