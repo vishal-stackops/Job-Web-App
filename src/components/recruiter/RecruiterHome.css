@@ -1194,16 +1194,18 @@
   }
 }
 
-/* Make buttons smaller on mobile */
+/* Make buttons narrower on mobile */
 @media (max-width: 600px) {
   .recruiter-link,
   .logout-btn {
-    font-size: 0.85rem;    /* smaller text */
-    padding: 0.4rem 0.8rem; /* smaller padding */
-    min-width: auto;       /* allow shrinking */
+    font-size: 0.85rem;        /* smaller text */
+    padding: 0.35rem 0.7rem;   /* smaller padding */
+    min-width: 80px;           /* narrow width */
+    text-align: center;
   }
-  
+
   .nav-links-container {
-    gap: 0.3rem;           /* reduce spacing between buttons */
+    gap: 0.3rem;               /* reduce spacing between buttons */
+    justify-content: center;    /* center them */
   }
 }
