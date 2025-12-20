@@ -534,4 +534,81 @@
 }
 
 
+/* =========================
+   NAVBAR RESPONSIVE FIX
+   ========================= */
+
+/* Tablet & Mobile */
+@media (max-width: 768px) {
+  .seeker-navbar {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .website-name {
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .navbar-center {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.7rem;
+  }
+
+  /* Nav links become full width buttons */
+  .seeker-link {
+    width: 100%;
+    text-align: center;
+    padding: 0.6rem 1rem;
+    font-size: 0.95rem;
+    border-radius: 25px;
+  }
+
+  /* Search bar full width */
+  .navbar-search {
+    width: 100%;
+    justify-content: center;
+    margin: 0.5rem 0;
+  }
+
+  .search-bar-wrapper {
+    width: 100%;
+    max-width: 340px;
+  }
+
+  /* Profile, Dark mode, Logout */
+  .profile-btn,
+  .logout-btn {
+    width: 100%;
+    max-width: 340px;
+    margin: 0;
+    text-align: center;
+  }
+
+  .logout-btn {
+    margin-top: 0.3rem;
+  }
+}
+
+/* Small phones (iPhone SE) */
+@media (max-width: 400px) {
+  .website-name {
+    font-size: 1.4rem;
+  }
+
+  .seeker-link {
+    font-size: 0.9rem;
+    padding: 0.55rem 0.9rem;
+  }
+
+  .search-bar-wrapper {
+    max-width: 100%;
+  }
+}
+
+
+
 
