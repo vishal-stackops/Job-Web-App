@@ -703,7 +703,7 @@
     width: 100%;
     max-width: 340px;
     /* margin-top: 0.6rem;   /* 👈 vertical spacing */ 
-    margin:0.6rem auto
+    margin:0.6rem auto;
     display: flex;
     justify-content: center;
     align-items: center;
