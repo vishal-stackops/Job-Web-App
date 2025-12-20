@@ -363,12 +363,22 @@
 }
 
 @media (max-width: 480px) {
+  .applications-page-bg {
+    padding: 1rem 0.6rem;   /* 🔥 fixes side cut */
+  }
+
+  .applications-container {
+    width: 100%;
+    padding: 1rem 0.8rem;
+  }
+  
   .applications-title {
     font-size: 1.5rem;
   }
   
   .application-card {
-    padding: 1rem;
+   max-width: 100%;
+    margin: 0;
   }
   
   .job-title {
