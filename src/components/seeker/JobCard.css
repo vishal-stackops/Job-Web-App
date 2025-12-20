@@ -5,6 +5,8 @@
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(15, 23, 42, 0.06);
   padding: 1rem 1rem;
+  box-sizing: border-box;
+  max-width: 100%;
   width: 100%;
   min-height: 150px;
   display: flex;
@@ -490,5 +492,30 @@
 
 .dark-theme .modal-close-btn:hover {
   color: #f87171;
+}
+
+
+/* =========================
+   MOBILE JOB CARD FIX
+   ========================= */
+
+@media (max-width: 480px) {
+  .job-card {
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .job-card-actions {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .apply-btn,
+  .save-btn {
+    width: 100%;
+    min-width: unset;
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
 }
 
