@@ -715,6 +715,16 @@
 }
 
 
+/* =========================
+   MOBILE RIGHT PADDING FIX
+========================= */
+@media (max-width: 480px) {
+  .seeker-home-content {
+    padding-left: 0.8rem;
+    padding-right: 0.8rem; /* 🔥 THIS FIXES IT */
+    box-sizing: border-box;
+  }
+}
 
 
 
