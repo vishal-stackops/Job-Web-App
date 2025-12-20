@@ -1209,3 +1209,78 @@
     justify-content: center;    /* center them */
   }
 }
+
+/* =========================
+   RECRUITER NAVBAR RESPONSIVE
+   ========================= */
+
+/* Tablet & Mobile */
+@media (max-width: 768px) {
+  .recruiter-navbar {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+  }
+
+  .website-name {
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .nav-links-container {
+    flex-direction: column;
+    width: 100%;
+    gap: 0.7rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* Nav buttons become full width */
+  .recruiter-link {
+    width: 100%;
+    max-width: 340px;
+    text-align: center;
+    padding: 0.6rem 1rem;
+    font-size: 0.95rem;
+    border-radius: 25px;
+  }
+
+  /* Logout button */
+  .logout-btn {
+    width: 100%;
+    max-width: 340px;
+    margin-top: 0.3rem;
+    text-align: center;
+    padding: 0.6rem 1rem;
+  }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+  .recruiter-link,
+  .logout-btn {
+    font-size: 0.85rem;
+    padding: 0.35rem 0.7rem;
+    min-width: 80px;
+    text-align: center;
+  }
+
+  .nav-links-container {
+    gap: 0.3rem;
+  }
+}
+
+/* Extra small phones */
+@media (max-width: 360px) {
+  .recruiter-link,
+  .logout-btn {
+    font-size: 0.8rem;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .website-name {
+    font-size: 1.4rem;
+  }
+}
+
