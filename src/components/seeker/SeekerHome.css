@@ -500,7 +500,7 @@
   }
 
   .seeker-home-content {
-    padding: 0.9rem 1rem;
+    padding: 0 0.6rem ;
   }
 
   .seeker-home-content h2 {
@@ -715,16 +715,21 @@
 }
 
 
-/* =========================
+/* /* =========================
    MOBILE RIGHT PADDING FIX
-========================= */
+========================= 
 @media (max-width: 480px) {
   .seeker-home-content {
     padding-left: 0.8rem;
-    padding-right: 0.8rem; /* 🔥 THIS FIXES IT */
+    padding-right: 0.8rem; /* 🔥 THIS FIXES IT
     box-sizing: border-box;
   }
-}
+} */
 
+@media (max-width: 480px) {
+  .jobs-section {
+    margin-right: 0.6rem; /* 🔥 right space */
+  }
+}
 
 
