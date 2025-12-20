@@ -26,7 +26,7 @@
   background: linear-gradient(135deg, #3b82f6, #1d4ed8);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  flex: 1 1 auto; /* allows logo to shrink on small screens */
+  flex: 1 1 100%; /* allows logo to shrink on small screens */
   background-clip: text;
 }
 
@@ -59,12 +59,14 @@
   display: flex;
   flex-wrap: wrap; /* wrap links on small screens */
   gap: 0.5rem;
-  justify-content: flex-end;
+  justify-content: center;
   flex: 1 1 auto;
   min-width: 150px;
 }
 
 .recruiter-link {
+  flex: 1 1 auto; /* allows buttons to shrink */
+  min-width: 120px; /* prevents them from getting too small */
   text-decoration: none;
   color: #64748b;
   font-size: 1rem;
@@ -105,6 +107,8 @@
 }
 
 .logout-btn {
+  flex: 1 1 auto; /* allows buttons to shrink */
+  min-width: 120px; /* prevents them from getting too small */
   margin-left: 1.2rem;
   padding: 0.7rem 1.8rem;
   font-size: 1rem;
@@ -1179,5 +1183,13 @@
     text-align: center;
     width: 100%;
     margin-bottom: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .recruiter-link,
+  .logout-btn {
+    width: 100%; /* stack vertically */
+    margin-bottom: 0.3rem;
   }
 }
