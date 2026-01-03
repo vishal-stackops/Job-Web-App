@@ -341,7 +341,7 @@ function JobCard({ job,onApplied }) {
             <strong>Location:</strong> {job.location}
           </p>
 
-          <div className="job-desc">
+          <div className="job-description">
             {job.description}
           </div>
 
