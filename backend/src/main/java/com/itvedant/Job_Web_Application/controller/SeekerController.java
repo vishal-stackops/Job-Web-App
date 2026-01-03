@@ -11,7 +11,7 @@ import com.itvedant.Job_Web_Application.service.SeekerService;
 
 @RestController
 @RequestMapping("/api/seekers")
-@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
+
 public class SeekerController {
 
     private final SeekerService service;
