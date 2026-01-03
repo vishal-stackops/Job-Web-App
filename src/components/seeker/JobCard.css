@@ -291,13 +291,39 @@
   background: #ffffff;
   width: 100%;
   max-width: 520px;
-  max-height: 85vh;
+  max-height: 85vh;       /* important */
+  overflow: hidden;      /* prevent modal scroll */
   border-radius: 14px;
   padding: 1.6rem 1.8rem;
   overflow-y: auto;
   position: relative;
   box-shadow: 0 25px 60px rgba(15, 23, 42, 0.25);
   animation: modalFadeIn 0.3s ease;
+}
+
+
+.job-description {
+  max-height: 160px;     /* adjust as needed */
+  overflow-y: auto;      /* enables scroll */
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: #f9fafb;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.job-description::-webkit-scrollbar {
+  width: 6px;
+}
+
+.job-description::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+  border-radius: 10px;
+}
+
+.job-description::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 /* Dark Mode */
@@ -540,31 +566,6 @@
     line-height: 1.2;
   }
 
-  .job-description {
-  max-height: 180px;      /* adjust based on your UI */
-  overflow-y: auto;       /* enables vertical scroll */
-  padding: 12px;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  background-color: #f9fafb;
-  font-size: 14px;
-  line-height: 1.6;
-}
-
-.job-description::-webkit-scrollbar {
-  width: 6px;
-}
-
-.job-description::-webkit-scrollbar-thumb {
-  background-color: #cbd5e1;
-  border-radius: 10px;
-}
-
-.job-description::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-  
   .job-desc {
     font-size: 0.75rem;
     line-height: 1.3;
