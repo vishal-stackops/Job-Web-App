@@ -291,8 +291,8 @@
   background: #ffffff;
   width: 100%;
   max-width: 520px;
-  max-height: 85vh;       /* important */
-  overflow: hidden;      /* prevent modal scroll */
+  max-height: 90vh;       /* important */
+  overflow-y: auto;       /* modal scroll */     
   border-radius: 14px;
   padding: 1.6rem 1.8rem;
   overflow-y: auto;
@@ -303,7 +303,7 @@
 
 
 .job-description {
-  max-height: 160px;     /* adjust as needed */
+  max-height: 250px;     /* adjust as needed */
   overflow-y: auto;      /* enables scroll */
   padding: 12px;
   border: 1px solid #e5e7eb;
