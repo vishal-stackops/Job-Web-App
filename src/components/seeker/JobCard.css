@@ -566,3 +566,15 @@
   }
 }
 
+
+.job-description {
+  max-height: 180px;      /* adjust based on your UI */
+  overflow-y: auto;       /* enables vertical scroll */
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: #f9fafb;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
