@@ -27,6 +27,9 @@ public class ProfileController {
     public ResponseEntity<?> getProfileBySeeker(@PathVariable Long seekerId) {
         try {
             Profile profile = profileService.getProfileBySeekerId(seekerId);
+            if (profile.isEmpty()) {
+                return ResponseEntity.ok(null); // 👈 KEY LINE
+            }   
             return ResponseEntity.ok(profile);
         } catch (RuntimeException e) {
             Map<String, String> response = new HashMap<>();
