@@ -12,6 +12,7 @@ function ProfileSetup( ) {
 
   
   const [form, setForm] = useState({
+    
     profilePicture: '',
     profileHeadline: '',
     location: '',
@@ -65,6 +66,7 @@ function ProfileSetup( ) {
 
         if (profileRes.data) {
           setForm({
+
             profilePicture: profileRes.data.profilePicture || '',
             profileHeadline: profileRes.data.profileHeadline || '',
             location: profileRes.data.location || '',
@@ -103,6 +105,7 @@ function ProfileSetup( ) {
     await axios.put(
       `${API_BASE_URL}/api/profiles/${seekerId}`,
       {
+        seekerId: Number(seekerId), // ✅ REQUIRED
         profilePicture: form.profilePicture, // ✅ URL
         profileHeadline: form.profileHeadline,
         location: form.location,
