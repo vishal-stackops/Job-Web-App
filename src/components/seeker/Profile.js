@@ -37,6 +37,11 @@ function Profile() {
         setLoading(false);
       } catch (err) {
         // console.error(err);
+        if (err.response && err.response.status === 404) {
+            // Profile not created yet
+            navigate('/seeker/profile-setup');
+            return;
+          }
         setError('Failed to fetch profile.');
         setLoading(false);
       }
