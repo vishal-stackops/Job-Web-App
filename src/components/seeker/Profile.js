@@ -36,7 +36,7 @@ function Profile() {
 
         setLoading(false);
       } catch (err) {
-        console.error(err);
+        // console.error(err);
         setError('Failed to fetch profile.');
         setLoading(false);
       }
