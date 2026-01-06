@@ -102,11 +102,35 @@ function ProfileSetup( ) {
   setError('');
 
   try {
-    await axios.put(
-      `${API_BASE_URL}/api/profiles/${seekerId}`,
-      {
-        seekerId: Number(seekerId), // ✅ REQUIRED
-        profilePicture: form.profilePicture, // ✅ URL
+    // await axios.put(
+    //   `${API_BASE_URL}/api/profiles/${seekerId}`,
+    //   {
+    //     seekerId: Number(seekerId), // ✅ REQUIRED
+    //     profilePicture: form.profilePicture, // ✅ URL
+    //     profileHeadline: form.profileHeadline,
+    //     location: form.location,
+    //     employment: form.employment,
+    //     skills: form.skills,
+    //     education: form.education,
+    //     experienceLevel: form.experienceLevel,
+    //     availability: form.availability,
+    //     phoneNumber: form.phoneNumber
+    //   },
+    //   { withCredentials: true }
+    // );
+    const url =
+      mode === 'update'
+        ? `${API_BASE_URL}/api/profiles/${seekerId}`
+        : `${API_BASE_URL}/api/profiles`;
+
+    const method = mode === 'update' ? 'put' : 'post';
+
+    await axios({
+      method,
+      url,
+      data: {
+        seekerId: Number(seekerId),
+        profilePicture: form.profilePicture,
         profileHeadline: form.profileHeadline,
         location: form.location,
         employment: form.employment,
@@ -116,8 +140,8 @@ function ProfileSetup( ) {
         availability: form.availability,
         phoneNumber: form.phoneNumber
       },
-      { withCredentials: true }
-    );
+      withCredentials: true
+    });
 
     navigate('/seeker/profile'); // redirect after update
   } catch (err) {
