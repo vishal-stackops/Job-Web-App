@@ -39,7 +39,10 @@ function Profile() {
         // console.error(err);
         if (err.response && err.response.status === 404) {
             // Profile not created yet
-            navigate('/seeker/profile-setup');
+            //navigate('/seeker/profile-setup');
+            navigate('/seeker/profile-setup', {
+              state: { mode: 'update' }
+            });
             return;
           }
         setError('Failed to fetch profile.');
