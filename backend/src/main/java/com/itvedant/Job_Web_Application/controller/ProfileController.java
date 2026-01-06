@@ -60,34 +60,58 @@ public class ProfileController {
      * POST /api/profiles
      * Create a new profile
      */
+    // @PostMapping
+    // public ResponseEntity<?> createProfile(@RequestBody Map<String, Object> request) {
+    //     try {
+    //         Long seekerId = Long.valueOf(request.get("seeker").toString().replaceAll("[^0-9]", ""));
+            
+    //         Profile profileData = new Profile();
+    //         profileData.setProfilePicture((String) request.get("profilePicture"));
+    //         profileData.setProfileHeadline((String) request.get("profileHeadline"));
+    //         profileData.setLocation((String) request.get("location"));
+    //         profileData.setEmployment((String) request.get("employment"));
+    //         profileData.setSkills((String) request.get("skills"));
+    //         profileData.setEducation((String) request.get("education"));
+    //         profileData.setExperienceLevel((String) request.get("experienceLevel"));
+    //         profileData.setAvailability((String) request.get("availability"));
+    //         profileData.setPhoneNumber((String) request.get("phoneNumber"));
+            
+    //         Profile profile = profileService.createProfile(seekerId, profileData);
+    //         return ResponseEntity.status(HttpStatus.CREATED).body(profile);
+    //     } catch (RuntimeException e) {
+    //         Map<String, String> response = new HashMap<>();
+    //         response.put("message", e.getMessage());
+    //         return ResponseEntity.badRequest().body(response);
+    //     } catch (Exception e) {
+    //         Map<String, String> response = new HashMap<>();
+    //         response.put("message", "Error creating profile: " + e.getMessage());
+    //         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+    //     }
+    // }
+
     @PostMapping
-    public ResponseEntity<?> createProfile(@RequestBody Map<String, Object> request) {
-        try {
-            Long seekerId = Long.valueOf(request.get("seeker").toString().replaceAll("[^0-9]", ""));
-            
-            Profile profileData = new Profile();
-            profileData.setProfilePicture((String) request.get("profilePicture"));
-            profileData.setProfileHeadline((String) request.get("profileHeadline"));
-            profileData.setLocation((String) request.get("location"));
-            profileData.setEmployment((String) request.get("employment"));
-            profileData.setSkills((String) request.get("skills"));
-            profileData.setEducation((String) request.get("education"));
-            profileData.setExperienceLevel((String) request.get("experienceLevel"));
-            profileData.setAvailability((String) request.get("availability"));
-            profileData.setPhoneNumber((String) request.get("phoneNumber"));
-            
-            Profile profile = profileService.createProfile(seekerId, profileData);
-            return ResponseEntity.status(HttpStatus.CREATED).body(profile);
-        } catch (RuntimeException e) {
-            Map<String, String> response = new HashMap<>();
-            response.put("message", e.getMessage());
-            return ResponseEntity.badRequest().body(response);
-        } catch (Exception e) {
-            Map<String, String> response = new HashMap<>();
-            response.put("message", "Error creating profile: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
-        }
+public ResponseEntity<?> createProfile(@RequestBody Map<String, Object> request) {
+    try {
+        Long seekerId = Long.valueOf(request.get("seekerId").toString());
+
+        Profile profileData = new Profile();
+        profileData.setProfilePicture((String) request.get("profilePicture"));
+        profileData.setProfileHeadline((String) request.get("profileHeadline"));
+        profileData.setLocation((String) request.get("location"));
+        profileData.setEmployment((String) request.get("employment"));
+        profileData.setSkills((String) request.get("skills"));
+        profileData.setEducation((String) request.get("education"));
+        profileData.setExperienceLevel((String) request.get("experienceLevel"));
+        profileData.setAvailability((String) request.get("availability"));
+        profileData.setPhoneNumber((String) request.get("phoneNumber"));
+
+        Profile profile = profileService.createProfile(seekerId, profileData);
+        return ResponseEntity.status(HttpStatus.CREATED).body(profile);
+    } catch (RuntimeException e) {
+        return ResponseEntity.badRequest().body(Map.of("message", e.getMessage()));
     }
+}
+
     
     /**
      * PUT /api/profiles/seeker/{seekerId}
@@ -124,32 +148,32 @@ public class ProfileController {
      * PUT /api/profiles/{profileId}
      * Update an existing profile
      */
-    @PutMapping("/{profileId}")
-    public ResponseEntity<?> updateProfile(@PathVariable Long profileId, @RequestBody Map<String, Object> request) {
-        try {
-            Profile profileData = new Profile();
-            profileData.setProfilePicture((String) request.get("profilePicture"));
-            profileData.setProfileHeadline((String) request.get("profileHeadline"));
-            profileData.setLocation((String) request.get("location"));
-            profileData.setEmployment((String) request.get("employment"));
-            profileData.setSkills((String) request.get("skills"));
-            profileData.setEducation((String) request.get("education"));
-            profileData.setExperienceLevel((String) request.get("experienceLevel"));
-            profileData.setAvailability((String) request.get("availability"));
-            profileData.setPhoneNumber((String) request.get("phoneNumber"));
+    // @PutMapping("/{profileId}")
+    // public ResponseEntity<?> updateProfile(@PathVariable Long profileId, @RequestBody Map<String, Object> request) {
+    //     try {
+    //         Profile profileData = new Profile();
+    //         profileData.setProfilePicture((String) request.get("profilePicture"));
+    //         profileData.setProfileHeadline((String) request.get("profileHeadline"));
+    //         profileData.setLocation((String) request.get("location"));
+    //         profileData.setEmployment((String) request.get("employment"));
+    //         profileData.setSkills((String) request.get("skills"));
+    //         profileData.setEducation((String) request.get("education"));
+    //         profileData.setExperienceLevel((String) request.get("experienceLevel"));
+    //         profileData.setAvailability((String) request.get("availability"));
+    //         profileData.setPhoneNumber((String) request.get("phoneNumber"));
             
-            Profile profile = profileService.updateProfile(profileId, profileData);
-            return ResponseEntity.ok(profile);
-        } catch (RuntimeException e) {
-            Map<String, String> response = new HashMap<>();
-            response.put("message", e.getMessage());
-            return ResponseEntity.badRequest().body(response);
-        } catch (Exception e) {
-            Map<String, String> response = new HashMap<>();
-            response.put("message", "Error updating profile: " + e.getMessage());
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
-        }
-    }
+    //         Profile profile = profileService.updateProfile(profileId, profileData);
+    //         return ResponseEntity.ok(profile);
+    //     } catch (RuntimeException e) {
+    //         Map<String, String> response = new HashMap<>();
+    //         response.put("message", e.getMessage());
+    //         return ResponseEntity.badRequest().body(response);
+    //     } catch (Exception e) {
+    //         Map<String, String> response = new HashMap<>();
+    //         response.put("message", "Error updating profile: " + e.getMessage());
+    //         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+    //     }
+    // }
     
     /**
      * GET /api/profiles
