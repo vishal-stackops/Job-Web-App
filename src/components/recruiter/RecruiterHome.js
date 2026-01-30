@@ -36,7 +36,7 @@ function RecruiterHome() {
       return;
     }
     checkRecruiterProfile(recruiterId);
-  }, []);
+  }, [checkRecruiterProfile]);
 
   const checkRecruiterProfile = useCallback(async (recruiterId) => {
   try {
