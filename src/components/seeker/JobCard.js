@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { ThemeContext } from '../../App';
 import './JobCard.css';
 import axios from "axios";
@@ -7,7 +7,7 @@ import API_BASE_URL from "../../config/api";
 
 
 function JobCard({ job,onApplied }) {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const { theme } = useContext(ThemeContext);
   const [showModal, setShowModal] = useState(false);
   const [showApplyForm, setShowApplyForm] = useState(false);
@@ -105,10 +105,6 @@ function JobCard({ job,onApplied }) {
     setAlreadyApplied(false);
     setResumeFile(null);
     handleApplyClick(e);
-  };
-
-  const handleCardClick = () => {
-    // Job details page removed
   };
 
   const handleApplyClick = async (e) => {
