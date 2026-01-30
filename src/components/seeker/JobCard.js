@@ -137,7 +137,7 @@ function JobCard({ job,onApplied }) {
       console.error('Error checking application status:', err);
       setShowApplyForm(true);
     } finally {
-      setCheckingApplied(false);
+      //setCheckingApplied(false);
     }
   };
 
