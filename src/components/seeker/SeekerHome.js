@@ -6,7 +6,7 @@ import './SeekerHome.css';
 import JobCard from './JobCard';
 //import { useProfileCheck } from '../../hooks/useProfileCheck';
 import axios from "axios";
-import API_BASE_URL from "../../config/api";
+//import API_BASE_URL from "../../config/api";
 
 function SeekerHome() {
   const [jobs, setJobs] = useState([]);
@@ -17,7 +17,7 @@ function SeekerHome() {
   const [success, setSuccess] = useState(
     location.state && location.state.success ? location.state.success : ''
   );
-  const [myApplications, setMyApplications] = useState([]); // applied jobs
+  // const [myApplications, setMyApplications] = useState([]); // applied jobs
 
   //const { isChecking } = useProfileCheck();
 
@@ -105,7 +105,7 @@ const handleJobApplied = (appliedJob) => {
   setJobs(prevJobs => prevJobs.filter(job => job.id !== appliedJob.id));
 
   // Add job to My Applications
-  setMyApplications(prev => [...prev, appliedJob]);
+  // setMyApplications(prev => [...prev, appliedJob]);
 };
 
 
