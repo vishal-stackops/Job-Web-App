@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import SeekerNavbar from './SeekerNavbar';
-import ThemeToggle from '../ThemeToggle';
+// import ThemeToggle from '../ThemeToggle';
 import './SeekerHome.css';
 import JobCard from './JobCard';
-import { useProfileCheck } from '../../hooks/useProfileCheck';
+//import { useProfileCheck } from '../../hooks/useProfileCheck';
 import axios from "axios";
 import API_BASE_URL from "../../config/api";
 
