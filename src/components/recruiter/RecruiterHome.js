@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import RecruiterNavbar from './RecruiterNavbar';
 import './RecruiterHome.css';
@@ -38,20 +38,25 @@ function RecruiterHome() {
     checkRecruiterProfile(recruiterId);
   }, []);
 
-  const checkRecruiterProfile = async (recruiterId) => {
-    try {
-      const profileRes = await axios.get(`${API_BASE_URL}/api/recruiters/${recruiterId}/profile`, { withCredentials: true });
-      if (profileRes.data) {
-        loadJobs(recruiterId);
-      } else {
-        setShowProfileForm(true);
-        setLoading(false);
-      }
-    } catch {
+  const checkRecruiterProfile = useCallback(async (recruiterId) => {
+  try {
+    const profileRes = await axios.get(
+      `${API_BASE_URL}/api/recruiters/${recruiterId}/profile`,
+      { withCredentials: true }
+    );
+
+    if (profileRes.data) {
+      loadJobs(recruiterId);
+    } else {
       setShowProfileForm(true);
       setLoading(false);
     }
-  };
+  } catch {
+    setShowProfileForm(true);
+    setLoading(false);
+  }
+}, []);
+
 
   const loadJobs = async (recruiterId) => {
     try {
@@ -167,10 +172,6 @@ function RecruiterHome() {
     } finally {
       setProfileLoading(false);
     }
-  };
-
-  const handleLogout = () => {
-    navigate('/signin');
   };
 
 
