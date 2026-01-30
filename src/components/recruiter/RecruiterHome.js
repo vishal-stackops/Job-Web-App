@@ -28,16 +28,6 @@ function RecruiterHome() {
   const [showForceDeleteModal, setShowForceDeleteModal] = useState(false);
   const [jobToDelete, setJobToDelete] = useState(null);
 
-  useEffect(() => {
-    const recruiterId = localStorage.getItem('recruiterId');
-    if (!recruiterId) {
-      setError('Recruiter not logged in.');
-      setLoading(false);
-      return;
-    }
-    checkRecruiterProfile(recruiterId);
-  }, [checkRecruiterProfile]);
-
   const checkRecruiterProfile = useCallback(async (recruiterId) => {
   try {
     const profileRes = await axios.get(
@@ -56,6 +46,17 @@ function RecruiterHome() {
     setLoading(false);
   }
 }, []);
+
+
+useEffect(() => {
+    const recruiterId = localStorage.getItem('recruiterId');
+    if (!recruiterId) {
+      setError('Recruiter not logged in.');
+      setLoading(false);
+      return;
+    }
+    checkRecruiterProfile(recruiterId);
+  }, [checkRecruiterProfile]);
 
 
   const loadJobs = async (recruiterId) => {
