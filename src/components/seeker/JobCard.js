@@ -16,7 +16,7 @@ function JobCard({ job,onApplied }) {
   const [applyError, setApplyError] = useState('');
   const [applySuccess, setApplySuccess] = useState('');
   const [alreadyApplied, setAlreadyApplied] = useState(false);
-  const [checkingApplied, setCheckingApplied] = useState(false);
+  //const [checkingApplied, setCheckingApplied] = useState(false);
   const [isSaved, setIsSaved] = useState(false);
   const [savingJob, setSavingJob] = useState(false);
 
@@ -111,14 +111,14 @@ function JobCard({ job,onApplied }) {
     e.stopPropagation();
     setApplyError('');
     setApplySuccess('');
-    setCheckingApplied(true);
+    //setCheckingApplied(true);
     setShowApplyForm(false);
     setAlreadyApplied(false);
 
     const seekerId = localStorage.getItem('seekerId');
     if (!seekerId) {
       setApplyError('You must be logged in as a job seeker to apply.');
-      setCheckingApplied(false);
+      //setCheckingApplied(false);
       return;
     }
 
