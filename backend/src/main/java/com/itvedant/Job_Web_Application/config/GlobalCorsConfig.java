@@ -14,7 +14,7 @@ public class GlobalCorsConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
                     // ✅ PRODUCTION (Render Backend)
-                    .allowedOrigins("https://job-web-app-1-o2ww.onrender.com")
+                    .allowedOrigins("https://job-web-app-qbz9.onrender.com")
                     // ✅ PRODUCTION (Vercel Frontend)
                     .allowedOrigins("https://talenthubportal.vercel.app")
 
